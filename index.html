@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
 <title>Music 2 Language Glossary</title>
 <style>
   :root {
@@ -506,6 +508,43 @@
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* ---- Real audio/score examples ---- */
+  .example-btn {
+    display: inline-block; margin-top: 0.5rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.03em;
+    padding: 0.35rem 0.7rem; border-radius: 999px; border: 1px solid var(--surface-line);
+    background: var(--surface); color: var(--accent-ink); cursor: pointer;
+  }
+  .example-btn:hover { border-color: var(--accent); }
+  .example-btn.open { background: var(--accent-soft); border-color: var(--accent); }
+  .example-panel {
+    margin: 0.7rem 0 0.3rem; padding: 0.9rem 1rem; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--surface-line); max-width: 660px;
+  }
+  .example-cite { margin: 0 0 0.6rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .example-cite em { color: var(--ink); font-style: italic; }
+  .example-video { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; }
+  .example-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .example-caption { margin: 0.4rem 0 0; font-size: 0.76rem; color: var(--muted); }
+  .example-score { margin: 0.7rem 0 0; font-size: 0.84rem; }
+  .example-score a { font-weight: 600; }
+  .pd-note { color: var(--muted); font-size: 0.78rem; }
+  .example-caveat { margin: 0.5rem 0 0; font-size: 0.76rem; color: var(--muted); font-style: italic; }
+  .example-bar { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+  .example-bar strong { color: var(--ink); }
+  .example-score-img { display: block; width: 100%; max-width: 640px; height: auto; border: 1px solid var(--surface-line); border-radius: 6px; background: #fff; margin-top: 0.2rem; }
+  .mode-examples { margin-top: 0.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .mode-example-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.6rem; }
+  .mode-example-row .example-panel { flex-basis: 100%; }
+  .mode-name { font-weight: 600; color: var(--ink); font-size: 0.88rem; min-width: 5.5rem; }
+  .scale-play-btn {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.03em;
+    padding: 0.35rem 0.7rem; border-radius: 999px; border: 1px solid var(--surface-line);
+    background: var(--surface); color: var(--focus); cursor: pointer;
+  }
+  .scale-play-btn:hover { border-color: var(--focus); }
+  .scale-play-btn.playing { background: #e6edf5; border-color: var(--focus); }
 </style>
 
 
@@ -585,11 +624,21 @@
         <div class="group-head"><h3>Scales, modes &amp; tonality</h3><span class="group-tag">10 terms</span></div>
         <dl class="terms">
           <div class="term-row"><dt class="term">Pentatonic scale</dt><dd class="def">A five-note scale, found across many world music traditions.</dd></div>
-          <div class="term-row"><dt class="term">Modal scale</dt><dd class="def">A scale drawn from the seven church modes. Quick formula for each, as scale degrees relative to the major scale:<br><strong>Ionian</strong> 1 2 3 4 5 6 7 &nbsp;&middot;&nbsp; <strong>Dorian</strong> 1 2 3&#9837; 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Phrygian</strong> 1 2&#9837; 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Lydian</strong> 1 2 3 4&#9839; 5 6 7 &nbsp;&middot;&nbsp; <strong>Mixolydian</strong> 1 2 3 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Aeolian</strong> 1 2 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Locrian</strong> 1 2&#9837; 3&#9837; 4 5&#9837; 6&#9837; 7&#9837;</dd></div>
+          <div class="term-row"><dt class="term">Modal scale</dt><dd class="def">A scale drawn from the seven church modes. Quick formula for each, as scale degrees relative to the major scale:<br><strong>Ionian</strong> 1 2 3 4 5 6 7 &nbsp;&middot;&nbsp; <strong>Dorian</strong> 1 2 3&#9837; 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Phrygian</strong> 1 2&#9837; 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Lydian</strong> 1 2 3 4&#9839; 5 6 7 &nbsp;&middot;&nbsp; <strong>Mixolydian</strong> 1 2 3 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Aeolian</strong> 1 2 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Locrian</strong> 1 2&#9837; 3&#9837; 4 5&#9837; 6&#9837; 7&#9837;
+<div class="mode-examples">
+<div class="mode-example-row"><span class="mode-name">Ionian</span><button type="button" class="scale-play-btn" data-scale="ionian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-ionian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-ionian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Dorian</span><button type="button" class="scale-play-btn" data-scale="dorian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-dorian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-dorian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Phrygian</span><button type="button" class="scale-play-btn" data-scale="phrygian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-phrygian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-phrygian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Lydian</span><button type="button" class="scale-play-btn" data-scale="lydian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-lydian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-lydian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Mixolydian</span><button type="button" class="scale-play-btn" data-scale="mixolydian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-mixolydian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-mixolydian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Aeolian</span><button type="button" class="scale-play-btn" data-scale="aeolian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-aeolian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-aeolian" hidden></div></div>
+<div class="mode-example-row"><span class="mode-name">Locrian</span><button type="button" class="scale-play-btn" data-scale="locrian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-locrian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-locrian" hidden></div></div>
+</div>
+</dd></div>
           <div class="term-row"><dt class="term">Diatonic major / minor</dt><dd class="def">A scale using only the notes belonging to a given major or minor key, with no chromatic alteration.</dd></div>
           <div class="term-row"><dt class="term">Polytonality</dt><dd class="def">The simultaneous use of two or more different keys.</dd></div>
-          <div class="term-row"><dt class="term">Bitonality</dt><dd class="def">Polytonality involving exactly two simultaneous keys.</dd></div>
-          <div class="term-row"><dt class="term">Whole tone scale</dt><dd class="def">A six-note scale built entirely from whole-tone (major second) intervals.</dd></div>
+          <div class="term-row"><dt class="term">Bitonality</dt><dd class="def">Polytonality involving exactly two simultaneous keys.<br><button type="button" class="example-btn" data-example-id="bitonality">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="bitonality" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Whole tone scale</dt><dd class="def">A six-note scale built entirely from whole-tone (major second) intervals.<br><button type="button" class="example-btn" data-example-id="whole-tone-scale">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="whole-tone-scale" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Tone row</dt><dd class="def">An ordered sequence of all twelve chromatic pitches, used as the basis for serial (twelve-tone) composition.</dd></div>
           <div class="term-row"><dt class="term">Experimental scale forms</dt><dd class="def">Scales devised or adapted by a composer outside traditional Western scale systems.</dd></div>
           <div class="term-row"><dt class="term">Microtonal scales</dt><dd class="def">Scales built from intervals smaller than a semitone. Common notation symbols:<br><strong>&uarr; / &darr;</strong> (arrow above a note or accidental) &mdash; the simplest, most widely used convention: raises or lowers the pitch by a small, specified amount, often a quarter-tone.<br><strong>Half-sharp (quarter-tone sharp)</strong> &mdash; a sharp sign with only one vertical stroke instead of two; raises the pitch by roughly a quarter-tone.<br><strong>Half-flat (quarter-tone flat)</strong> &mdash; a backwards or slashed flat sign; lowers the pitch by roughly a quarter-tone.<br><strong>Three-quarter-tone sharp / flat</strong> &mdash; a sharp or flat sign with an added stroke; raises or lowers the pitch by three quarter-tones.</dd></div>
@@ -623,10 +672,10 @@
       <section class="group" id="rhythmic">
         <div class="group-head"><h3>Rhythmic devices</h3><span class="group-tag">9 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Syncopation</dt><dd class="def">Placing accents on normally weak beats or off-beats, against the expected metric pulse.</dd></div>
+          <div class="term-row"><dt class="term">Syncopation</dt><dd class="def">Placing accents on normally weak beats or off-beats, against the expected metric pulse.<br><button type="button" class="example-btn" data-example-id="syncopation">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="syncopation" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Triplets</dt><dd class="def">Three notes performed in the time usually taken by two.</dd></div>
-          <div class="term-row"><dt class="term">Hemiola</dt><dd class="def">A rhythmic pattern implying two groups of three beats against three groups of two, or vice versa.</dd></div>
-          <div class="term-row"><dt class="term">Ostinato</dt><dd class="def">A short rhythmic or melodic pattern repeated persistently.</dd></div>
+          <div class="term-row"><dt class="term">Hemiola</dt><dd class="def">A rhythmic pattern implying two groups of three beats against three groups of two, or vice versa.<br><button type="button" class="example-btn" data-example-id="hemiola">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="hemiola" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Ostinato</dt><dd class="def">A short rhythmic or melodic pattern repeated persistently.<br><button type="button" class="example-btn" data-example-id="ostinato">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="ostinato" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Polyrhythm</dt><dd class="def">The broader term: two or more contrasting rhythmic groupings (e.g. 3 against 2) sounding together, whether or not either one conflicts with the prevailing metre. Cross-rhythm, below, is the specific case where it does.</dd></div>
           <div class="term-row"><dt class="term">Swing</dt><dd class="def">An uneven, long&ndash;short division of the beat characteristic of jazz.
             <svg viewBox="0 0 320 178" role="img" aria-label="Standard notation comparing two straight quavers to their swung, triplet-based realisation as a crotchet plus quaver" style="width:100%;max-width:300px;height:auto;display:block;margin-top:0.5rem;">
@@ -676,8 +725,8 @@
             </svg>
           </dd></div>
           <div class="term-row"><dt class="term">Cross-rhythm</dt><dd class="def">The specific case of polyrhythm where a rhythm deliberately conflicts with the established, felt metre itself &mdash; it works against the prevailing pulse, rather than simply combining with it. <em>e.g. in a 4/4 bar, accenting every three quavers (3+3+3+3+3... regrouped as 3s across the bar) so the accents fall in a different place each beat, pulling against the underlying 4/4 feel.</em></dd></div>
-          <div class="term-row"><dt class="term">Augmentation</dt><dd class="def">Restating a musical idea with its note values lengthened. <em>e.g. a melody's crotchets (&#9833;) restated as minims &mdash; the same notes and rhythmic shape, at double the original duration.</em></dd></div>
-          <div class="term-row"><dt class="term">Diminution</dt><dd class="def">Restating a musical idea with its note values shortened. <em>e.g. a melody's crotchets (&#9833;) restated as quavers (&#9834;) &mdash; the same notes and rhythmic shape, at half the original duration.</em></dd></div>
+          <div class="term-row"><dt class="term">Augmentation</dt><dd class="def">Restating a musical idea with its note values lengthened. <em>e.g. a melody's crotchets (&#9833;) restated as minims &mdash; the same notes and rhythmic shape, at double the original duration.</em><br><button type="button" class="example-btn" data-example-id="augmentation">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="augmentation" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Diminution</dt><dd class="def">Restating a musical idea with its note values shortened. <em>e.g. a melody's crotchets (&#9833;) restated as quavers (&#9834;) &mdash; the same notes and rhythmic shape, at half the original duration.</em><br><button type="button" class="example-btn" data-example-id="diminution">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="diminution" hidden></div></dd></div>
         </dl>
       </section>
 
@@ -704,11 +753,11 @@
           <div class="term-row"><dt class="term">Modulation</dt><dd class="def">A change of key within a piece of music.<br><strong>Pivot chord modulation</strong> (the most common technique): a chord diatonic to both the old and new key is reinterpreted with a new function, pivoting smoothly between them before a cadence confirms the new key. <em>e.g. modulating from C major to G major: C: I&ndash;vi&ndash;ii (=G: IV)&ndash;V&ndash;I(G) &mdash; the ii chord in C (D minor) is reheard as IV in G major, pivoting into the new key.</em><br><strong>By period:</strong><br><strong>Baroque</strong> &mdash; mostly to closely related keys (dominant, subdominant, relative major/minor), via pivot chords or sequential (circle-of-fifths) modulation, common within fugues and dance movements.<br><strong>Classical</strong> &mdash; structural: tonic&rarr;dominant in a major-key exposition, or tonic&rarr;relative major in a minor-key one, mainly by pivot chord confirmed with a strong V&ndash;I cadence; development sections modulate more freely using sequences and diminished-seventh chords as pivots.<br><strong>Romantic</strong> &mdash; to more distantly related keys, including chromatic-mediant and enharmonic relationships; pivots expand to diminished sevenths, augmented sixths and common-tone modulation, used for dramatic and colouristic effect rather than purely structural purposes.<br><strong>20th/21st-century</strong> &mdash; freer and sometimes abrupt "direct" (phrase) modulation with no pivot at all, semitone/side-slipping shifts, or a move away from functional modulation altogether in atonal and bitonal music.</dd></div>
           <div class="term-row"><dt class="term">Tonicisation</dt><dd class="def">Briefly treating a chord other than the tonic as if it were a new "home", usually by preceding it with its own dominant (a secondary dominant) &mdash; without a full, lasting modulation to that key. <em>e.g. in C major, preceding the ii chord (D minor) with A7 (V7/ii) to briefly tonicise D minor, before returning to C major.</em></dd></div>
           <div class="term-row"><dt class="term">Dissonance &amp; resolution</dt><dd class="def">Tension created by clashing pitches, released by movement to a consonant sound. Dissonance can be created by: <strong>non-chord tones</strong> (passing tones, neighbour tones, suspensions, appoggiaturas, anticipations), <strong>dissonant chord types</strong> (diminished and augmented triads, seventh and extended/altered chords), <strong>dissonant intervals</strong> (2nds, 7ths, tritones), and more broadly by <strong>chromatic clashes, polytonality/bitonality or tone clusters</strong>.</dd></div>
-          <div class="term-row"><dt class="term">Circle of fifths</dt><dd class="def">A sequence of chords or keys that moves systematically by the interval of a fifth. <em>e.g. the progression A minor&ndash;D minor&ndash;G&ndash;C, where each chord's root sits a fifth below (or a fourth above) the one before it, moving around the circle toward C major.</em></dd></div>
+          <div class="term-row"><dt class="term">Circle of fifths</dt><dd class="def">A sequence of chords or keys that moves systematically by the interval of a fifth. <em>e.g. the progression A minor&ndash;D minor&ndash;G&ndash;C, where each chord's root sits a fifth below (or a fourth above) the one before it, moving around the circle toward C major.</em><br><button type="button" class="example-btn" data-example-id="circle-of-fifths">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="circle-of-fifths" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Pedal point</dt><dd class="def">A sustained or repeated note, usually in the bass, held while the harmony above it changes.</dd></div>
           <div class="term-row"><dt class="term">Inverted pedal point</dt><dd class="def">The same device with the sustained or repeated note placed in an upper voice instead of the bass, while the harmony changes underneath it.</dd></div>
-          <div class="term-row"><dt class="term">Ground bass</dt><dd class="def">A short bass pattern repeated continuously beneath changing upper parts.</dd></div>
-          <div class="term-row"><dt class="term">Alberti bass</dt><dd class="def">A broken-chord accompaniment figure moving low&ndash;high&ndash;middle&ndash;high, typical of the Classical period.</dd></div>
+          <div class="term-row"><dt class="term">Ground bass</dt><dd class="def">A short bass pattern repeated continuously beneath changing upper parts.<br><button type="button" class="example-btn" data-example-id="ground-bass">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="ground-bass" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Alberti bass</dt><dd class="def">A broken-chord accompaniment figure moving low&ndash;high&ndash;middle&ndash;high, typical of the Classical period.<br><button type="button" class="example-btn" data-example-id="alberti-bass">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="alberti-bass" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Broken chords</dt><dd class="def">The notes of a chord sounded separately in sequence rather than together.</dd></div>
         </dl>
       </section>
@@ -728,7 +777,7 @@
           <div class="term-row"><dt class="term">Strophic form</dt><dd class="def">The same music repeats for every stanza of text, as in a hymn or many folk songs.</dd></div>
           <div class="term-row"><dt class="term">Through-composed</dt><dd class="def">New music is written for each section of text, with no substantial repetition of earlier material.</dd></div>
           <div class="term-row"><dt class="term">Ritornello form</dt><dd class="def">A recurring tutti (full-ensemble) refrain alternates with contrasting solo episodes; associated with the Baroque concerto (e.g. Vivaldi, Bach).</dd></div>
-          <div class="term-row"><dt class="term">Fugue</dt><dd class="def">A contrapuntal form in which a subject is introduced in imitation across voices (exposition), then developed through episodes and further subject entries, sometimes intensified by stretto (overlapping entries) near the close.</dd></div>
+          <div class="term-row"><dt class="term">Fugue</dt><dd class="def">A contrapuntal form in which a subject is introduced in imitation across voices (exposition), then developed through episodes and further subject entries, sometimes intensified by stretto (overlapping entries) near the close.<br><button type="button" class="example-btn" data-example-id="fugue">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="fugue" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Passacaglia / chaconne</dt><dd class="def">Continuous variations built over a short, repeating bass line (passacaglia) or chord progression (chaconne), usually in triple metre.</dd></div>
           <div class="term-row"><dt class="term">Symphonic poem</dt><dd class="def">Also called a tone poem: a single-movement orchestral work that depicts a poetic, narrative or pictorial idea; a Romantic-era genre pioneered by Liszt.</dd></div>
           <div class="term-row"><dt class="term">Cyclic form</dt><dd class="def">A multi-movement work is unified by reusing the same theme or motif (sometimes transformed) across two or more movements.</dd></div>
@@ -740,16 +789,16 @@
         <dl class="terms">
           <div class="term-row"><dt class="term">Monophony</dt><dd class="def">A single melodic line with no accompanying harmony or other parts &mdash; whether performed solo or in unison by many performers.</dd></div>
           <div class="term-row"><dt class="term">Homophony</dt><dd class="def">A melody supported by accompanying harmony. Includes homorhythmic (chordal) texture, where all parts move together in the same rhythm, as well as melody-and-accompaniment textures.</dd></div>
-          <div class="term-row"><dt class="term">Polyphony</dt><dd class="def">Two or more independent melodic lines of roughly equal importance sounding together; also called counterpoint (e.g. a fugue or canon).</dd></div>
+          <div class="term-row"><dt class="term">Polyphony</dt><dd class="def">Two or more independent melodic lines of roughly equal importance sounding together; also called counterpoint (e.g. a fugue or canon).<br><button type="button" class="example-btn" data-example-id="polyphony">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="polyphony" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Heterophony</dt><dd class="def">Simultaneous, slightly varied performances of the same melody by different performers.</dd></div>
-          <div class="term-row"><dt class="term">Antiphony</dt><dd class="def">Alternating, answering blocks of sound, often between spatially separated groups or choirs. Distinct from call and response: antiphony contrasts larger ensemble blocks (e.g. two choirs, or choir and organ) echoing or answering one another, while call and response is usually a brief solo/small-group call answered by another voice within one ensemble.</dd></div>
+          <div class="term-row"><dt class="term">Antiphony</dt><dd class="def">Alternating, answering blocks of sound, often between spatially separated groups or choirs. Distinct from call and response: antiphony contrasts larger ensemble blocks (e.g. two choirs, or choir and organ) echoing or answering one another, while call and response is usually a brief solo/small-group call answered by another voice within one ensemble.<br><button type="button" class="example-btn" data-example-id="antiphony">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="antiphony" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Melody</dt><dd class="def">The foreground, single line of music the ear follows as the primary idea.</dd></div>
           <div class="term-row"><dt class="term">Countermelody</dt><dd class="def">A secondary melodic line played against the primary melody.</dd></div>
           <div class="term-row"><dt class="term">Accompaniment</dt><dd class="def">Supporting musical material placed beneath or around a melody.</dd></div>
           <div class="term-row"><dt class="term">Harmonic accompaniment</dt><dd class="def">Accompaniment built from block or figured chords supporting the melody.</dd></div>
           <div class="term-row"><dt class="term">Bassline</dt><dd class="def">The lowest-sounding supporting line in a texture.</dd></div>
           <div class="term-row"><dt class="term">Canon</dt><dd class="def">Parts that imitate each other exactly at a fixed time and/or pitch interval, overlapping in performance.</dd></div>
-          <div class="term-row"><dt class="term">Call and response</dt><dd class="def">An alternating musical dialogue between two voices or groups &mdash; typically a short solo (or small-group) &ldquo;call&rdquo; immediately answered by a different, often contrasting &ldquo;response,&rdquo; within the same ensemble.</dd></div>
+          <div class="term-row"><dt class="term">Call and response</dt><dd class="def">An alternating musical dialogue between two voices or groups &mdash; typically a short solo (or small-group) &ldquo;call&rdquo; immediately answered by a different, often contrasting &ldquo;response,&rdquo; within the same ensemble.<br><button type="button" class="example-btn" data-example-id="call-and-response">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="call-and-response" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Doubling</dt><dd class="def">Two or more parts performing the same line simultaneously.</dd></div>
           <div class="term-row"><dt class="term">Layering</dt><dd class="def">Building texture by introducing parts successively over time.</dd></div>
           <div class="term-row"><dt class="term">Voicing</dt><dd class="def">The specific arrangement and spacing of notes within a chord. Common types: close position (notes packed within an octave, e.g. C4&ndash;E4&ndash;G4); open position (notes spread across a wider span, e.g. C3&ndash;G3&ndash;E4); root position (root in the bass) versus first/second inversion (the third or fifth in the bass); and doubling a note, most often the root or fifth, to strengthen it.</dd></div>
@@ -1453,5 +1502,263 @@
           : '<li><span>To review again</span><span>none — nice work</span></li>');
       session = null;
     }
+  })();
+</script>
+
+<script>
+  (function () {
+    var EXAMPLES = {
+      'bitonality': {
+        cite: `Stravinsky, <em>Petrushka</em> (1911) &mdash; Tableau II, &ldquo;Chez P&eacute;trouchka&rdquo;: the famous &ldquo;Petrushka chord&rdquo; (C major triad + F&#9839; major triad superimposed).`,
+        video: 'esD90diWZds', start: 585,
+        caption: 'Royal Concertgebouw Orchestra, cond. Andris Nelsons (official AVROTROS Klassiek recording)',
+        score: { url: 'https://imslp.org/wiki/Petrushka,_K012_(Stravinsky,_Igor)', label: 'IMSLP &mdash; Petrushka, K.012', note: 'Public domain in the US/Canada; not yet public domain in the EU/UK &mdash; check local copyright before reuse.' },
+        scoreImg: { src: 'score-images/bitonality-petrushka-r48.png', alt: 'Stravinsky Petrushka score at rehearsal 48, woodwind parts', caption: 'Real score: Editions Russe de Musique/Chester full score, 1912, at rehearsal 48.' },
+        bar: 'Rehearsal 48 in the 1912 Editions Russe de Musique/Chester full score &mdash; the clarinet arpeggios carrying the bitonal chord begin right at this downbeat.',
+        caveat: 'Timestamp confirmed via a listener-posted chapter list on this recording.'
+      },
+      'whole-tone-scale': {
+        cite: `Debussy, &ldquo;Voiles&rdquo; (Pr&eacute;ludes, Book 1, No. 2) &mdash; almost the entire piece is built from the whole tone scale.`,
+        video: 'mZLf7-nnAMs', start: 0,
+        caption: 'Cory Hall, piano',
+        score: { url: 'https://imslp.org/wiki/Pr%C3%A9ludes,_Livre_1,_CD_125_(Debussy,_Claude)', label: 'IMSLP &mdash; Préludes, Livre 1', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/whole-tone-debussy-voiles.png', alt: 'Debussy Voiles opening bars, 1910 Durand first edition', caption: 'Real score: Durand first edition, 1910 &mdash; the opening bars, built entirely on the whole tone scale.' },
+        bar: 'Bars 1&ndash;4 (shown below) &mdash; the piece opens directly on whole-tone material. A later loud ascending run near bar 46 is another clear example, though this edition prints no bar numbers there to confirm the exact count.'
+      },
+      'hemiola': {
+        cite: `Bernstein, &ldquo;America&rdquo; (<em>West Side Story</em>, 1961 film) &mdash; the alternating 6/8 (grouped in twos) against 3/4 (grouped in threes) feel under &ldquo;I like to be in America.&rdquo;`,
+        video: 'YhSKk-cvblc', start: 20,
+        caption: 'West Side Story (1961 film) &mdash; official Movieclips channel',
+        scoreNote: `Score not shown &mdash; Bernstein&rsquo;s work isn&rsquo;t public domain. Listen for the beat regrouping under the verses.`,
+        caveat: 'Timestamp is approximate &mdash; confirm the exact hemiola bar by ear.'
+      },
+      'ground-bass': {
+        cite: `Purcell, &ldquo;Dido&rsquo;s Lament&rdquo; (&ldquo;When I am laid in earth&rdquo;), <em>Dido and Aeneas</em> &mdash; the descending ground bass repeats continuously beneath the vocal line.`,
+        video: 'f00nKLzCRrI', start: 60,
+        caption: 'Joyce DiDonato, soprano (Warner Classics)',
+        score: { url: 'https://imslp.org/wiki/Dido_and_Aeneas,_Z.626_(Purcell,_Henry)', label: 'IMSLP &mdash; Dido and Aeneas, Z.626', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/ground-bass-purcell.png', alt: 'Purcell Dido\'s Lament opening, Novello vocal score', caption: 'Real score: Novello vocal score, ed. Cummings, c.1889 &mdash; the ground bass in the lowest stave, voice entering at bar 6.' },
+        bar: 'Bar 1 of &ldquo;When I am laid in earth&rdquo; (No. 37) in the Novello/Cummings vocal score &mdash; the ground bass alone; the voice enters at bar 6, the ground&rsquo;s second statement.',
+        caveat: `Timestamp is approximate &mdash; the lament begins after the preceding recitative (&ldquo;Thy hand, Belinda&rdquo;).`
+      },
+      'polyphony': {
+        cite: `Bach, Fugue in C minor, BWV 847 (<em>The Well-Tempered Clavier</em>, Book 1) &mdash; voices enter one by one, each independent yet interlocking.`,
+        video: 'CGVL5j6BEKs', start: 75,
+        caption: 'Víkingur Ólafsson, piano (Deutsche Grammophon)',
+        score: { url: 'https://imslp.org/wiki/Prelude_and_Fugue_in_C_minor,_BWV_847_(Bach,_Johann_Sebastian)', label: 'IMSLP &mdash; Prelude and Fugue in C minor, BWV 847', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/polyphony-bach-bwv847.png', alt: 'Bach Fugue in C minor BWV 847 exposition, Bach-Gesellschaft edition', caption: 'Real score: Bach-Gesellschaft Ausgabe, 1866 &mdash; bar numbers 5 and 10 printed below the staves.' },
+        bar: 'Bach-Gesellschaft edition: Voice 1 enters bar 1, Voice 2 (the answer) bar 3, Voice 3 (bass) bar 7.',
+        caveat: `Timestamp is approximate &mdash; the fugue follows a short prelude; listen for the subject&rsquo;s first solo entry.`
+      },
+      'fugue': {
+        cite: `Bach, &ldquo;Little&rdquo; Fugue in G minor, BWV 578 &mdash; the subject is stated alone, then imitated by each entering voice (the exposition).`,
+        video: 'JWYpYgiQ-m0', start: 0,
+        caption: 'Jonathan Scott, organ (Chesterfield Parish Church)',
+        score: { url: 'https://imslp.org/wiki/Fugue_in_G_minor,_BWV_578_(Bach,_Johann_Sebastian)', label: 'IMSLP &mdash; Fugue in G minor, BWV 578', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/fugue-bach-bwv578.png', alt: 'Bach Little Fugue in G minor BWV 578 opening, Bach-Gesellschaft edition', caption: 'Real score: Bach-Gesellschaft Ausgabe, 1891 &mdash; the subject stated alone in the Manual at bar 1; Pedal still resting.' },
+        bar: 'Bach-Gesellschaft edition: Voice 1 bar 1, Voice 2 (answer) &asymp;bar 3, Voice 3 &asymp;bar 13, Voice 4 (pedal) bar 15. This edition prints no bar numbers, so the middle two are hand-counted and approximate.'
+      },
+      'ostinato': {
+        cite: `Ravel, <em>Boléro</em> &mdash; the snare drum ostinato repeats unchanged for the whole piece while the orchestration builds around it.`,
+        video: 's_pSJOkmYBA', start: 0,
+        caption: 'BBC Proms 2014',
+        score: { url: 'https://imslp.org/wiki/Bol%C3%A9ro,_M.81_(Ravel,_Maurice)', label: 'IMSLP &mdash; Boléro, M.81', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/ostinato-ravel-bolero.png', alt: 'Ravel Bolero opening bars showing the snare drum and pizzicato bass ostinato', caption: 'Real score: the printed full score &mdash; snare-drum and pizzicato Altos/Violoncelles ostinatos both from bar 1.' },
+        bar: 'Bar 1 &mdash; the snare-drum and pizzicato cello/viola ostinato both begin here, before the flute melody enters.'
+      },
+      'syncopation': {
+        cite: `Joplin, &ldquo;Maple Leaf Rag&rdquo; &mdash; a syncopated melody against a steady left-hand pulse from the opening bars.`,
+        video: 'zMVlICUZzfg', start: 0,
+        caption: 'A Scott Joplin-cut piano roll, played on a period player piano (Scott Joplin House, Missouri)',
+        score: { url: 'https://imslp.org/wiki/Maple_Leaf_Rag_(Joplin,_Scott)', label: 'IMSLP &mdash; Maple Leaf Rag', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/syncopation-joplin.png', alt: 'Joplin Maple Leaf Rag opening bars, 1899 first edition', caption: 'Real score: John Stark &amp; Son first edition, 1899 &mdash; the syncopated right-hand cell from bar 1.' },
+        bar: 'Bar 1, per the 1899 first edition &mdash; the opening syncopated right-hand cell (repeated bars 1&ndash;4) is the piece&rsquo;s signature syncopation.'
+      },
+      'circle-of-fifths': {
+        cite: `Pachelbel, Canon in D &mdash; the famous descending bass line moves through the circle of fifths continuously from bar 1.`,
+        video: 'JvNQLJ1_HQ0', start: 0,
+        caption: 'Voices of Music (period instruments)',
+        score: { url: 'https://imslp.org/wiki/Canon_and_Gigue_in_D_major,_P.37_(Pachelbel,_Johann)', label: 'IMSLP &mdash; Canon and Gigue in D major, P.37', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/circle-of-fifths-pachelbel.png', alt: 'Pachelbel Canon in D opening, Seiffert Organum edition', caption: 'Real score: Organum series, ed. Seiffert, 1929 &mdash; the descending ground bass in the Violoncello, bar 1.' },
+        bar: 'Bars 1&ndash;2 in the Seiffert edition &mdash; the descending-bass pattern&rsquo;s full 8-chord cycle spans these two bars.'
+      },
+      'call-and-response': {
+        cite: `Cab Calloway, &ldquo;Minnie the Moocher&rdquo; &mdash; Calloway&rsquo;s scat &ldquo;call&rdquo; answered by the band (and famously the audience) on &ldquo;Hi-de-hi-de-hi-de-ho.&rdquo;`,
+        video: 'bfsooIT9g_A', start: 60,
+        caption: 'Cab Calloway (official artist channel)',
+        scoreNote: `Score not shown &mdash; this 1931 recording isn&rsquo;t public domain.`,
+        caveat: 'Timestamp is approximate &mdash; the call-and-response section follows the opening narrative verses.'
+      },
+      'alberti-bass': {
+        cite: `Mozart, Piano Sonata No. 16 in C major, K. 545, 1st movement &mdash; a textbook Alberti bass (low&ndash;high&ndash;middle&ndash;high) in the left hand from bar 1.`,
+        video: 'qjk-YRuQZDE', start: 0,
+        caption: 'piano performance',
+        score: { url: 'https://imslp.org/wiki/Piano_Sonata_No.16_in_C_major,_K.545_(Mozart,_Wolfgang_Amadeus)', label: 'IMSLP &mdash; Piano Sonata No. 16 in C, K.545', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/alberti-bass-mozart.png', alt: 'Mozart Piano Sonata K.545 opening, early Zulehner edition', caption: 'Real score: Zulehner edition, Mainz, c.1805 &mdash; the Alberti-bass figure from bar 1 (this early print notates it in treble clef, an old engraving convention).' },
+        bar: 'Bar 1, left hand, per the early Zulehner edition (Mainz, c.1805).'
+      },
+      'augmentation': {
+        cite: `Bach, <em>The Art of Fugue</em>, Contrapunctus VII (&ldquo;a 4, per Augmentationem et Diminutionem&rdquo;) &mdash; this movement is built specifically to demonstrate augmentation and diminution of the same subject.`,
+        video: 'XtERFlxH2PM', start: 60,
+        caption: 'Quartetto di Cremona (Naxos)',
+        score: { url: 'https://imslp.org/wiki/Die_Kunst_der_Fuge,_BWV_1080_(Bach,_Johann_Sebastian)', label: 'IMSLP &mdash; Die Kunst der Fuge, BWV 1080', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/art-of-fugue-cp7.png', alt: 'Bach Art of Fugue Contrapunctus VII opening, Bach-Gesellschaft edition', caption: 'Real score: Bach-Gesellschaft Ausgabe, 1878 &mdash; titled by Bach himself &ldquo;per Augmentationem et Diminutionem.&rdquo;' },
+        bar: 'Approx. bar 2 in the Bach-Gesellschaft edition &mdash; the top voice enters in doubled note values (half notes/dotted quarters), clearly slower than the surrounding parts.',
+        caveat: 'Timestamp is an estimate &mdash; augmentation recurs throughout the movement; listen for a long, stretched-out statement of the subject.'
+      },
+      'diminution': {
+        cite: `Bach, <em>The Art of Fugue</em>, Contrapunctus VII (&ldquo;a 4, per Augmentationem et Diminutionem&rdquo;) &mdash; the same movement also states the subject in fast, compressed note values.`,
+        video: 'XtERFlxH2PM', start: 120,
+        caption: 'Quartetto di Cremona (Naxos)',
+        score: { url: 'https://imslp.org/wiki/Die_Kunst_der_Fuge,_BWV_1080_(Bach,_Johann_Sebastian)', label: 'IMSLP &mdash; Die Kunst der Fuge, BWV 1080', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/art-of-fugue-cp7.png', alt: 'Bach Art of Fugue Contrapunctus VII opening, Bach-Gesellschaft edition', caption: 'Real score: Bach-Gesellschaft Ausgabe, 1878 &mdash; titled by Bach himself &ldquo;per Augmentationem et Diminutionem.&rdquo;' },
+        bar: 'Approx. bar 3 in the Bach-Gesellschaft edition &mdash; the tenor voice shifts to continuous semiquaver motion, clearly faster than the subject&rsquo;s original note values in bar 1.',
+        caveat: 'Timestamp is an estimate &mdash; diminution recurs throughout the movement; listen for a fast, compressed statement of the subject.'
+      },
+      'antiphony': {
+        cite: `Gabrieli, &ldquo;Sonata pian e forte&rdquo; &mdash; two brass choirs alternate and answer one another from the very opening.`,
+        video: 'QXRITlQBitc', start: 0,
+        caption: 'His Majesties Sagbutts and Cornetts, cond. Peter Bassano',
+        score: { url: 'https://imslp.org/wiki/Sonata_pian_e_forte,_Ch.175_(Gabrieli,_Giovanni)', label: 'IMSLP &mdash; Sonata pian e forte', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/antiphony-gabrieli.png', alt: 'Gabrieli Sonata pian e forte bars 13-16, modern Grayson edition', caption: 'Real score: modern edition by Martin Grayson, 2010 (CC-BY) &mdash; Choir I finishes (top 4 staves) as Choir II enters marked &ldquo;pian&rdquo; (bottom staves).' },
+        bar: 'Bar 15 in the modern Grayson edition &mdash; Choir II&rsquo;s first entrance (marked <em>piano</em>), right after Choir I&rsquo;s 14-bar opening statement.'
+      },
+      'modal-ionian': {
+        cite: `Beethoven, Symphony No. 9, Op. 125, 4th movement &mdash; the &ldquo;Ode to Joy&rdquo; theme, stated in D major with no chromatic alteration: a textbook Ionian (major scale) melody.`,
+        video: 'fzyO3fLV5O0', start: 180,
+        caption: 'Sir Antonio Pappano, London Symphony Orchestra',
+        score: { url: 'https://imslp.org/wiki/Symphony_No.9,_Op.125_(Beethoven,_Ludwig_van)', label: 'IMSLP &mdash; Symphony No. 9, Op. 125', note: 'Public domain.' },
+        caveat: 'Timestamp lands on a quiet cello/bass statement of the theme, before the full orchestra and chorus join in.'
+      },
+      'modal-dorian': {
+        cite: `Miles Davis, &ldquo;So What&rdquo; (<em>Kind of Blue</em>) &mdash; the head melody (stated by bass, answered by horns) is built on the D Dorian mode.`,
+        video: 'ylXk1LBvIqU', start: 33,
+        caption: 'Miles Davis (official Sony Legacy channel)',
+        scoreNote: `Score not shown &mdash; this 1959 recording isn&rsquo;t public domain. The head is in D Dorian &mdash; compare it against the Dorian formula above.`
+      },
+      'modal-phrygian': {
+        cite: `Gregorian chant, &ldquo;Pange lingua gloriosi&rdquo; (Thomas Aquinas) &mdash; catalogued as Mode III, authentic Phrygian (finalis on E, with the mode-defining half-step between degrees 1 and 2).`,
+        video: '7jBJPgslmOI', start: 0,
+        caption: 'Studio di Giovanni Vianini, Schola, Milan',
+        score: { url: 'https://imslp.org/wiki/Pange_lingua_gloriosi_(Gregorian_Chant)', label: 'IMSLP &mdash; Pange lingua gloriosi (modern edition)', note: 'Licensed CC BY-NC-SA by the transcriber &mdash; free for non-commercial teaching use with attribution.' },
+        caveat: `Chant is usually sung at a comfortable pitch rather than a fixed concert pitch &mdash; it&rsquo;s the half-step pattern, not the exact note E, that defines the mode.`
+      },
+      'modal-lydian': {
+        cite: `Beethoven, String Quartet No. 15, Op. 132, 3rd movement, titled by Beethoven himself &ldquo;Heiliger Dankgesang&hellip; in der lydischen Tonart&rdquo; (&ldquo;in the Lydian mode&rdquo;) &mdash; F Lydian, with the raised 4th (B&#9838; against F) clearly audible in the opening chorale.`,
+        video: '1vTSpfWbSGs', start: 0,
+        caption: 'Alban Berg Quartett',
+        score: { url: 'https://imslp.org/wiki/String_Quartet_No.15,_Op.132_(Beethoven,_Ludwig_van)', label: 'IMSLP &mdash; String Quartet No. 15, Op. 132', note: 'Public domain.' }
+      },
+      'modal-mixolydian': {
+        cite: `&ldquo;Old Joe Clark,&rdquo; a traditional Appalachian fiddle tune &mdash; A Mixolydian (an A major scale with a flattened 7th, G&#9838; instead of G&#9839;).`,
+        video: 'C1fOgvQSzOM', start: 5,
+        caption: 'Doc Watson, Merle Watson, Sam Bush, Marty Stuart, T. Michael Coleman',
+        score: { url: 'https://www.flutetunes.com/tunes.php?id=331', label: 'flutetunes.com &mdash; Old Joe Clark', note: 'Free public-domain folk-tune transcription; confirms the key as A major with G natural (the Mixolydian b7).' }
+      },
+      'modal-aeolian': {
+        cite: `&ldquo;Wayfaring Stranger,&rdquo; a traditional American folk hymn, as recorded by Johnny Cash &mdash; the melody is Aeolian (natural minor), in A minor.`,
+        video: 'gIlbZAP8ASQ', start: 10,
+        caption: 'Johnny Cash, American III: Solitary Man',
+        score: { url: 'https://musescore.com/user/37067197/scores/13469734', label: 'MuseScore &mdash; Wayfaring Stranger (arr.)', note: 'User-submitted arrangement; the tune itself is traditional/public domain, though this specific recording and arrangement are not.' },
+        caveat: `Cash&rsquo;s own chord chart resolves with an E7 (not Em), which raises the 7th degree (G&#9839;) in the accompaniment even though the melody itself stays purely Aeolian &mdash; a good example of harmony adding colour a modal melody doesn&rsquo;t have on its own.`
+      },
+      'modal-locrian': {
+        cite: `Bj&ouml;rk, &ldquo;Army of Me&rdquo; &mdash; about the closest real, full-track example of Locrian&rsquo;s unstable, diminished-fifth colour that theory sources can point to.`,
+        video: 'jPeheoBa2_Y', start: 0,
+        caption: 'Bj&ouml;rk, official music video, dir. Michel Gondry',
+        score: { url: 'https://musescore.com/user/53087187/scores/16154350', label: 'MuseScore &mdash; Army of Me (arr.)', note: 'User-submitted arrangement (bass + synth); not public domain.' },
+        caveat: `Locrian is rarely used as a genuine tonal centre &mdash; even automated key-detection tools tag this track as &ldquo;B&#9837; minor,&rdquo; which isn&rsquo;t wrong: B&#9837; natural minor and C Locrian share identical pitch content. That ambiguity is itself the lesson &mdash; Locrian&rsquo;s diminished 5th above the tonic makes it inherently unstable as a &ldquo;home&rdquo; key.`
+      }
+    };
+
+    var SCALE_DEFS = {
+      ionian: { root: 62, intervals: [0, 2, 4, 5, 7, 9, 11, 12] },
+      dorian: { root: 62, intervals: [0, 2, 3, 5, 7, 9, 10, 12] },
+      phrygian: { root: 64, intervals: [0, 1, 3, 5, 7, 8, 10, 12] },
+      lydian: { root: 65, intervals: [0, 2, 4, 6, 7, 9, 11, 12] },
+      mixolydian: { root: 69, intervals: [0, 2, 4, 5, 7, 9, 10, 12] },
+      aeolian: { root: 69, intervals: [0, 2, 3, 5, 7, 8, 10, 12] },
+      locrian: { root: 60, intervals: [0, 1, 3, 5, 6, 8, 10, 12] }
+    };
+    var audioCtx = null;
+    function midiToFreq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+    function playScale(modeKey, btn) {
+      var def = SCALE_DEFS[modeKey];
+      if (!def) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      var notes = def.intervals.map(function (iv) { return def.root + iv; });
+      notes = notes.concat(notes.slice(0, -1).reverse());
+      var now = audioCtx.currentTime;
+      var noteDur = 0.28;
+      notes.forEach(function (m, i) {
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = midiToFreq(m);
+        var t0 = now + i * noteDur;
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.linearRampToValueAtTime(0.22, t0 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + noteDur);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(t0);
+        osc.stop(t0 + noteDur + 0.05);
+      });
+      if (btn) {
+        btn.classList.add('playing');
+        setTimeout(function () { btn.classList.remove('playing'); }, notes.length * noteDur * 1000);
+      }
+    }
+    Array.prototype.slice.call(document.querySelectorAll('.scale-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () { playScale(btn.getAttribute('data-scale'), btn); });
+    });
+
+    function buildExamplePanel(ex) {
+      var html = '<p class="example-cite">' + ex.cite + '</p>';
+      if (ex.scoreImg) {
+        html += '<img class="example-score-img" src="' + ex.scoreImg.src + '" alt="' + ex.scoreImg.alt + '" loading="lazy">';
+        if (ex.scoreImg.caption) html += '<p class="example-caption">' + ex.scoreImg.caption + '</p>';
+      }
+      if (ex.video) {
+        html += '<div class="example-video"><iframe src="https://www.youtube-nocookie.com/embed/' + ex.video + '?start=' + ex.start +
+          '" title="Real recorded example" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
+        if (ex.caption) html += '<p class="example-caption">' + ex.caption + '</p>';
+      }
+      if (ex.score) {
+        html += '<p class="example-score"><a href="' + ex.score.url + '" target="_blank" rel="noopener">' + ex.score.label + ' &#8599;</a>' +
+          (ex.score.note ? ' <span class="pd-note">' + ex.score.note + '</span>' : '') + '</p>';
+      } else if (ex.scoreNote) {
+        html += '<p class="example-score pd-note">' + ex.scoreNote + '</p>';
+      }
+      if (ex.bar) html += '<p class="example-bar"><strong>Score reference:</strong> ' + ex.bar + '</p>';
+      if (ex.caveat) html += '<p class="example-caveat">' + ex.caveat + '</p>';
+      return html;
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll('.example-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-example-id');
+        var panel = document.querySelector('[data-example-panel="' + id + '"]');
+        var ex = EXAMPLES[id];
+        if (!panel || !ex) return;
+        var isHidden = panel.hasAttribute('hidden');
+        if (isHidden) {
+          if (!panel.dataset.built) {
+            panel.innerHTML = buildExamplePanel(ex);
+            panel.dataset.built = '1';
+          }
+          panel.removeAttribute('hidden');
+          btn.innerHTML = '&#9660; Hide example';
+          btn.classList.add('open');
+        } else {
+          panel.setAttribute('hidden', '');
+          panel.innerHTML = '';
+          panel.dataset.built = '';
+          btn.innerHTML = btn.dataset.openLabel || '&#9654; Hear &amp; see a real example';
+          btn.classList.remove('open');
+        }
+      });
+      btn.dataset.openLabel = btn.innerHTML;
+    });
   })();
 </script>
