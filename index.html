@@ -534,6 +534,18 @@
   .example-bar { margin: 0.5rem 0 0; font-size: 0.82rem; color: var(--ink-soft); }
   .example-bar strong { color: var(--ink); }
   .example-score-img { display: block; width: 100%; max-width: 640px; height: auto; border: 1px solid var(--surface-line); border-radius: 6px; background: #fff; margin-top: 0.2rem; }
+
+  /* ---- Diagram + synth-audio widgets (chords, intervals, progressions) ---- */
+  .diagram-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem 1rem; margin-top: 0.6rem; }
+  .diagram-cell { text-align: center; }
+  .diagram-cell .diagram-label { display: block; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.2rem; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .chord-diagram-slot svg { display: block; }
+  .diagram-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+  .form-diagram { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; align-items: stretch; }
+  .form-box { display: flex; align-items: center; justify-content: center; min-width: 2.6rem; padding: 0.6rem 0.9rem; border-radius: 7px; font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 0.95rem; border: 1.5px solid var(--accent); color: var(--accent-ink); background: var(--accent-soft); }
+  .form-box.alt { border-color: var(--focus); color: var(--focus); background: #e6edf5; }
+  .form-box.alt2 { border-color: var(--wine); color: var(--wine); background: var(--wine-soft); }
+  .form-box.wide { font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 400; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.6rem 0.8rem; }
   .mode-examples { margin-top: 0.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .mode-example-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.6rem; }
   .mode-example-row .example-panel { flex-basis: 100%; }
@@ -606,24 +618,45 @@
         <div class="group-head"><h3>Metre &amp; tempo</h3><span class="group-tag">12 terms</span></div>
         <dl class="terms">
           <div class="term-row"><dt class="term">Regular metre</dt><dd class="def">A time signature with a consistent, unchanging beat grouping throughout a piece.</dd></div>
-          <div class="term-row"><dt class="term">Simple metre</dt><dd class="def">Each beat divides naturally into two <em>(e.g. 2/4, 3/4, 4/4)</em>.</dd></div>
-          <div class="term-row"><dt class="term">Compound metre</dt><dd class="def">Each beat divides naturally into three <em>(e.g. 6/8, 9/8, 12/8)</em>.</dd></div>
-          <div class="term-row"><dt class="term">Irregular metre</dt><dd class="def">A metre with uneven beat groupings within the bar <em>(e.g. 5/8, 7/8)</em>.</dd></div>
+          <div class="term-row"><dt class="term">Simple metre</dt><dd class="def">Each beat divides naturally into two <em>(e.g. 2/4, 3/4, 4/4)</em>.
+            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="2"></div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Compound metre</dt><dd class="def">Each beat divides naturally into three <em>(e.g. 6/8, 9/8, 12/8)</em>.
+            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3"></div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Irregular metre</dt><dd class="def">A metre with uneven beat groupings within the bar <em>(e.g. 5/8, 7/8)</em>.
+            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3,2" data-label="1"></div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Mixed metre</dt><dd class="def">Frequent, deliberate changes of time signature within a piece.</dd></div>
           <div class="term-row"><dt class="term">Poly-metre</dt><dd class="def">Two or more different metres sounding simultaneously in different parts.</dd></div>
           <div class="term-row"><dt class="term">Tempo gradations</dt><dd class="def">Tempo changes indicated by Italian terms &mdash; almost all gradual, with one common exception noted below.<br><strong>Getting faster (gradual):</strong> Accelerando (accel.), Stringendo (pressing forward, with mounting intensity), Precipitando (rushing forward, headlong).<br><strong>Getting slower (gradual):</strong> Rallentando (rall.), Allargando (allarg. &mdash; broadening, often with a growing dynamic), Calando (slowing and softening together), Morendo (dying away), Smorzando (smorz. &mdash; fading away), Perdendosi (losing itself, fading into silence).<br><strong>Exception &mdash; immediate, not gradual:</strong> Ritardando and Ritenuto are both abbreviated "rit.", but only ritardando is a gradual slowing; ritenuto is an immediate, deliberate holding-back of the tempo.</dd></div>
           <div class="term-row"><dt class="term">Metronome markings</dt><dd class="def">A precise tempo instruction given in beats per minute <em>(e.g. &#9833; = 120)</em>.</dd></div>
           <div class="term-row"><dt class="term">Expressive tempo indications</dt><dd class="def">Terms indicating tempo and character, usually Italian but sometimes French or German.<br><strong>Italian:</strong> Largo/Grave/Lento (very slow, broad / slow, solemn / slow), Adagio (slow, at ease), Andante/Andantino (walking pace / slightly faster), Moderato (moderate), Allegretto (moderately fast), Allegro/Vivace (fast, lively / brisk), Presto/Prestissimo (very fast / as fast as possible).<br><strong>French:</strong> Lent (slow), Mod&eacute;r&eacute; (moderate), Vif/Anim&eacute; (lively / animated), Vite/Tr&egrave;s vite (fast / very fast).<br><strong>German:</strong> Langsam (slow), M&auml;&szlig;ig (moderate), Lebhaft/Bewegt (lively / moving, agitated), Rasch/Schnell (quick / fast).</dd></div>
-          <div class="term-row"><dt class="term">Note values &amp; rhythm grouping</dt><dd class="def">The full range of note and rest durations, and the style-appropriate conventions for beaming and grouping them on the page.</dd></div>
+          <div class="term-row"><dt class="term">Note values &amp; rhythm grouping</dt><dd class="def">The full range of note and rest durations, and the style-appropriate conventions for beaming and grouping them on the page.
+            <div class="diagram-row">
+              <div class="diagram-cell"><span class="diagram-label">Whole</span><div class="note-value-slot" data-type="whole"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Half</span><div class="note-value-slot" data-type="half"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Quarter</span><div class="note-value-slot" data-type="quarter"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Eighth</span><div class="note-value-slot" data-type="eighth"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Sixteenth</span><div class="note-value-slot" data-type="sixteenth"></div></div>
+            </div>
+          </dd></div>
           <div class="term-row"><dt class="term">A tempo</dt><dd class="def">Return to the previous, main tempo after a deviation.</dd></div>
-          <div class="term-row"><dt class="term">Fermata</dt><dd class="def">A symbol (&#x1D110;) instructing a note, chord or rest to be held longer than its written value.</dd></div>
+          <div class="term-row"><dt class="term">Fermata</dt><dd class="def">A symbol (&#x1D110;) instructing a note, chord or rest to be held longer than its written value.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.6">&#128266; Without fermata</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="2.2">&#128266; With fermata (held)</button>
+            </div>
+          </dd></div>
         </dl>
       </section>
 
       <section class="group" id="scales">
         <div class="group-head"><h3>Scales, modes &amp; tonality</h3><span class="group-tag">10 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Pentatonic scale</dt><dd class="def">A five-note scale, found across many world music traditions.</dd></div>
+          <div class="term-row"><dt class="term">Pentatonic scale</dt><dd class="def">A five-note scale, found across many world music traditions.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn" data-scale="pentatonic">&#128266; Play scale</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Modal scale</dt><dd class="def">A scale drawn from the seven church modes. Quick formula for each, as scale degrees relative to the major scale:<br><strong>Ionian</strong> 1 2 3 4 5 6 7 &nbsp;&middot;&nbsp; <strong>Dorian</strong> 1 2 3&#9837; 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Phrygian</strong> 1 2&#9837; 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Lydian</strong> 1 2 3 4&#9839; 5 6 7 &nbsp;&middot;&nbsp; <strong>Mixolydian</strong> 1 2 3 4 5 6 7&#9837; &nbsp;&middot;&nbsp; <strong>Aeolian</strong> 1 2 3&#9837; 4 5 6&#9837; 7&#9837;<br><strong>Locrian</strong> 1 2&#9837; 3&#9837; 4 5&#9837; 6&#9837; 7&#9837;
 <div class="mode-examples">
 <div class="mode-example-row"><span class="mode-name">Ionian</span><button type="button" class="scale-play-btn" data-scale="ionian">&#128266; Play scale</button><button type="button" class="example-btn" data-example-id="modal-ionian">&#9654; Real example</button><div class="example-panel" data-example-panel="modal-ionian" hidden></div></div>
@@ -639,28 +672,76 @@
           <div class="term-row"><dt class="term">Polytonality</dt><dd class="def">The simultaneous use of two or more different keys.</dd></div>
           <div class="term-row"><dt class="term">Bitonality</dt><dd class="def">Polytonality involving exactly two simultaneous keys.<br><button type="button" class="example-btn" data-example-id="bitonality">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="bitonality" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Whole tone scale</dt><dd class="def">A six-note scale built entirely from whole-tone (major second) intervals.<br><button type="button" class="example-btn" data-example-id="whole-tone-scale">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="whole-tone-scale" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Tone row</dt><dd class="def">An ordered sequence of all twelve chromatic pitches, used as the basis for serial (twelve-tone) composition.</dd></div>
+          <div class="term-row"><dt class="term">Tone row</dt><dd class="def">An ordered sequence of all twelve chromatic pitches, used as the basis for serial (twelve-tone) composition.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn" data-scale="tonerow">&#128266; Play a chromatic 12-tone row</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Experimental scale forms</dt><dd class="def">Scales devised or adapted by a composer outside traditional Western scale systems.</dd></div>
           <div class="term-row"><dt class="term">Microtonal scales</dt><dd class="def">Scales built from intervals smaller than a semitone. Common notation symbols:<br><strong>&uarr; / &darr;</strong> (arrow above a note or accidental) &mdash; the simplest, most widely used convention: raises or lowers the pitch by a small, specified amount, often a quarter-tone.<br><strong>Half-sharp (quarter-tone sharp)</strong> &mdash; a sharp sign with only one vertical stroke instead of two; raises the pitch by roughly a quarter-tone.<br><strong>Half-flat (quarter-tone flat)</strong> &mdash; a backwards or slashed flat sign; lowers the pitch by roughly a quarter-tone.<br><strong>Three-quarter-tone sharp / flat</strong> &mdash; a sharp or flat sign with an added stroke; raises or lowers the pitch by three quarter-tones.</dd></div>
-          <div class="term-row"><dt class="term">Interval sets / pitch sets</dt><dd class="def">A defined collection of intervals or pitches used as compositional material, common in 20th- and 21st-century concert music. <em>e.g. the pitch set {0, 1, 4} &mdash; a fixed three-note cell such as C&ndash;C&#9839;&ndash;E &mdash; reused and transposed throughout a work, as in the atonal music of Schoenberg or Webern.</em></dd></div>
+          <div class="term-row"><dt class="term">Interval sets / pitch sets</dt><dd class="def">A defined collection of intervals or pitches used as compositional material, common in 20th- and 21st-century concert music. <em>e.g. the pitch set {0, 1, 4} &mdash; a fixed three-note cell such as C&ndash;C&#9839;&ndash;E &mdash; reused and transposed throughout a work, as in the atonal music of Schoenberg or Webern.</em>
+            <div class="diagram-row">
+              <div class="diagram-cell"><span class="diagram-label">{0,1,4} on C</span><div class="chord-diagram-slot" data-notes="C4,C#4,E4" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,C#4,E4">&#128266;</button></div>
+              <div class="diagram-cell"><span class="diagram-label">Same set, transposed</span><div class="chord-diagram-slot" data-notes="D4,D#4,F4" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="D4,D#4,F4">&#128266;</button></div>
+            </div>
+          </dd></div>
         </dl>
       </section>
 
       <section class="group" id="chords">
         <div class="group-head"><h3>Chords &amp; harmony</h3><span class="group-tag">12 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Triad</dt><dd class="def">A three-note chord built in thirds &mdash; root, third and fifth.</dd></div>
-          <div class="term-row"><dt class="term">Diminished chord</dt><dd class="def">A chord built from a minor third and a diminished (flattened) fifth, giving an unstable, tense quality.</dd></div>
-          <div class="term-row"><dt class="term">Augmented chord</dt><dd class="def">A triad built from a major third and an augmented (sharpened) fifth.</dd></div>
-          <div class="term-row"><dt class="term">Dominant seventh</dt><dd class="def">A major triad on the 5th scale degree with an added minor seventh, strongly pulling toward the tonic.</dd></div>
-          <div class="term-row"><dt class="term">Secondary seventh</dt><dd class="def">A seventh chord built on a scale degree other than the dominant.</dd></div>
-          <div class="term-row"><dt class="term">Inversion</dt><dd class="def">Rearranging a chord so a note other than the root sits in the bass.</dd></div>
-          <div class="term-row"><dt class="term">Extended chords</dt><dd class="def">Chords that add the 9th, 11th or 13th above a seventh chord.</dd></div>
-          <div class="term-row"><dt class="term">Altered chords</dt><dd class="def">Chords containing notes chromatically raised or lowered outside the key, for colour or added tension.</dd></div>
+          <div class="term-row"><dt class="term">Triad</dt><dd class="def">A three-note chord built in thirds &mdash; root, third and fifth.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="C4,E4,G4" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4">&#128266; Play chord (C major)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Diminished chord</dt><dd class="def">A chord built from a minor third and a diminished (flattened) fifth, giving an unstable, tense quality.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="C4,Eb4,Gb4" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,Eb4,Gb4">&#128266; Play chord (C diminished)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Augmented chord</dt><dd class="def">A triad built from a major third and an augmented (sharpened) fifth.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="C4,E4,G#4" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G#4">&#128266; Play chord (C augmented)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Dominant seventh</dt><dd class="def">A major triad on the 5th scale degree with an added minor seventh, strongly pulling toward the tonic.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="G3,B3,D4,F4" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="G3,B3,D4,F4">&#128266; Play chord (G7, V7 in C)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Secondary seventh</dt><dd class="def">A seventh chord built on a scale degree other than the dominant.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="D4,F4,A4,C5" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="D4,F4,A4,C5">&#128266; Play chord (Dm7, ii7 in C)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Inversion</dt><dd class="def">Rearranging a chord so a note other than the root sits in the bass.
+            <div class="diagram-row">
+              <div class="diagram-cell"><span class="diagram-label">Root position</span><div class="chord-diagram-slot" data-notes="C4,E4,G4" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4">&#128266;</button></div>
+              <div class="diagram-cell"><span class="diagram-label">1st inversion</span><div class="chord-diagram-slot" data-notes="E4,G4,C5" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="E4,G4,C5">&#128266;</button></div>
+              <div class="diagram-cell"><span class="diagram-label">2nd inversion</span><div class="chord-diagram-slot" data-notes="G4,C5,E5" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="G4,C5,E5">&#128266;</button></div>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Extended chords</dt><dd class="def">Chords that add the 9th, 11th or 13th above a seventh chord.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="C4,E4,G4,Bb4,D5" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4,Bb4,D5">&#128266; Play chord (C9)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Altered chords</dt><dd class="def">Chords containing notes chromatically raised or lowered outside the key, for colour or added tension.
+            <div class="diagram-row"><div class="diagram-cell chord-diagram-slot" data-notes="C4,E4,G4,Bb4,Db5" data-clef="treble"></div></div>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4,Bb4,Db5">&#128266; Play chord (C7&#9837;9)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Diatonic harmony</dt><dd class="def">Harmony built exclusively from the notes and chords belonging to the prevailing key.</dd></div>
           <div class="term-row"><dt class="term">Chromatic harmony</dt><dd class="def">Harmony that draws in notes and chords from outside the diatonic key.</dd></div>
-          <div class="term-row"><dt class="term">Chord progression</dt><dd class="def">A purposeful sequence of two or more chords moving through a passage of music (a cadence, below, is the specific two-chord case that closes a phrase). Common functional harmony examples: <strong>I&ndash;IV&ndash;V&ndash;I</strong> (classic tonic&ndash;subdominant&ndash;dominant&ndash;tonic), <strong>I&ndash;vi&ndash;IV&ndash;V</strong> (the "50s" or doo-wop progression), <strong>I&ndash;V&ndash;vi&ndash;IV</strong> (common pop progression), <strong>ii&ndash;V&ndash;I</strong> (jazz turnaround).</dd></div>
-          <div class="term-row"><dt class="term">Cadence</dt><dd class="def">A two-chord progression that closes a phrase or section:<br><strong>Perfect (V&ndash;I)</strong> &mdash; dominant to tonic; the strongest, most conclusive close.<br><strong>Imperfect (ending on V)</strong> &mdash; most commonly I&ndash;V or IV&ndash;V; sounds unfinished, like a pause mid-sentence.<br><strong>Plagal (IV&ndash;I)</strong> &mdash; subdominant to tonic; the "Amen" cadence.<br><strong>Interrupted (V&ndash;vi)</strong> &mdash; dominant to submediant; a deceptive, surprising resolution.</dd></div>
+          <div class="term-row"><dt class="term">Chord progression</dt><dd class="def">A purposeful sequence of two or more chords moving through a passage of music (a cadence, below, is the specific two-chord case that closes a phrase). Common functional harmony examples: <strong>I&ndash;IV&ndash;V&ndash;I</strong> (classic tonic&ndash;subdominant&ndash;dominant&ndash;tonic), <strong>I&ndash;vi&ndash;IV&ndash;V</strong> (the "50s" or doo-wop progression), <strong>I&ndash;V&ndash;vi&ndash;IV</strong> (common pop progression), <strong>ii&ndash;V&ndash;I</strong> (jazz turnaround).
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,E4,G4;F4,A4,C5;G4,B4,D5;C4,E4,G4">&#128266; I&ndash;IV&ndash;V&ndash;I</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,E4,G4;A4,C5,E5;F4,A4,C5;G4,B4,D5">&#128266; I&ndash;vi&ndash;IV&ndash;V</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,E4,G4;G4,B4,D5;A4,C5,E5;F4,A4,C5">&#128266; I&ndash;V&ndash;vi&ndash;IV</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="D4,F4,A4,C5;G4,B4,D5;C4,E4,G4">&#128266; ii&ndash;V&ndash;I</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Cadence</dt><dd class="def">A two-chord progression that closes a phrase or section:<br><strong>Perfect (V&ndash;I)</strong> &mdash; dominant to tonic; the strongest, most conclusive close.<br><strong>Imperfect (ending on V)</strong> &mdash; most commonly I&ndash;V or IV&ndash;V; sounds unfinished, like a pause mid-sentence.<br><strong>Plagal (IV&ndash;I)</strong> &mdash; subdominant to tonic; the "Amen" cadence.<br><strong>Interrupted (V&ndash;vi)</strong> &mdash; dominant to submediant; a deceptive, surprising resolution.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="G4,B4,D5;C4,E4,G4">&#128266; Perfect (V&ndash;I)</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="F4,A4,C5;G4,B4,D5">&#128266; Imperfect (IV&ndash;V)</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="F4,A4,C5;C4,E4,G4">&#128266; Plagal (IV&ndash;I)</button>
+              <button type="button" class="scale-play-btn progression-play-btn" data-chords="G4,B4,D5;A4,C5,E5">&#128266; Interrupted (V&ndash;vi)</button>
+            </div>
+          </dd></div>
         </dl>
       </section>
     </section>
@@ -673,10 +754,14 @@
         <div class="group-head"><h3>Rhythmic devices</h3><span class="group-tag">9 terms</span></div>
         <dl class="terms">
           <div class="term-row"><dt class="term">Syncopation</dt><dd class="def">Placing accents on normally weak beats or off-beats, against the expected metric pulse.<br><button type="button" class="example-btn" data-example-id="syncopation">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="syncopation" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Triplets</dt><dd class="def">Three notes performed in the time usually taken by two.</dd></div>
+          <div class="term-row"><dt class="term">Triplets</dt><dd class="def">Three notes performed in the time usually taken by two.
+            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3" data-tuplet="1"></div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Hemiola</dt><dd class="def">A rhythmic pattern implying two groups of three beats against three groups of two, or vice versa.<br><button type="button" class="example-btn" data-example-id="hemiola">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="hemiola" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Ostinato</dt><dd class="def">A short rhythmic or melodic pattern repeated persistently.<br><button type="button" class="example-btn" data-example-id="ostinato">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="ostinato" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Polyrhythm</dt><dd class="def">The broader term: two or more contrasting rhythmic groupings (e.g. 3 against 2) sounding together, whether or not either one conflicts with the prevailing metre. Cross-rhythm, below, is the specific case where it does.</dd></div>
+          <div class="term-row"><dt class="term">Polyrhythm</dt><dd class="def">The broader term: two or more contrasting rhythmic groupings (e.g. 3 against 2) sounding together, whether or not either one conflicts with the prevailing metre. Cross-rhythm, below, is the specific case where it does.
+            <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="3,2"></div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Swing</dt><dd class="def">An uneven, long&ndash;short division of the beat characteristic of jazz.
             <svg viewBox="0 0 320 178" role="img" aria-label="Standard notation comparing two straight quavers to their swung, triplet-based realisation as a crotchet plus quaver" style="width:100%;max-width:300px;height:auto;display:block;margin-top:0.5rem;">
               <text x="20" y="10" font-size="9.5" fill="var(--muted)" font-family="'IBM Plex Mono',ui-monospace,monospace" letter-spacing="0.04em">AS WRITTEN</text>
@@ -724,7 +809,9 @@
               <text x="165" y="171" font-size="8.5" text-anchor="middle" fill="var(--muted)">short, &#8776;1/3</text>
             </svg>
           </dd></div>
-          <div class="term-row"><dt class="term">Cross-rhythm</dt><dd class="def">The specific case of polyrhythm where a rhythm deliberately conflicts with the established, felt metre itself &mdash; it works against the prevailing pulse, rather than simply combining with it. <em>e.g. in a 4/4 bar, accenting every three quavers (3+3+3+3+3... regrouped as 3s across the bar) so the accents fall in a different place each beat, pulling against the underlying 4/4 feel.</em></dd></div>
+          <div class="term-row"><dt class="term">Cross-rhythm</dt><dd class="def">The specific case of polyrhythm where a rhythm deliberately conflicts with the established, felt metre itself &mdash; it works against the prevailing pulse, rather than simply combining with it. <em>e.g. in a 4/4 bar, accenting every three quavers (3+3+3+3+3... regrouped as 3s across the bar) so the accents fall in a different place each beat, pulling against the underlying 4/4 feel.</em>
+            <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="4,3"></div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Augmentation</dt><dd class="def">Restating a musical idea with its note values lengthened. <em>e.g. a melody's crotchets (&#9833;) restated as minims &mdash; the same notes and rhythmic shape, at double the original duration.</em><br><button type="button" class="example-btn" data-example-id="augmentation">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="augmentation" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Diminution</dt><dd class="def">Restating a musical idea with its note values shortened. <em>e.g. a melody's crotchets (&#9833;) restated as quavers (&#9834;) &mdash; the same notes and rhythmic shape, at half the original duration.</em><br><button type="button" class="example-btn" data-example-id="diminution">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="diminution" hidden></div></dd></div>
         </dl>
@@ -733,17 +820,47 @@
       <section class="group" id="melodic">
         <div class="group-head"><h3>Melodic devices</h3><span class="group-tag">11 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Sequence</dt><dd class="def">Repetition of a melodic idea at a new, consistently shifted pitch level.</dd></div>
-          <div class="term-row"><dt class="term">Imitation</dt><dd class="def">A melodic idea introduced in one voice or instrumental part, then restated in a different voice or instrumental part shortly after. <em>e.g. a fugue subject stated by the first voice, then echoed in turn by each entering voice.</em></dd></div>
-          <div class="term-row"><dt class="term">Melodic inversion</dt><dd class="def">A melody turned upside down: ascending intervals become descending, and vice versa.</dd></div>
-          <div class="term-row"><dt class="term">Leitmotif</dt><dd class="def">A recurring musical idea associated with a specific character, place or idea.</dd></div>
-          <div class="term-row"><dt class="term">Melisma</dt><dd class="def">Multiple notes sung to a single syllable of text.</dd></div>
-          <div class="term-row"><dt class="term">Chromaticism</dt><dd class="def">The use of notes outside the prevailing diatonic scale.</dd></div>
-          <div class="term-row"><dt class="term">Retrograde</dt><dd class="def">A melody or musical idea played in reverse order.</dd></div>
-          <div class="term-row"><dt class="term">Suspension</dt><dd class="def">A note held over from one chord into the next, creating dissonance that then resolves. Three stages: <strong>preparation</strong> (the note is consonant in the first chord), <strong>suspension</strong> (it is held while the harmony changes beneath it, becoming dissonant), <strong>resolution</strong> (it steps down to a consonant pitch). <em>e.g. a 4&ndash;3 suspension onto the final chord in C major: over a bass note C, the note F (prepared as a consonant note in the previous chord) is held over as the chord changes to C major underneath it &mdash; F now clashes as a 4th above the bass &mdash; then F resolves down by step to E, the 3rd above the bass, completing the C&ndash;E&ndash;G triad.</em> Common suspension formulas (dissonant interval above the bass &rarr; its resolution): <strong>4&ndash;3</strong>, <strong>7&ndash;6</strong>, <strong>9&ndash;8</strong>, and the bass suspension <strong>2&ndash;3</strong>.</dd></div>
-          <div class="term-row"><dt class="term">Ornamentation</dt><dd class="def">Decorative notes added to a melodic line &mdash; trills, turns, mordents, grace notes.</dd></div>
-          <div class="term-row"><dt class="term">Fragmentation</dt><dd class="def">A common motivic development technique: breaking a musical idea down to a small portion (a fragment) and developing that fragment independently, often through repetition or sequence.</dd></div>
-          <div class="term-row"><dt class="term">Extension</dt><dd class="def">A common motivic development technique: prolonging a musical idea beyond its expected length, often by repeating, sequencing or delaying its final phrase or cadence.</dd></div>
+          <div class="term-row"><dt class="term">Sequence</dt><dd class="def">Repetition of a melodic idea at a new, consistently shifted pitch level.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,D4,E4,F4,E4,F4,G4" data-arp="1">&#128266; Play (motif shifted up a step, twice)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Imitation</dt><dd class="def">A melodic idea introduced in one voice or instrumental part, then restated in a different voice or instrumental part shortly after. <em>e.g. a fugue subject stated by the first voice, then echoed in turn by each entering voice.</em>
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4,C4,E4,D4" data-voices="2" data-offset="3">&#128266; Play (2nd voice enters after the motif starts)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Melodic inversion</dt><dd class="def">A melody turned upside down: ascending intervals become descending, and vice versa.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4,E4" data-arp="1" data-step="0.32">&#128266; Original (rises then falls)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,Ab3,F3,Ab3" data-arp="1" data-step="0.32">&#128266; Inverted (falls then rises)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Leitmotif</dt><dd class="def">A recurring musical idea associated with a specific character, place or idea.<br><button type="button" class="example-btn" data-example-id="leitmotif">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="leitmotif" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Melisma</dt><dd class="def">Multiple notes sung to a single syllable of text.<br><button type="button" class="example-btn" data-example-id="melisma">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="melisma" hidden></div></dd></div>
+          <div class="term-row"><dt class="term">Chromaticism</dt><dd class="def">The use of notes outside the prevailing diatonic scale.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn" data-scale="tonerow">&#128266; Play a chromatic run (every semitone)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Retrograde</dt><dd class="def">A melody or musical idea played in reverse order.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,G4" data-arp="1" data-step="0.3">&#128266; Forward</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="G4,E4,D4,C4" data-arp="1" data-step="0.3">&#128266; Retrograde (reversed)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Suspension</dt><dd class="def">A note held over from one chord into the next, creating dissonance that then resolves. Three stages: <strong>preparation</strong> (the note is consonant in the first chord), <strong>suspension</strong> (it is held while the harmony changes beneath it, becoming dissonant), <strong>resolution</strong> (it steps down to a consonant pitch). <em>e.g. a 4&ndash;3 suspension onto the final chord in C major: over a bass note C, the note F (prepared as a consonant note in the previous chord) is held over as the chord changes to C major underneath it &mdash; F now clashes as a 4th above the bass &mdash; then F resolves down by step to E, the 3rd above the bass, completing the C&ndash;E&ndash;G triad.</em> Common suspension formulas (dissonant interval above the bass &rarr; its resolution): <strong>4&ndash;3</strong>, <strong>7&ndash;6</strong>, <strong>9&ndash;8</strong>, and the bass suspension <strong>2&ndash;3</strong>.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,F4,A4;C4,E4,G4">&#128266; Play 4&ndash;3 suspension &rarr; resolution</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Ornamentation</dt><dd class="def">Decorative notes added to a melodic line &mdash; trills, turns, mordents, grace notes.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,C4,D4,C4,D4,C4" data-arp="1" data-step="0.11">&#128266; Play a trill (C&ndash;D alternating)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Fragmentation</dt><dd class="def">A common motivic development technique: breaking a musical idea down to a small portion (a fragment) and developing that fragment independently, often through repetition or sequence.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,G4" data-arp="1" data-step="0.3">&#128266; Full idea</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,C4,D4,C4,D4" data-arp="1" data-step="0.24">&#128266; Fragment (first 2 notes) developed</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Extension</dt><dd class="def">A common motivic development technique: prolonging a musical idea beyond its expected length, often by repeating, sequencing or delaying its final phrase or cadence.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,C4" data-arp="1" data-step="0.3">&#128266; As expected (ends promptly)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,D4,E4,D4,C4" data-arp="1" data-step="0.3">&#128266; Extended (cadence delayed)</button>
+            </div>
+          </dd></div>
         </dl>
       </section>
 
@@ -752,13 +869,21 @@
         <dl class="terms">
           <div class="term-row"><dt class="term">Modulation</dt><dd class="def">A change of key within a piece of music.<br><strong>Pivot chord modulation</strong> (the most common technique): a chord diatonic to both the old and new key is reinterpreted with a new function, pivoting smoothly between them before a cadence confirms the new key. <em>e.g. modulating from C major to G major: C: I&ndash;vi&ndash;ii (=G: IV)&ndash;V&ndash;I(G) &mdash; the ii chord in C (D minor) is reheard as IV in G major, pivoting into the new key.</em><br><strong>By period:</strong><br><strong>Baroque</strong> &mdash; mostly to closely related keys (dominant, subdominant, relative major/minor), via pivot chords or sequential (circle-of-fifths) modulation, common within fugues and dance movements.<br><strong>Classical</strong> &mdash; structural: tonic&rarr;dominant in a major-key exposition, or tonic&rarr;relative major in a minor-key one, mainly by pivot chord confirmed with a strong V&ndash;I cadence; development sections modulate more freely using sequences and diminished-seventh chords as pivots.<br><strong>Romantic</strong> &mdash; to more distantly related keys, including chromatic-mediant and enharmonic relationships; pivots expand to diminished sevenths, augmented sixths and common-tone modulation, used for dramatic and colouristic effect rather than purely structural purposes.<br><strong>20th/21st-century</strong> &mdash; freer and sometimes abrupt "direct" (phrase) modulation with no pivot at all, semitone/side-slipping shifts, or a move away from functional modulation altogether in atonal and bitonal music.</dd></div>
           <div class="term-row"><dt class="term">Tonicisation</dt><dd class="def">Briefly treating a chord other than the tonic as if it were a new "home", usually by preceding it with its own dominant (a secondary dominant) &mdash; without a full, lasting modulation to that key. <em>e.g. in C major, preceding the ii chord (D minor) with A7 (V7/ii) to briefly tonicise D minor, before returning to C major.</em></dd></div>
-          <div class="term-row"><dt class="term">Dissonance &amp; resolution</dt><dd class="def">Tension created by clashing pitches, released by movement to a consonant sound. Dissonance can be created by: <strong>non-chord tones</strong> (passing tones, neighbour tones, suspensions, appoggiaturas, anticipations), <strong>dissonant chord types</strong> (diminished and augmented triads, seventh and extended/altered chords), <strong>dissonant intervals</strong> (2nds, 7ths, tritones), and more broadly by <strong>chromatic clashes, polytonality/bitonality or tone clusters</strong>.</dd></div>
+          <div class="term-row"><dt class="term">Dissonance &amp; resolution</dt><dd class="def">Tension created by clashing pitches, released by movement to a consonant sound. Dissonance can be created by: <strong>non-chord tones</strong> (passing tones, neighbour tones, suspensions, appoggiaturas, anticipations), <strong>dissonant chord types</strong> (diminished and augmented triads, seventh and extended/altered chords), <strong>dissonant intervals</strong> (2nds, 7ths, tritones), and more broadly by <strong>chromatic clashes, polytonality/bitonality or tone clusters</strong>.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn progression-play-btn" data-chords="G3,B3,D4,F4;C4,E4,G4">&#128266; Play dissonance (G7) &rarr; resolution (C)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Circle of fifths</dt><dd class="def">A sequence of chords or keys that moves systematically by the interval of a fifth. <em>e.g. the progression A minor&ndash;D minor&ndash;G&ndash;C, where each chord's root sits a fifth below (or a fourth above) the one before it, moving around the circle toward C major.</em><br><button type="button" class="example-btn" data-example-id="circle-of-fifths">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="circle-of-fifths" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Pedal point</dt><dd class="def">A sustained or repeated note, usually in the bass, held while the harmony above it changes.</dd></div>
-          <div class="term-row"><dt class="term">Inverted pedal point</dt><dd class="def">The same device with the sustained or repeated note placed in an upper voice instead of the bass, while the harmony changes underneath it.</dd></div>
+          <div class="term-row"><dt class="term">Pedal point</dt><dd class="def">A sustained or repeated note, usually in the bass, held while the harmony above it changes.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn progression-play-btn" data-chords="C3,C4,E4,G4;C3,F4,A4,C5;C3,G4,B4,D5;C3,C4,E4,G4">&#128266; Play (C pedal under changing chords)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Inverted pedal point</dt><dd class="def">The same device with the sustained or repeated note placed in an upper voice instead of the bass, while the harmony changes underneath it.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,E4,G4,C6;F4,A4,C5,C6;G4,B4,D5,C6;C4,E4,G4,C6">&#128266; Play (C pedal on top, chords change below)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Ground bass</dt><dd class="def">A short bass pattern repeated continuously beneath changing upper parts.<br><button type="button" class="example-btn" data-example-id="ground-bass">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="ground-bass" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Alberti bass</dt><dd class="def">A broken-chord accompaniment figure moving low&ndash;high&ndash;middle&ndash;high, typical of the Classical period.<br><button type="button" class="example-btn" data-example-id="alberti-bass">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="alberti-bass" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Broken chords</dt><dd class="def">The notes of a chord sounded separately in sequence rather than together.</dd></div>
+          <div class="term-row"><dt class="term">Broken chords</dt><dd class="def">The notes of a chord sounded separately in sequence rather than together.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4,C5" data-arp="1">&#128266; Play broken chord</button></div>
+          </dd></div>
         </dl>
       </section>
 
@@ -769,14 +894,28 @@
           <div class="term-row"><dt class="term">Cell</dt><dd class="def">A musical fragment smaller than a motif, often just an interval or rhythmic shape.</dd></div>
           <div class="term-row"><dt class="term">Theme</dt><dd class="def">A fully formed melodic idea, developed and returned to across a work.</dd></div>
           <div class="term-row"><dt class="term">Hybrid form</dt><dd class="def">A structure specific to a style, or a form that combines features of two or more traditional structures.</dd></div>
-          <div class="term-row"><dt class="term">Binary form</dt><dd class="def">Two contrasting or complementary sections (A&ndash;B), often each repeated; section B may modulate away from the tonic before the final return.</dd></div>
-          <div class="term-row"><dt class="term">Ternary form</dt><dd class="def">Three sections (A&ndash;B&ndash;A), with a contrasting middle section framed by a return of the opening material.</dd></div>
-          <div class="term-row"><dt class="term">Rondo form</dt><dd class="def">A recurring principal theme (refrain) alternates with contrasting episodes, e.g. A&ndash;B&ndash;A&ndash;C&ndash;A.</dd></div>
-          <div class="term-row"><dt class="term">Sonata form</dt><dd class="def">Exposition (first and second subjects in contrasting keys) &ndash; development (motivic fragmentation, sequence, modulation) &ndash; recapitulation (both subjects return in the tonic); often framed by an introduction and coda.</dd></div>
+          <div class="term-row"><dt class="term">Binary form</dt><dd class="def">Two contrasting or complementary sections (A&ndash;B), often each repeated; section B may modulate away from the tonic before the final return.
+            <div class="form-diagram"><div class="form-box">A</div><div class="form-box alt">B</div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Ternary form</dt><dd class="def">Three sections (A&ndash;B&ndash;A), with a contrasting middle section framed by a return of the opening material.
+            <div class="form-diagram"><div class="form-box">A</div><div class="form-box alt">B</div><div class="form-box">A</div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Rondo form</dt><dd class="def">A recurring principal theme (refrain) alternates with contrasting episodes, e.g. A&ndash;B&ndash;A&ndash;C&ndash;A.
+            <div class="form-diagram"><div class="form-box">A</div><div class="form-box alt">B</div><div class="form-box">A</div><div class="form-box alt2">C</div><div class="form-box">A</div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Sonata form</dt><dd class="def">Exposition (first and second subjects in contrasting keys) &ndash; development (motivic fragmentation, sequence, modulation) &ndash; recapitulation (both subjects return in the tonic); often framed by an introduction and coda.
+            <div class="form-diagram"><div class="form-box wide">Exposition</div><div class="form-box wide alt">Development</div><div class="form-box wide">Recapitulation</div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Theme and variations</dt><dd class="def">A theme is stated, then repeated with each variation altering its melody, harmony, rhythm, texture or key.</dd></div>
-          <div class="term-row"><dt class="term">Strophic form</dt><dd class="def">The same music repeats for every stanza of text, as in a hymn or many folk songs.</dd></div>
-          <div class="term-row"><dt class="term">Through-composed</dt><dd class="def">New music is written for each section of text, with no substantial repetition of earlier material.</dd></div>
-          <div class="term-row"><dt class="term">Ritornello form</dt><dd class="def">A recurring tutti (full-ensemble) refrain alternates with contrasting solo episodes; associated with the Baroque concerto (e.g. Vivaldi, Bach).</dd></div>
+          <div class="term-row"><dt class="term">Strophic form</dt><dd class="def">The same music repeats for every stanza of text, as in a hymn or many folk songs.
+            <div class="form-diagram"><div class="form-box">A</div><div class="form-box">A</div><div class="form-box">A</div><div class="form-box">A</div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Through-composed</dt><dd class="def">New music is written for each section of text, with no substantial repetition of earlier material.
+            <div class="form-diagram"><div class="form-box">A</div><div class="form-box alt">B</div><div class="form-box alt2">C</div><div class="form-box" style="border-color:var(--good);color:var(--good);background:var(--good-soft);">D</div></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Ritornello form</dt><dd class="def">A recurring tutti (full-ensemble) refrain alternates with contrasting solo episodes; associated with the Baroque concerto (e.g. Vivaldi, Bach).
+            <div class="form-diagram"><div class="form-box wide">Tutti</div><div class="form-box wide alt">Solo</div><div class="form-box wide">Tutti</div><div class="form-box wide alt2">Solo</div><div class="form-box wide">Tutti</div></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Fugue</dt><dd class="def">A contrapuntal form in which a subject is introduced in imitation across voices (exposition), then developed through episodes and further subject entries, sometimes intensified by stretto (overlapping entries) near the close.<br><button type="button" class="example-btn" data-example-id="fugue">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="fugue" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Passacaglia / chaconne</dt><dd class="def">Continuous variations built over a short, repeating bass line (passacaglia) or chord progression (chaconne), usually in triple metre.</dd></div>
           <div class="term-row"><dt class="term">Symphonic poem</dt><dd class="def">Also called a tone poem: a single-movement orchestral work that depicts a poetic, narrative or pictorial idea; a Romantic-era genre pioneered by Liszt.</dd></div>
@@ -787,22 +926,47 @@
       <section class="group" id="textural">
         <div class="group-head"><h3>Textural devices</h3><span class="group-tag">16 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Monophony</dt><dd class="def">A single melodic line with no accompanying harmony or other parts &mdash; whether performed solo or in unison by many performers.</dd></div>
-          <div class="term-row"><dt class="term">Homophony</dt><dd class="def">A melody supported by accompanying harmony. Includes homorhythmic (chordal) texture, where all parts move together in the same rhythm, as well as melody-and-accompaniment textures.</dd></div>
+          <div class="term-row"><dt class="term">Monophony</dt><dd class="def">A single melodic line with no accompanying harmony or other parts &mdash; whether performed solo or in unison by many performers.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,F4,G4" data-arp="1" data-step="0.3">&#128266; Play (one line, no harmony)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Homophony</dt><dd class="def">A melody supported by accompanying harmony. Includes homorhythmic (chordal) texture, where all parts move together in the same rhythm, as well as melody-and-accompaniment textures.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn progression-play-btn" data-chords="C4,E4,G4;F4,A4,C5;G4,B4,D5;C4,E4,G4">&#128266; Play (chords moving together under the top line)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Polyphony</dt><dd class="def">Two or more independent melodic lines of roughly equal importance sounding together; also called counterpoint (e.g. a fugue or canon).<br><button type="button" class="example-btn" data-example-id="polyphony">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="polyphony" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Heterophony</dt><dd class="def">Simultaneous, slightly varied performances of the same melody by different performers.</dd></div>
+          <div class="term-row"><dt class="term">Heterophony</dt><dd class="def">Simultaneous, slightly varied performances of the same melody by different performers.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn twolines-play-btn" data-line-a="C4,D4,E4,D4,G4" data-line-b="C4,D4,E4,F4,G4">&#128266; Play (two performers, same tune, slight variation)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Antiphony</dt><dd class="def">Alternating, answering blocks of sound, often between spatially separated groups or choirs. Distinct from call and response: antiphony contrasts larger ensemble blocks (e.g. two choirs, or choir and organ) echoing or answering one another, while call and response is usually a brief solo/small-group call answered by another voice within one ensemble.<br><button type="button" class="example-btn" data-example-id="antiphony">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="antiphony" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Melody</dt><dd class="def">The foreground, single line of music the ear follows as the primary idea.</dd></div>
-          <div class="term-row"><dt class="term">Countermelody</dt><dd class="def">A secondary melodic line played against the primary melody.</dd></div>
+          <div class="term-row"><dt class="term">Countermelody</dt><dd class="def">A secondary melodic line played against the primary melody.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn twolines-play-btn" data-line-a="C4,E4,G4,E4,C4" data-line-b="E3,C4,B3,C4,E3">&#128266; Play (main melody + independent counter-line)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Accompaniment</dt><dd class="def">Supporting musical material placed beneath or around a melody.</dd></div>
           <div class="term-row"><dt class="term">Harmonic accompaniment</dt><dd class="def">Accompaniment built from block or figured chords supporting the melody.</dd></div>
           <div class="term-row"><dt class="term">Bassline</dt><dd class="def">The lowest-sounding supporting line in a texture.</dd></div>
-          <div class="term-row"><dt class="term">Canon</dt><dd class="def">Parts that imitate each other exactly at a fixed time and/or pitch interval, overlapping in performance.</dd></div>
+          <div class="term-row"><dt class="term">Canon</dt><dd class="def">Parts that imitate each other exactly at a fixed time and/or pitch interval, overlapping in performance.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4,C4,E4,D4,C4" data-voices="2" data-offset="4">&#128266; Play (a short round, 2 voices)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Call and response</dt><dd class="def">An alternating musical dialogue between two voices or groups &mdash; typically a short solo (or small-group) &ldquo;call&rdquo; immediately answered by a different, often contrasting &ldquo;response,&rdquo; within the same ensemble.<br><button type="button" class="example-btn" data-example-id="call-and-response">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="call-and-response" hidden></div></dd></div>
-          <div class="term-row"><dt class="term">Doubling</dt><dd class="def">Two or more parts performing the same line simultaneously.</dd></div>
-          <div class="term-row"><dt class="term">Layering</dt><dd class="def">Building texture by introducing parts successively over time.</dd></div>
-          <div class="term-row"><dt class="term">Voicing</dt><dd class="def">The specific arrangement and spacing of notes within a chord. Common types: close position (notes packed within an octave, e.g. C4&ndash;E4&ndash;G4); open position (notes spread across a wider span, e.g. C3&ndash;G3&ndash;E4); root position (root in the bass) versus first/second inversion (the third or fifth in the bass); and doubling a note, most often the root or fifth, to strengthen it.</dd></div>
-          <div class="term-row"><dt class="term">Register &amp; range</dt><dd class="def">The area of pitch &mdash; high, middle or low &mdash; occupied by a voice or instrument.</dd></div>
+          <div class="term-row"><dt class="term">Doubling</dt><dd class="def">Two or more parts performing the same line simultaneously.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4,G4" data-voices="2" data-offset="0" data-transpose="12">&#128266; Play (same line doubled an octave apart)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Layering</dt><dd class="def">Building texture by introducing parts successively over time.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,E4,G4,C5" data-voices="3" data-offset="1.4" data-sustain="1">&#128266; Play (voices entering one by one, then held together)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Voicing</dt><dd class="def">The specific arrangement and spacing of notes within a chord. Common types: close position (notes packed within an octave, e.g. C4&ndash;E4&ndash;G4); open position (notes spread across a wider span, e.g. C3&ndash;G3&ndash;E4); root position (root in the bass) versus first/second inversion (the third or fifth in the bass); and doubling a note, most often the root or fifth, to strengthen it.
+            <div class="diagram-row">
+              <div class="diagram-cell"><span class="diagram-label">Close position</span><div class="chord-diagram-slot" data-notes="C4,E4,G4" data-clef="treble"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4">&#128266;</button></div>
+              <div class="diagram-cell"><span class="diagram-label">Open position</span><div class="chord-diagram-slot" data-notes="C3,G3,E4" data-clef="bass"></div><button type="button" class="scale-play-btn chord-play-btn" data-notes="C3,G3,E4">&#128266;</button></div>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Register &amp; range</dt><dd class="def">The area of pitch &mdash; high, middle or low &mdash; occupied by a voice or instrument.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C3" data-duration="0.9">&#128266; Low register</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C5" data-duration="0.9">&#128266; Middle register</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C7" data-duration="0.9">&#128266; High register</button>
+            </div>
+          </dd></div>
         </dl>
       </section>
 
@@ -811,13 +975,31 @@
         <p class="banner-blurb" style="margin:0.2rem 0 1rem;padding-bottom:0;border-bottom:none;">Choices about <em>who</em> plays and how forces are distributed on the page. Instrument-specific playing techniques &mdash; arco, pizzicato, mutes and the rest &mdash; are grouped by instrumental family under Expressive devices, below.</p>
         <dl class="terms">
           <div class="term-row"><dt class="term">Performing media</dt><dd class="def">Choices of instrumental and vocal sound sources, instrument-specific techniques, transposition, and the manipulation of timbre by acoustic, electronic or digital means.</dd></div>
-          <div class="term-row"><dt class="term">a2 (a due)</dt><dd class="def">Two players sharing a staff play the same line together, in unison.</dd></div>
-          <div class="term-row"><dt class="term">Div. (divisi)</dt><dd class="def">A section splits into two or more separate parts.</dd></div>
-          <div class="term-row"><dt class="term">Unis. (unison)</dt><dd class="def">Cancels a divisi &mdash; the section returns to playing the same line together.</dd></div>
-          <div class="term-row"><dt class="term">Solo / Tutti</dt><dd class="def">A single player performs alone / the full section or ensemble plays together.</dd></div>
+          <div class="term-row"><dt class="term">a2 (a due)</dt><dd class="def">Two players sharing a staff play the same line together, in unison.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4" data-voices="2" data-offset="0">&#128266; Play (both players, same line)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Div. (divisi)</dt><dd class="def">A section splits into two or more separate parts.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn twolines-play-btn" data-line-a="C4,D4,E4" data-line-b="E4,F4,G4">&#128266; Play (section splits into two parts)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Unis. (unison)</dt><dd class="def">Cancels a divisi &mdash; the section returns to playing the same line together.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4" data-voices="3" data-offset="0">&#128266; Play (whole section, one line)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Solo / Tutti</dt><dd class="def">A single player performs alone / the full section or ensemble plays together.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.9">&#128266; Solo (one voice)</button>
+              <button type="button" class="scale-play-btn canon-play-btn" data-notes="C4" data-voices="4" data-offset="0">&#128266; Tutti (whole section together)</button>
+            </div>
+          </dd></div>
           <div class="term-row"><dt class="term">1. / 2.</dt><dd class="def">Indicates a passage is for the first-desk player only, or the second-desk player only.</dd></div>
-          <div class="term-row"><dt class="term">Col (colla / coll')</dt><dd class="def">"With" &mdash; instructs a part to double another named part exactly <em>(e.g. col Violino I)</em>.</dd></div>
-          <div class="term-row"><dt class="term">Una corda / tre corde</dt><dd class="def">Depress the soft (left) piano pedal / release it.</dd></div>
+          <div class="term-row"><dt class="term">Col (colla / coll')</dt><dd class="def">"With" &mdash; instructs a part to double another named part exactly <em>(e.g. col Violino I)</em>.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn canon-play-btn" data-notes="C4,D4,E4,G4" data-voices="2" data-offset="0" data-transpose="12">&#128266; Play (part doubling another, an octave apart)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Una corda / tre corde</dt><dd class="def">Depress the soft (left) piano pedal / release it.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4" data-duration="1.2">&#128266; Tre corde (pedal released, normal)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4" data-duration="1.2" data-lowpass="900" data-gain="0.12">&#128266; Una corda (soft pedal, softer/darker)</button>
+            </div>
+          </dd></div>
         </dl>
       </section>
 
@@ -826,17 +1008,61 @@
 
         <p class="family-sub-head">General</p>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Dynamics</dt><dd class="def">Markings and shading that control the level of loudness or softness.</dd></div>
-          <div class="term-row"><dt class="term">Articulation</dt><dd class="def">How notes are attacked, connected or separated &mdash; staccato, legato, tenuto and related markings.</dd></div>
-          <div class="term-row"><dt class="term">Vibrato</dt><dd class="def">A small, regular fluctuation in pitch used to warm or intensify a tone; produced differently by each instrumental family (see the family tabs below).</dd></div>
-          <div class="term-row"><dt class="term">Mute</dt><dd class="def">A device or technique that softens or alters an instrument's tone colour &mdash; see the family-specific mute markings below (e.g. con sordino for strings, stopped horn for brass).</dd></div>
-          <div class="term-row"><dt class="term">Accent</dt><dd class="def">Deliberate emphasis placed on a single note.</dd></div>
-          <div class="term-row"><dt class="term">Portamento</dt><dd class="def">A continuous slide connecting two pitches.</dd></div>
+          <div class="term-row"><dt class="term">Dynamics</dt><dd class="def">Markings and shading that control the level of loudness or softness.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.8" data-gain="0.06">&#128266; Soft (p)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.8" data-gain="0.32">&#128266; Loud (f)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Articulation</dt><dd class="def">How notes are attacked, connected or separated &mdash; staccato, legato, tenuto and related markings.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,D4" data-arp="1" data-step="0.16">&#128266; Staccato (short, detached)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,D4" data-arp="1" data-step="0.4">&#128266; Legato (smooth, connected)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Vibrato</dt><dd class="def">A small, regular fluctuation in pitch used to warm or intensify a tone; produced differently by each instrumental family (see the family tabs below).
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="1.4">&#128266; Without vibrato</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="1.4" data-vibrato="6">&#128266; With vibrato</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Mute</dt><dd class="def">A device or technique that softens or alters an instrument's tone colour &mdash; see the family-specific mute markings below (e.g. con sordino for strings, stopped horn for brass).
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="1">&#128266; Open (unmuted)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="1" data-lowpass="500">&#128266; Muted (darker tone)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Accent</dt><dd class="def">Deliberate emphasis placed on a single note.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,D4,E4,D4" data-arp="1" data-step="0.3">&#128266; Play (accent on 3rd note)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Portamento</dt><dd class="def">A continuous slide connecting two pitches.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn slide-play-btn" data-from="C4" data-to="G4" data-duration="0.9">&#128266; Play (slide, C4 to G4)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Rubato</dt><dd class="def">Expressive flexibility of tempo, stretching and compressing the pulse for effect.</dd></div>
-          <div class="term-row"><dt class="term">Tremolo</dt><dd class="def">Rapid repetition of a single note, or rapid alternation between two notes.</dd></div>
-          <div class="term-row"><dt class="term">Glissando</dt><dd class="def">A rapid slide through the pitches between two notes.</dd></div>
-          <div class="term-row"><dt class="term">Harmonics</dt><dd class="def">Pure, bell-like overtones produced by special string or wind playing techniques.</dd></div>
-          <div class="term-row"><dt class="term">ppp&ndash;fff family</dt><dd class="def">Graded dynamic levels from very soft to very loud &mdash; <em>pp, p, mp, mf, f, ff</em> and their extremes.</dd></div>
+          <div class="term-row"><dt class="term">Tremolo</dt><dd class="def">Rapid repetition of a single note, or rapid alternation between two notes.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,C4,C4,C4,C4,C4" data-arp="1" data-step="0.12">&#128266; Single-note repetition</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,C4,E4,C4,E4" data-arp="1" data-step="0.12">&#128266; Two-note alternation</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Glissando</dt><dd class="def">A rapid slide through the pitches between two notes.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn slide-play-btn" data-from="C4" data-to="C5" data-duration="0.4">&#128266; Play (fast slide, C4 to C5)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Harmonics</dt><dd class="def">Pure, bell-like overtones produced by special string or wind playing techniques.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="1">&#128266; Fundamental (normal note)</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C6" data-duration="1" data-gain="0.1">&#128266; Harmonic (thin, high overtone)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">ppp&ndash;fff family</dt><dd class="def">Graded dynamic levels from very soft to very loud &mdash; <em>pp, p, mp, mf, f, ff</em> and their extremes.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.7" data-gain="0.04">&#128266; pp</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.7" data-gain="0.09">&#128266; p</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.7" data-gain="0.16">&#128266; mf</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.7" data-gain="0.24">&#128266; f</button>
+              <button type="button" class="scale-play-btn chord-play-btn" data-notes="C4" data-duration="0.7" data-gain="0.36">&#128266; ff</button>
+            </div>
+          </dd></div>
           <div class="term-row"><dt class="term">sfz / fz (sforzando)</dt><dd class="def">A sudden, strong accent forced onto a single note or chord.</dd></div>
           <div class="term-row"><dt class="term">Cresc. / decresc. (dim.)</dt><dd class="def">Gradually getting louder / gradually getting softer, written out or shown as a hairpin.</dd></div>
           <div class="term-row"><dt class="term">Ped. / *</dt><dd class="def">Depress the sustain pedal / release it, on piano.</dd></div>
@@ -854,72 +1080,72 @@
           <div class="family-panel active" data-family="strings">
             <p class="family-sub-head" style="margin-top:0;">Strings &middot; expressive techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Arco</dt><dd class="def">Resume playing with the bow &mdash; cancels a pizzicato instruction.</dd></div>
-              <div class="term-row"><dt class="term">Pizz. (pizzicato)</dt><dd class="def">Pluck the string with a finger instead of bowing.</dd></div>
-              <div class="term-row"><dt class="term">Con sord. / senza sord.</dt><dd class="def">With mute (sordino, a clamp fitted to the bridge) / without mute &mdash; softens and darkens the tone.</dd></div>
-              <div class="term-row"><dt class="term">Down-bow / up-bow</dt><dd class="def">Direction markings (&#x2293; / V) instructing the stroke direction of the bow, shaping accent and phrasing.</dd></div>
+              <div class="term-row"><dt class="term">Arco</dt><dd class="def">Resume playing with the bow &mdash; cancels a pizzicato instruction.<br><button type="button" class="example-btn" data-example-id="arco">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="arco" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Pizz. (pizzicato)</dt><dd class="def">Pluck the string with a finger instead of bowing.<br><button type="button" class="example-btn" data-example-id="pizzicato">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="pizzicato" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Con sord. / senza sord.</dt><dd class="def">With mute (sordino, a clamp fitted to the bridge) / without mute &mdash; softens and darkens the tone.<br><button type="button" class="example-btn" data-example-id="con-sord">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="con-sord" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Down-bow / up-bow</dt><dd class="def">Direction markings (&#x2293; / V) instructing the stroke direction of the bow, shaping accent and phrasing. <em>Mainly a notational/bowing convention rather than an audibly distinct effect on its own &mdash; no isolated real-audio contrast is included here.</em></dd></div>
             </dl>
             <p class="family-sub-head">Strings &middot; extended techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Col legno</dt><dd class="def">Strike or draw the wood of the bow across the string, for a dry, percussive sound.</dd></div>
-              <div class="term-row"><dt class="term">Sul pont. (sul ponticello)</dt><dd class="def">Bow very close to the bridge, producing a glassy, harsh, overtone-rich tone.</dd></div>
-              <div class="term-row"><dt class="term">Sul tasto</dt><dd class="def">Bow over the fingerboard, producing a soft, flute-like tone.</dd></div>
-              <div class="term-row"><dt class="term">Bariolage</dt><dd class="def">Rapid alternation between an open string and the same pitch stopped on an adjacent string, exploiting the contrast in tone colour.</dd></div>
-              <div class="term-row"><dt class="term">Double / multiple stopping</dt><dd class="def">Sounding two or more strings simultaneously to play intervals or chords.</dd></div>
-              <div class="term-row"><dt class="term">Scordatura</dt><dd class="def">Deliberately retuning one or more strings away from standard pitch, for special colour or easier technical access.</dd></div>
-              <div class="term-row"><dt class="term">Natural &amp; artificial harmonics</dt><dd class="def">Lightly touching (not pressing) a string at a node produces a natural harmonic; combining a stopped note with a light touch a fourth above produces an artificial harmonic &mdash; both give a pure, bell-like overtone.</dd></div>
+              <div class="term-row"><dt class="term">Col legno</dt><dd class="def">Strike or draw the wood of the bow across the string, for a dry, percussive sound.<br><button type="button" class="example-btn" data-example-id="col-legno">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="col-legno" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Sul pont. (sul ponticello)</dt><dd class="def">Bow very close to the bridge, producing a glassy, harsh, overtone-rich tone.<br><button type="button" class="example-btn" data-example-id="sul-pont">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="sul-pont" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Sul tasto</dt><dd class="def">Bow over the fingerboard, producing a soft, flute-like tone.<br><button type="button" class="example-btn" data-example-id="sul-tasto">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="sul-tasto" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Bariolage</dt><dd class="def">Rapid alternation between an open string and the same pitch stopped on an adjacent string, exploiting the contrast in tone colour.<br><button type="button" class="example-btn" data-example-id="bariolage">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="bariolage" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Double / multiple stopping</dt><dd class="def">Sounding two or more strings simultaneously to play intervals or chords.<br><button type="button" class="example-btn" data-example-id="double-stopping">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="double-stopping" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Scordatura</dt><dd class="def">Deliberately retuning one or more strings away from standard pitch, for special colour or easier technical access.<br><button type="button" class="example-btn" data-example-id="scordatura">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="scordatura" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Natural &amp; artificial harmonics</dt><dd class="def">Lightly touching (not pressing) a string at a node produces a natural harmonic; combining a stopped note with a light touch a fourth above produces an artificial harmonic &mdash; both give a pure, bell-like overtone.<br><button type="button" class="example-btn" data-example-id="string-harmonics">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="string-harmonics" hidden></div></dd></div>
             </dl>
           </div>
 
           <div class="family-panel" data-family="woodwind">
             <p class="family-sub-head" style="margin-top:0;">Woodwind &middot; expressive techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Tonguing</dt><dd class="def">The tongue's articulation of note attacks &mdash; single tonguing for normal staccato/legato, double and triple tonguing for rapid repeated notes.</dd></div>
-              <div class="term-row"><dt class="term">Dynamic shading (embouchure &amp; air-speed)</dt><dd class="def">Varying breath pressure and lip tension on the embouchure to shape loudness and tone colour.</dd></div>
-              <div class="term-row"><dt class="term">Vibrato (breath vibrato)</dt><dd class="def">A pulsing of breath support from the diaphragm/throat, creating a gentle, regular fluctuation in pitch and intensity.</dd></div>
+              <div class="term-row"><dt class="term">Tonguing</dt><dd class="def">The tongue's articulation of note attacks &mdash; single tonguing for normal staccato/legato, double and triple tonguing for rapid repeated notes.<br><button type="button" class="example-btn" data-example-id="tonguing">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="tonguing" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Dynamic shading (embouchure &amp; air-speed)</dt><dd class="def">Varying breath pressure and lip tension on the embouchure to shape loudness and tone colour.<br><button type="button" class="example-btn" data-example-id="dynamic-shading-ww">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="dynamic-shading-ww" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Vibrato (breath vibrato)</dt><dd class="def">A pulsing of breath support from the diaphragm/throat, creating a gentle, regular fluctuation in pitch and intensity.<br><button type="button" class="example-btn" data-example-id="breath-vibrato">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="breath-vibrato" hidden></div></dd></div>
             </dl>
             <p class="family-sub-head">Woodwind &middot; extended techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Flz. (flutter tonguing)</dt><dd class="def">A rapid, rolled articulation of the tongue (or throat) performed while sustaining a note.</dd></div>
-              <div class="term-row"><dt class="term">Multiphonics</dt><dd class="def">Special fingerings that produce two or more pitches simultaneously from a single instrument.</dd></div>
-              <div class="term-row"><dt class="term">Circular breathing</dt><dd class="def">Inhaling through the nose while simultaneously pushing stored air out with the cheeks, allowing an uninterrupted, continuous tone.</dd></div>
-              <div class="term-row"><dt class="term">Key clicks / slap tongue</dt><dd class="def">Percussive sounds produced by keywork clicking, or by an exaggerated tongue release against the reed, without a normal pitched tone.</dd></div>
-              <div class="term-row"><dt class="term">Harmonics (overblowing)</dt><dd class="def">Overblowing a fingering so it sounds a higher partial (overtone) instead of the fundamental pitch.</dd></div>
+              <div class="term-row"><dt class="term">Flz. (flutter tonguing)</dt><dd class="def">A rapid, rolled articulation of the tongue (or throat) performed while sustaining a note.<br><button type="button" class="example-btn" data-example-id="flutter-tonguing-ww">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="flutter-tonguing-ww" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Multiphonics</dt><dd class="def">Special fingerings that produce two or more pitches simultaneously from a single instrument.<br><button type="button" class="example-btn" data-example-id="multiphonics-ww">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="multiphonics-ww" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Circular breathing</dt><dd class="def">Inhaling through the nose while simultaneously pushing stored air out with the cheeks, allowing an uninterrupted, continuous tone.<br><button type="button" class="example-btn" data-example-id="circular-breathing">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="circular-breathing" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Key clicks / slap tongue</dt><dd class="def">Percussive sounds produced by keywork clicking, or by an exaggerated tongue release against the reed, without a normal pitched tone.<br><button type="button" class="example-btn" data-example-id="key-clicks">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="key-clicks" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Harmonics (overblowing)</dt><dd class="def">Overblowing a fingering so it sounds a higher partial (overtone) instead of the fundamental pitch.<br><button type="button" class="example-btn" data-example-id="overblowing">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="overblowing" hidden></div></dd></div>
             </dl>
           </div>
 
           <div class="family-panel" data-family="brass">
             <p class="family-sub-head" style="margin-top:0;">Brass &middot; expressive techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Mutes (straight, cup, harmon, plunger)</dt><dd class="def">Inserted or hand-held devices placed in or over the bell that alter and soften tone colour, each giving a distinct character.</dd></div>
-              <div class="term-row"><dt class="term">Stopped horn (+ / o)</dt><dd class="def">The hand fully inserted into the bell (horn), producing a brassy, muffled effect; "o" (open) cancels it.</dd></div>
-              <div class="term-row"><dt class="term">Dynamic shading (air-speed &amp; embouchure)</dt><dd class="def">Breath pressure and lip tension control loudness and the brightness of tone.</dd></div>
-              <div class="term-row"><dt class="term">Vibrato (jaw / lip / hand)</dt><dd class="def">Produced by slight, controlled movement of the jaw or lips, or, on horn, an oscillating hand in the bell.</dd></div>
+              <div class="term-row"><dt class="term">Mutes (straight, cup, harmon, plunger)</dt><dd class="def">Inserted or hand-held devices placed in or over the bell that alter and soften tone colour, each giving a distinct character.<br><button type="button" class="example-btn" data-example-id="brass-mutes">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-mutes" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Stopped horn (+ / o)</dt><dd class="def">The hand fully inserted into the bell (horn), producing a brassy, muffled effect; "o" (open) cancels it.<br><button type="button" class="example-btn" data-example-id="stopped-horn">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="stopped-horn" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Dynamic shading (air-speed &amp; embouchure)</dt><dd class="def">Breath pressure and lip tension control loudness and the brightness of tone.<br><button type="button" class="example-btn" data-example-id="dynamic-shading-brass">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="dynamic-shading-brass" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Vibrato (jaw / lip / hand)</dt><dd class="def">Produced by slight, controlled movement of the jaw or lips, or, on horn, an oscillating hand in the bell.<br><button type="button" class="example-btn" data-example-id="brass-vibrato">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-vibrato" hidden></div></dd></div>
             </dl>
             <p class="family-sub-head">Brass &middot; extended techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Flutter tonguing</dt><dd class="def">A rapid, rolled articulation performed while sustaining a note, common in 20th- and 21st-century writing.</dd></div>
-              <div class="term-row"><dt class="term">Falls / doits / smears</dt><dd class="def">Pitch bends attached to a note: a fall drops away at the end, a doit scoops upward at the end, a smear slides into the start.</dd></div>
-              <div class="term-row"><dt class="term">Growl</dt><dd class="def">A rough, buzzing distortion of tone produced by simultaneously humming or singing into the instrument while playing.</dd></div>
-              <div class="term-row"><dt class="term">Glissando (lip slur / slide gliss.)</dt><dd class="def">A continuous slide between pitches, via the slide (trombone) or a combined lip-and-valve slur (other brass).</dd></div>
-              <div class="term-row"><dt class="term">Multiphonics / split tones</dt><dd class="def">Humming a different pitch while playing a note, producing two or more simultaneous pitches.</dd></div>
+              <div class="term-row"><dt class="term">Flutter tonguing</dt><dd class="def">A rapid, rolled articulation performed while sustaining a note, common in 20th- and 21st-century writing.<br><button type="button" class="example-btn" data-example-id="flutter-tonguing-brass">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="flutter-tonguing-brass" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Falls / doits / smears</dt><dd class="def">Pitch bends attached to a note: a fall drops away at the end, a doit scoops upward at the end, a smear slides into the start.<br><button type="button" class="example-btn" data-example-id="falls-doits">&#9654; Hear real examples (fall &amp; doit)</button><div class="example-panel" data-example-panel="falls-doits" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Growl</dt><dd class="def">A rough, buzzing distortion of tone produced by simultaneously humming or singing into the instrument while playing.<br><button type="button" class="example-btn" data-example-id="growl">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="growl" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Glissando (lip slur / slide gliss.)</dt><dd class="def">A continuous slide between pitches, via the slide (trombone) or a combined lip-and-valve slur (other brass).<br><button type="button" class="example-btn" data-example-id="brass-glissando">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-glissando" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Multiphonics / split tones</dt><dd class="def">Humming a different pitch while playing a note, producing two or more simultaneous pitches.<br><button type="button" class="example-btn" data-example-id="multiphonics-brass">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="multiphonics-brass" hidden></div></dd></div>
             </dl>
           </div>
 
           <div class="family-panel" data-family="percussion">
             <p class="family-sub-head" style="margin-top:0;">Percussion &middot; expressive techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Dynamics (stick/mallet choice &amp; striking point)</dt><dd class="def">The hardness of the mallet or stick, and where the instrument is struck, shape loudness, attack and tone colour.</dd></div>
-              <div class="term-row"><dt class="term">Roll (single-stroke, double-stroke, buzz)</dt><dd class="def">Rapid, sustained repetition of a stroke, simulating a continuous sound on an instrument that cannot otherwise sustain.</dd></div>
-              <div class="term-row"><dt class="term">Dampening / choke</dt><dd class="def">Stopping a struck instrument's ring immediately with the hand or a mute.</dd></div>
-              <div class="term-row"><dt class="term">Rim shot / cross-stick</dt><dd class="def">Striking the rim and head together (rim shot), or resting the stick across the head and striking the rim (cross-stick), for a sharp, cutting sound.</dd></div>
+              <div class="term-row"><dt class="term">Dynamics (stick/mallet choice &amp; striking point)</dt><dd class="def">The hardness of the mallet or stick, and where the instrument is struck, shape loudness, attack and tone colour.<br><button type="button" class="example-btn" data-example-id="perc-dynamics">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="perc-dynamics" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Roll (single-stroke, double-stroke, buzz)</dt><dd class="def">Rapid, sustained repetition of a stroke, simulating a continuous sound on an instrument that cannot otherwise sustain.<br><button type="button" class="example-btn" data-example-id="perc-roll">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="perc-roll" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Dampening / choke</dt><dd class="def">Stopping a struck instrument's ring immediately with the hand or a mute.<br><button type="button" class="example-btn" data-example-id="perc-choke">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="perc-choke" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Rim shot / cross-stick</dt><dd class="def">Striking the rim and head together (rim shot), or resting the stick across the head and striking the rim (cross-stick), for a sharp, cutting sound.<br><button type="button" class="example-btn" data-example-id="rim-shot">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="rim-shot" hidden></div></dd></div>
             </dl>
             <p class="family-sub-head">Percussion &middot; extended techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Bowing (vibraphone / cymbal)</dt><dd class="def">Drawing a bow across the edge of a metal instrument to produce a sustained, singing tone.</dd></div>
-              <div class="term-row"><dt class="term">Prepared percussion</dt><dd class="def">Placing objects &mdash; coins, screws, paper &mdash; on or between instruments to alter their timbre.</dd></div>
-              <div class="term-row"><dt class="term">Superball / friction mallet</dt><dd class="def">Rubbing a stick or mallet against the surface of a drum or cymbal to produce a sustained, groaning tone.</dd></div>
-              <div class="term-row"><dt class="term">Dead stroke</dt><dd class="def">Striking and leaving the mallet or stick pressed against the surface, instantly damping the sound.</dd></div>
+              <div class="term-row"><dt class="term">Bowing (vibraphone / cymbal)</dt><dd class="def">Drawing a bow across the edge of a metal instrument to produce a sustained, singing tone.<br><button type="button" class="example-btn" data-example-id="bowed-vibraphone">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="bowed-vibraphone" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Prepared percussion</dt><dd class="def">Placing objects &mdash; coins, screws, paper &mdash; on or between instruments to alter their timbre.<br><button type="button" class="example-btn" data-example-id="prepared-percussion">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="prepared-percussion" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Superball / friction mallet</dt><dd class="def">Rubbing a stick or mallet against the surface of a drum or cymbal to produce a sustained, groaning tone.<br><button type="button" class="example-btn" data-example-id="superball">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="superball" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Dead stroke</dt><dd class="def">Striking and leaving the mallet or stick pressed against the surface, instantly damping the sound.<br><button type="button" class="example-btn" data-example-id="dead-stroke">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="dead-stroke" hidden></div></dd></div>
             </dl>
           </div>
         </div>
@@ -928,13 +1154,26 @@
       <section class="group" id="digital">
         <div class="group-head"><h3>Digital techniques</h3><span class="group-tag">7 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Looping</dt><dd class="def">Repeating a recorded musical segment continuously.</dd></div>
+          <div class="term-row"><dt class="term">Looping</dt><dd class="def">Repeating a recorded musical segment continuously.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn chord-play-btn" data-notes="C4,E4,G4,C4,E4,G4,C4,E4,G4,C4,E4,G4" data-arp="1" data-step="0.22">&#128266; Play (same segment looping)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Sampling</dt><dd class="def">Using a recorded sound as source material within a new work.</dd></div>
-          <div class="term-row"><dt class="term">Delay</dt><dd class="def">An effect that repeats a sound after a fixed time gap.</dd></div>
-          <div class="term-row"><dt class="term">Echo</dt><dd class="def">A delayed repetition of a sound, simulating a natural reflection.</dd></div>
+          <div class="term-row"><dt class="term">Delay</dt><dd class="def">An effect that repeats a sound after a fixed time gap.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn delay-play-btn" data-notes="C4,E4,G4" data-delay-time="0.3" data-feedback="0.5" data-repeats="5">&#128266; Play (with delay/feedback repeats)</button></div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Echo</dt><dd class="def">A delayed repetition of a sound, simulating a natural reflection.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn delay-play-btn" data-notes="C4,E4,G4" data-delay-time="0.45" data-feedback="0.15" data-repeats="1">&#128266; Play (single natural-sounding echo)</button></div>
+          </dd></div>
           <div class="term-row"><dt class="term">Pitch shifting</dt><dd class="def">Electronically altering the pitch of a sound without changing its speed.</dd></div>
-          <div class="term-row"><dt class="term">Digital reverb</dt><dd class="def">Simulated room ambience and reflection added electronically to a sound.</dd></div>
-          <div class="term-row"><dt class="term">Electroacoustic</dt><dd class="def">Music combining acoustic sound sources with electronic processing or manipulation.</dd></div>
+          <div class="term-row"><dt class="term">Digital reverb</dt><dd class="def">Simulated room ambience and reflection added electronically to a sound.
+            <div class="diagram-actions">
+              <button type="button" class="scale-play-btn reverb-play-btn" data-notes="C4,E4,G4" data-wet="0">&#128266; Dry (no reverb)</button>
+              <button type="button" class="scale-play-btn reverb-play-btn" data-notes="C4,E4,G4" data-wet="1">&#128266; Wet (with reverb)</button>
+            </div>
+          </dd></div>
+          <div class="term-row"><dt class="term">Electroacoustic</dt><dd class="def">Music combining acoustic sound sources with electronic processing or manipulation.
+            <div class="diagram-actions"><button type="button" class="scale-play-btn reverb-play-btn" data-notes="C4,E4,G4,C5" data-wet="1">&#128266; Play (acoustic-style line + electronic processing)</button></div>
+          </dd></div>
         </dl>
       </section>
     </section>
@@ -946,7 +1185,15 @@
       <section class="group" id="notation">
         <div class="group-head"><h3>Notation systems</h3><span class="group-tag">8 terms</span></div>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Clefs</dt><dd class="def">Symbols &mdash; treble, bass, alto, tenor and percussion &mdash; that fix the pitch range represented on a staff.</dd></div>
+          <div class="term-row"><dt class="term">Clefs</dt><dd class="def">Symbols &mdash; treble, bass, alto, tenor and percussion &mdash; that fix the pitch range represented on a staff. <em>Middle C notated in each (percussion has no pitch, just two vertical bars):</em>
+            <div class="diagram-row">
+              <div class="diagram-cell"><span class="diagram-label">Treble</span><div class="chord-diagram-slot" data-notes="C4" data-clef="treble"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Alto</span><div class="chord-diagram-slot" data-notes="C4" data-clef="alto"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Tenor</span><div class="chord-diagram-slot" data-notes="C4" data-clef="tenor"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Bass</span><div class="chord-diagram-slot" data-notes="C4" data-clef="bass"></div></div>
+              <div class="diagram-cell"><span class="diagram-label">Percussion</span><svg viewBox="0 0 180 220" style="width:100%;max-width:150px;height:auto;"><line x1="20" y1="90" x2="160" y2="90" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="100" x2="160" y2="100" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="110" x2="160" y2="110" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="120" x2="160" y2="120" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="130" x2="160" y2="130" stroke="var(--ink)" stroke-width="1"/><rect x="82" y="98" width="6" height="24" fill="var(--ink)"/><rect x="92" y="98" width="6" height="24" fill="var(--ink)"/></svg></div>
+            </div>
+          </dd></div>
           <div class="term-row"><dt class="term">Graphic notation</dt><dd class="def">Non-traditional, pictorial or symbolic representation of sound and musical gesture.</dd></div>
           <div class="term-row"><dt class="term">Open score</dt><dd class="def">A score in which each performing part is notated on its own separate staff.</dd></div>
           <div class="term-row"><dt class="term">Nonlinear scoring</dt><dd class="def">Notation that does not proceed in a single fixed sequence, allowing performers choice in the order material is read or played.</dd></div>
@@ -1668,6 +1915,267 @@
         caption: 'Bj&ouml;rk, official music video, dir. Michel Gondry',
         score: { url: 'https://musescore.com/user/53087187/scores/16154350', label: 'MuseScore &mdash; Army of Me (arr.)', note: 'User-submitted arrangement (bass + synth); not public domain.' },
         caveat: `Locrian is rarely used as a genuine tonal centre &mdash; even automated key-detection tools tag this track as &ldquo;B&#9837; minor,&rdquo; which isn&rsquo;t wrong: B&#9837; natural minor and C Locrian share identical pitch content. That ambiguity is itself the lesson &mdash; Locrian&rsquo;s diminished 5th above the tonic makes it inherently unstable as a &ldquo;home&rdquo; key.`
+      },
+      'leitmotif': {
+        cite: `John Williams, &ldquo;The Imperial March&rdquo; (Darth Vader&rsquo;s Theme), from <em>Star Wars</em> &mdash; the textbook leitmotif: a musical idea that recurs across an entire film series, instantly associated with one character.`,
+        video: 'vsMWVW4xtwI', start: 0,
+        caption: 'John Williams conducting the Vienna Philharmonic (official Deutsche Grammophon channel)',
+        scoreNote: `Score not shown &mdash; this work isn&rsquo;t public domain (John Williams is living).`,
+        caveat: 'The piece opens almost immediately with the main theme (after a brief audience ovation on this live recording) &mdash; timestamp is a reasoned estimate from the work’s known structure, not confirmed second-by-second.'
+      },
+      'melisma': {
+        cite: `Handel, &ldquo;For unto us a Child is born,&rdquo; from <em>Messiah</em>, HWV 56 (1741) &mdash; extended melismas on &ldquo;born,&rdquo; &ldquo;wonderful&rdquo; and &ldquo;counsellor,&rdquo; obvious to an untrained ear.`,
+        video: 'r8mshjnAe3U', start: 20,
+        caption: 'VOCES8 &amp; the Academy of Ancient Music (official AAM channel)',
+        score: { url: 'https://imslp.org/wiki/Messiah,_HWV_56_(Handel,_George_Frideric)', label: 'IMSLP &mdash; Messiah, HWV 56', note: 'Public domain.' },
+        caveat: 'Timestamp targets the first choral entrance (melisma on &ldquo;born&rdquo;) &mdash; a reasoned estimate from the piece’s structure (short orchestral ritornello, then immediate melismatic entry), not confirmed against this specific recording’s tempo.'
+      },
+      'arco': {
+        cite: `Sacconi Quartet, &ldquo;Arco vs Pizzicato&rdquo; &mdash; String Masterclass Series &mdash; arco is normal bowed tone, demonstrated directly against pizzicato for contrast.`,
+        video: 'm17aewv73no', start: 80,
+        caption: 'Sacconi Quartet &amp; John Frederick Hudson',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp is a caption-supported estimate for the arco half of the demonstration.'
+      },
+      'pizzicato': {
+        cite: `Sacconi Quartet, &ldquo;Arco vs Pizzicato&rdquo; &mdash; String Masterclass Series &mdash; the string plucked with a finger, demonstrated directly against arco for contrast.`,
+        video: 'm17aewv73no', start: 115,
+        caption: 'Sacconi Quartet &amp; John Frederick Hudson',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Same video as Arco (a direct A/B contrast) &mdash; timestamp is a caption-supported estimate for the pizzicato half.'
+      },
+      'con-sord': {
+        cite: `&ldquo;Basic String Writing &mdash; Mutes (Con Sord. &amp; Senza Sord.)&rdquo; &mdash; a direct comparison of muted vs unmuted string tone.`,
+        video: 'xtx9xxF55H4', start: 167,
+        caption: 'Jordan M. Holloway, composer/violist',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp matches the creator&rsquo;s own video chapter, &ldquo;Timbral Effect&rdquo; (2:47).'
+      },
+      'col-legno': {
+        cite: `&ldquo;Col Legno Battuto &mdash; Extended Techniques for Violin,&rdquo; demonstrated live by Dr. Lynn Kuo, Assistant Concertmaster of the National Ballet of Canada Orchestra.`,
+        video: 'Ijdb3U1CRdo', start: 30,
+        caption: 'Dr. Lynn Kuo, violin',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp is an estimate &mdash; YouTube’s caption data wasn’t retrievable for this video, so the exact second isn’t confirmed.'
+      },
+      'sul-pont': {
+        cite: `&ldquo;Basic String Writing &mdash; Sul Ponticello &amp; Sul Tasto&rdquo; &mdash; bowing very close to the bridge for a glassy, overtone-rich tone.`,
+        video: '0Q4l8WFlwKU', start: 30,
+        caption: 'Jordan M. Holloway, composer/violist',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp matches the creator&rsquo;s own video chapter, &ldquo;Sul Ponticello&rdquo; (0:30).'
+      },
+      'sul-tasto': {
+        cite: `&ldquo;Basic String Writing &mdash; Sul Ponticello &amp; Sul Tasto&rdquo; &mdash; the same video&rsquo;s contrasting technique: bowing over the fingerboard for a soft, flute-like tone.`,
+        video: '0Q4l8WFlwKU', start: 232,
+        caption: 'Jordan M. Holloway, composer/violist',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp matches the creator&rsquo;s own video chapter, &ldquo;Sul Tasto&rdquo; (3:52).'
+      },
+      'bariolage': {
+        cite: `A real bowed demonstration of bariolage (rapid alternation between an open string and the same pitch stopped on an adjacent string), as used in Bach&rsquo;s Cello Suite No. 3.`,
+        video: 'rJIU-sJuioM', start: 0,
+        caption: 'cello lounge (cello teaching channel)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Smaller independent channel, but verified as real, live cello audio with narration.'
+      },
+      'double-stopping': {
+        cite: `Sacconi Quartet, &ldquo;Double Stops&rdquo; &mdash; String Masterclass Series &mdash; two or more strings sounded simultaneously.`,
+        video: '8g0noxsZQnk', start: 60,
+        caption: 'Sacconi Quartet &amp; John Frederick Hudson',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp is an estimate &mdash; YouTube’s caption data wasn’t retrievable for this video, so the exact second isn’t confirmed.'
+      },
+      'scordatura': {
+        cite: `Saint-Sa&euml;ns, <em>Danse Macabre</em> &mdash; the solo violin&rsquo;s E string is deliberately tuned down to E&#9837;, creating the eerie &ldquo;diabolus in musica&rdquo; tritone against the open A string.`,
+        video: 'CwMMwAWAFds', start: 20,
+        caption: 'Eva Zavaro, violin, with Orchestre de Paris (live, Philharmonie de Paris, 2021)',
+        scoreNote: `Score not shown &mdash; this is a real live performance recording, not a repertoire score excerpt.`,
+        caveat: 'The solo violin enters right after the harp’s twelve &ldquo;midnight&rdquo; chimes at the very opening &mdash; timestamp is a structural estimate, not confirmed by ear.'
+      },
+      'string-harmonics': {
+        cite: `&ldquo;Basic String Writing &mdash; Harmonics&rdquo; &mdash; a direct natural-vs-artificial harmonic comparison on violin.`,
+        video: '26sHBw0oAyE', start: 672,
+        caption: 'Jordan M. Holloway, composer/violist',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp matches the creator&rsquo;s own video chapter, &ldquo;Demonstration&rdquo; (11:12).'
+      },
+      'tonguing': {
+        cite: `&ldquo;Multiple Articulation&rdquo; &mdash; single tonguing (normal staccato/legato attacks) contrasted with rapid double/triple tonguing.`,
+        video: 'no6-Y3SRWZE', start: 0,
+        caption: 'Peter Stoll, Clarinet Faculty, University of Toronto',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'This video has no internal chapter markers, so the exact contrast moment is an estimate &mdash; the whole (short) video is dedicated to this comparison.'
+      },
+      'dynamic-shading-ww': {
+        cite: `A live flute crescendo/decrescendo demonstration &mdash; breath pressure and embouchure shaping loudness and tone.`,
+        video: 'Z8P-5ggSwlg', start: 15,
+        caption: 'The Flute Channel',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Weaker match than others in this batch &mdash; this is a basic (not extended) technique, so it comes from a general flute-pedagogy channel rather than a conservatory extended-techniques series. Timestamp is caption-supported, not confirmed by ear.'
+      },
+      'breath-vibrato': {
+        cite: `&ldquo;Vibrato on the Clarinets&rdquo; &mdash; a pulsing of breath support creating a regular fluctuation in pitch and intensity.`,
+        video: 'KNfMo3GFK4g', start: 0,
+        caption: 'Peter Stoll, Clarinet Faculty, University of Toronto',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'No internal chapter markers &mdash; the with/without-vibrato contrast is estimated to occur mid-video, not independently confirmed.'
+      },
+      'flutter-tonguing-ww': {
+        cite: `&ldquo;Flutter Tonguing on the Clarinets&rdquo; &mdash; a rapid, rolled articulation performed while sustaining a note.`,
+        video: 'vNPRgTsGIBA', start: 0,
+        caption: 'Peter Stoll, Clarinet Faculty, University of Toronto',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Title is an exact match for the term; no internal chapter timestamp available.'
+      },
+      'multiphonics-ww': {
+        cite: `&ldquo;Multiphonics&rdquo; on flute, alto flute and piccolo &mdash; special fingerings producing two or more pitches simultaneously.`,
+        video: 'd1R22_tYThQ', start: 0,
+        caption: 'Stephen Tam, Flute Faculty, University of Toronto &amp; Western University',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Title is an exact match for the term; no internal chapter timestamp available.'
+      },
+      'circular-breathing': {
+        cite: `A real oboist demonstrates circular breathing &mdash; inhaling through the nose while pushing stored air out with the cheeks for an uninterrupted tone.`,
+        video: 'wKJNbDyFBjY', start: 315,
+        caption: 'Laura Adkins, oboist/composer',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp targets a sustained-playing passage confirmed by visual/caption evidence, not independently confirmed by ear.'
+      },
+      'key-clicks': {
+        cite: `&ldquo;Key Clicks&rdquo; &mdash; percussive sounds produced by keywork clicking, without a normal pitched tone.`,
+        video: 'vabyAFj3cRM', start: 29,
+        caption: 'Peter Stoll, Clarinet Faculty, University of Toronto',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'High confidence &mdash; timestamp matches this video&rsquo;s own creator-set chapter, &ldquo;Key Clicks&rdquo; (0:29). Covers the key-clicks half of the term; a separate dedicated slap-tongue demo exists from the same series if needed.'
+      },
+      'overblowing': {
+        cite: `&ldquo;How to Play Harmonics on the Oboe&rdquo; &mdash; overblowing a fingering to sound a higher partial instead of the fundamental, contrasted directly with standard fingerings.`,
+        video: 'BrnejiLJBBI', start: 31,
+        caption: 'Laura Adkins, oboist/composer',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'High confidence &mdash; timestamp matches this video&rsquo;s own creator-set chapter (&ldquo;Harmonic Fingerings&rdquo;), which also includes a direct standard-vs-harmonic comparison later in the video (~2:18 and ~2:49).'
+      },
+      'brass-mutes': {
+        cite: `A real trumpeter demonstrates 10 different mutes in turn, including straight, cup, harmon and plunger &mdash; each giving the bell a distinct character.`,
+        video: 's93szNekALo', start: 54,
+        caption: 'Trent Hamilton, trumpet &mdash; on-screen titles name each mute as it plays (straight 0:54, cup 1:44, harmon 2:00, plunger 2:50)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'The Harmon mute (2:00) is the one behind the famous Miles Davis &ldquo;wah&rdquo; trumpet sound.'
+      },
+      'stopped-horn': {
+        cite: `&ldquo;Stopped Horn and Mute Changes&rdquo; &mdash; the hand fully closing the bell for a brassy, muffled effect, contrasted with open horn.`,
+        video: 'g9LiD9JFBvU', start: 7,
+        caption: 'Dr. Maddy Tarantelli, French horn (Utah Valley University)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp confirmed via on-screen captions and a viewer-contributed timestamp list matching the &ldquo;+&rdquo;/&ldquo;o&rdquo; notation.'
+      },
+      'dynamic-shading-brass': {
+        cite: `The same trumpet note played at forte, then piano &mdash; breath pressure and embouchure directly shaping loudness.`,
+        video: 'gJDITSSBmsk', start: 39,
+        caption: 'Dr. Brian Shook, trumpet (Trumpet Master Classes)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Confirmed via YouTube auto-chapters and captions (&ldquo;here&rsquo;s that same note at a forte&rdquo;); piano version follows at 0:59.'
+      },
+      'brass-vibrato': {
+        cite: `A trumpeter demonstrates jaw/lip vibrato &mdash; a slight, controlled oscillation warming the tone.`,
+        video: 'I_jvVCAadYo', start: 121,
+        caption: 'Dr. Brian Shook, trumpet (Trumpet Master Classes)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Covers jaw/lip vibrato only, confirmed by captions and visible jaw motion &mdash; the horn-specific &ldquo;hand&rdquo; vibrato variant isn&rsquo;t demonstrated in this source.'
+      },
+      'flutter-tonguing-brass': {
+        cite: `&ldquo;Flutter Tongue&rdquo; on French horn &mdash; a rapid, rolled articulation performed while sustaining a note.`,
+        video: 'B5NxMUBXBlw', start: 7,
+        caption: 'Dr. Maddy Tarantelli, French horn (Utah Valley University)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Very short, single-purpose video; timestamp confirmed via captions and a viewer comment.'
+      },
+      'falls-doits': {
+        cite: `Two real trombonists demonstrate a doit (pitch scoops up at the end of a note) and a fall (pitch drops away at the end) &mdash; classic jazz big-band pitch bends. No verified real example of a &ldquo;smear&rdquo; specifically was found; treat that variant as citation-only.`,
+        videos: [
+          { video: 'O41ZoSxj5Yc', start: 20, caption: 'Luke Malewicz (Yamaha performing artist), trombone', label: 'Doit' },
+          { video: 'nZWDNS81lq8', start: 15, caption: 'Andy Martin, trombone (via @PaulTheTrombonist)', label: 'Fall' }
+        ],
+        scoreNote: `Score not shown &mdash; these are instructional demonstrations, not repertoire excerpts.`,
+        caveat: 'Both confirmed via captions and visible live playing on real trombones by named professionals.'
+      },
+      'growl': {
+        cite: `A trombonist demonstrates growling &mdash; a rough, buzzing distortion produced by humming/singing into the instrument while playing, contrasted with flutter tonguing.`,
+        video: 'wlNMkNxfu3o', start: 495,
+        caption: 'Dion Tucker (The Chops Shop; Duke Ellington Orchestra alum), trombone',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Confirmed via captions across the growl section; a historical photo of Tricky Sam Nanton (a pioneer of the technique) appears around 9:08.'
+      },
+      'brass-glissando': {
+        cite: `A trombonist demonstrates glissando &mdash; a continuous slide between pitches using the full slide, the classic unmistakable brass glissando.`,
+        video: 'gzwOloyfdNQ', start: 57,
+        caption: 'TrombonesAtTech (Tennessee Tech University trombone studio)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Confirmed via spoken explanation and visible full slide extension in the video.'
+      },
+      'multiphonics-brass': {
+        cite: `&ldquo;Multiphonics&rdquo; on French horn &mdash; humming a different pitch while playing a note, producing two or more simultaneous pitches.`,
+        video: 'IqdWIX94IOk', start: 7,
+        caption: 'Dr. Maddy Tarantelli, French horn (Utah Valley University)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp confirmed via a viewer-contributed breakdown matching this video&rsquo;s captions.'
+      },
+      'perc-dynamics': {
+        cite: `A real timpanist demonstrates how mallet hardness and core material change loudness, attack and tone colour.`,
+        video: 'fwScd4MGgYE', start: 236,
+        caption: 'Bryce Leafman, timpani (Billings Symphony Orchestra &amp; Chorale)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'Timestamp matches this video&rsquo;s own chapters, &ldquo;Timpani Mallets&rdquo; through &ldquo;Cores&rdquo; (3:56&ndash;4:45).'
+      },
+      'perc-roll': {
+        cite: `A real drummer demonstrates a buzz (multiple-bounce) roll on snare drum &mdash; rapid repetition simulating a continuous sustained sound.`,
+        video: 'VuxdC-8Lhuw', start: 10,
+        caption: 'Drumeo (drum education channel)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'No creator chapter markers on this video, so the exact demo moment is an estimate.'
+      },
+      'perc-choke': {
+        cite: `A real drummer demonstrates choking a cymbal &mdash; stopping its ring immediately by grabbing it with the hand.`,
+        video: 'TEcJ2VtIlnc', start: 20,
+        caption: 'Drumeo (drum education channel)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'No creator chapter markers on this video, so the exact demo moment is an estimate.'
+      },
+      'rim-shot': {
+        cite: `A real drummer demonstrates cross-sticking on snare drum &mdash; resting the stick across the head and striking the rim for a sharp, cutting sound.`,
+        video: 'qamB7RQW7qw', start: 83,
+        caption: 'Drumeo (drum education channel)',
+        scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
+        caveat: 'High confidence &mdash; timestamp matches this video&rsquo;s own chapter, &ldquo;CrossSticking demonstration&rdquo; (1:23).'
+      },
+      'bowed-vibraphone': {
+        cite: `&ldquo;Square Peg Round Hole&rdquo; (No. 8 from Elliot Cole&rsquo;s <em>Postludes for Bowed Vibraphone</em>) &mdash; a bow drawn across the bars for a sustained, singing tone, unlike normal mallet playing.`,
+        video: '8uAkaUShxxc', start: 0,
+        caption: 'Evan Chapman, bowed vibraphone',
+        scoreNote: `Score not shown &mdash; real repertoire written specifically for this technique.`,
+        caveat: 'The entire piece is bowed vibraphone, so any point in the recording demonstrates the technique clearly.'
+      },
+      'prepared-percussion': {
+        cite: `John Cage, Sonata V from <em>Sonatas and Interludes</em> &mdash; screws, bolts and rubber placed between the piano strings alter the timbre throughout.`,
+        video: 'jRHoKZRYBlY', start: 0,
+        caption: 'Inara Ferreira, prepared piano (live, Florida Atlantic University)',
+        scoreNote: `Score not shown &mdash; canonical prepared-piano repertoire, real live performance.`,
+        caveat: 'The altered, percussive timbre is audible throughout this short (1:39) piece.'
+      },
+      'superball': {
+        cite: `A manufacturer demo of the superball mallet &mdash; rubbing the ball against the head produces a sustained, groaning tone, performed here on timpani and tam-tam.`,
+        video: '-HD0_3VeD5k', start: 0,
+        caption: 'FSkrla (percussion mallet maker)',
+        scoreNote: `Score not shown &mdash; this is a manufacturer/instructional demonstration.`,
+        caveat: 'Timpani demonstrated in the first half, tam-tam in the second half, per the video description &mdash; no precise sub-timestamp, so treat as approximate.'
+      },
+      'dead-stroke': {
+        cite: `&ldquo;Aforisma #4: Dead Stroke Etude&rdquo; &mdash; a solo vibraphone piece built specifically around striking and leaving the mallet pressed against the bar to instantly damp the sound.`,
+        video: '-1o1JW-wTho', start: 0,
+        caption: 'Giovanni Perin, vibraphone (from Aforismi for vibraphone solo)',
+        scoreNote: `Score not shown &mdash; real repertoire written specifically to showcase this technique.`,
+        caveat: 'The whole (1:05) etude is built around the dead-stroke technique.'
       }
     };
 
@@ -1678,7 +2186,9 @@
       lydian: { root: 65, intervals: [0, 2, 4, 6, 7, 9, 11, 12] },
       mixolydian: { root: 69, intervals: [0, 2, 4, 5, 7, 9, 10, 12] },
       aeolian: { root: 69, intervals: [0, 2, 3, 5, 7, 8, 10, 12] },
-      locrian: { root: 60, intervals: [0, 1, 3, 5, 6, 8, 10, 12] }
+      locrian: { root: 60, intervals: [0, 1, 3, 5, 6, 8, 10, 12] },
+      pentatonic: { root: 60, intervals: [0, 2, 4, 7, 9, 12] },
+      tonerow: { root: 60, intervals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
     };
     var audioCtx = null;
     function midiToFreq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
@@ -1719,10 +2229,20 @@
         html += '<img class="example-score-img" src="' + ex.scoreImg.src + '" alt="' + ex.scoreImg.alt + '" loading="lazy">';
         if (ex.scoreImg.caption) html += '<p class="example-caption">' + ex.scoreImg.caption + '</p>';
       }
-      if (ex.video) {
-        html += '<div class="example-video"><iframe src="https://www.youtube-nocookie.com/embed/' + ex.video + '?start=' + ex.start +
+      function renderVideoBlock(video, start, caption, label) {
+        var out = '<div class="example-video"><iframe src="https://www.youtube-nocookie.com/embed/' + video + '?start=' + start +
           '" title="Real recorded example" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>';
-        if (ex.caption) html += '<p class="example-caption">' + ex.caption + '</p>';
+        var mm = Math.floor((start || 0) / 60), ss = (start || 0) % 60;
+        var startLabel = mm + ':' + (ss < 10 ? '0' : '') + ss;
+        var captionLine = (label ? '<strong>' + label + ':</strong> ' : '') + (caption || '') + ' &mdash; starts at ' + startLabel +
+          ' (the video’s paused thumbnail always shows a generic frame, not this one — press play to jump straight there)';
+        out += '<p class="example-caption">' + captionLine + '</p>';
+        return out;
+      }
+      if (ex.videos && ex.videos.length) {
+        ex.videos.forEach(function (v) { html += renderVideoBlock(v.video, v.start, v.caption, v.label); });
+      } else if (ex.video) {
+        html += renderVideoBlock(ex.video, ex.start, ex.caption);
       }
       if (ex.score) {
         html += '<p class="example-score"><a href="' + ex.score.url + '" target="_blank" rel="noopener">' + ex.score.label + ' &#8599;</a>' +
@@ -1759,6 +2279,396 @@
         }
       });
       btn.dataset.openLabel = btn.innerHTML;
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var LETTER_SEMI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+    var LETTER_DIA = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
+    function parseNote(note) {
+      var m = /^([A-G])([#b]?)(\d)$/.exec(note);
+      var letter = m[1], acc = m[2], oct = parseInt(m[3], 10);
+      var midi = 12 * (oct + 1) + LETTER_SEMI[letter] + (acc === '#' ? 1 : acc === 'b' ? -1 : 0);
+      var dIndex = oct * 7 + LETTER_DIA[letter];
+      return { midi: midi, dIndex: dIndex, acc: acc };
+    }
+    function ledgerLinesFor(y, top, bottom) {
+      var ys = [];
+      if (y < top - 1) { for (var a = top - 10; a >= y - 1; a -= 10) ys.push(a); }
+      else if (y > bottom + 1) { for (var b = bottom + 10; b <= y + 1; b += 10) ys.push(b); }
+      return ys;
+    }
+    function chordDiagramSVG(noteNames, clef) {
+      clef = clef || 'treble';
+      var top = 90, bottom = 130, spacing = 10, xs = 90;
+      var refIndex = clef === 'bass' ? 18 : clef === 'alto' ? 24 : clef === 'tenor' ? 26 : 30;
+      var parsed = noteNames.map(parseNote);
+      var noteheads = '', ledgers = '';
+      parsed.forEach(function (p) {
+        var y = bottom - (p.dIndex - refIndex) * (spacing / 2);
+        ledgerLinesFor(y, top, bottom).forEach(function (ly) {
+          ledgers += '<line x1="' + (xs - 15) + '" y1="' + ly + '" x2="' + (xs + 15) + '" y2="' + ly + '" stroke="var(--ink)" stroke-width="1.2"/>';
+        });
+        var accGlyph = p.acc === '#' ? '♯' : p.acc === 'b' ? '♭' : '';
+        if (accGlyph) noteheads += '<text x="' + (xs - 24) + '" y="' + (y + 5) + '" font-size="15" fill="var(--ink)">' + accGlyph + '</text>';
+        noteheads += '<ellipse cx="' + xs + '" cy="' + y + '" rx="7" ry="5.2" fill="var(--ink)" transform="rotate(-18 ' + xs + ' ' + y + ')"/>';
+      });
+      var lines = '';
+      for (var i = 0; i < 5; i++) { var ly2 = top + i * spacing; lines += '<line x1="20" y1="' + ly2 + '" x2="160" y2="' + ly2 + '" stroke="var(--ink)" stroke-width="1"/>'; }
+      var clefGlyph = clef === 'bass' ? '𝄢' : (clef === 'alto' || clef === 'tenor') ? '𝄡' : '𝄞';
+      var clefY = clef === 'bass' ? 123 : (clef === 'alto' || clef === 'tenor') ? 120 : 129;
+      var clefSize = clef === 'bass' ? 27 : (clef === 'alto' || clef === 'tenor') ? 34 : 44;
+      var clefText = '<text x="26" y="' + clefY + '" font-size="' + clefSize + '" fill="var(--ink)" font-family="serif">' + clefGlyph + '</text>';
+      return '<svg viewBox="0 0 180 220" role="img" aria-label="Notation diagram" style="width:100%;max-width:150px;height:auto;">' + lines + clefText + ledgers + noteheads + '</svg>';
+    }
+
+    function rhythmGroupsSVG(groupSizes, opts) {
+      opts = opts || {};
+      var staffY = 66, noteSpacing = opts.spacing || 26, groupGap = 22, x = 20, stemH = 34, headRx = 6, headRy = 4.5;
+      var noteheads = '', stems = '', beams = '', labels = '';
+      groupSizes.forEach(function (count) {
+        var stemXs = [];
+        var groupStartX = x;
+        for (var i = 0; i < count; i++) {
+          var cx = x;
+          noteheads += '<ellipse cx="' + cx + '" cy="' + staffY + '" rx="' + headRx + '" ry="' + headRy + '" fill="var(--ink)" transform="rotate(-18 ' + cx + ' ' + staffY + ')"/>';
+          var stemX = cx + headRx - 1;
+          stems += '<line x1="' + stemX + '" y1="' + staffY + '" x2="' + stemX + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="1.6"/>';
+          stemXs.push(stemX);
+          x += noteSpacing;
+        }
+        if (stemXs.length > 1) {
+          beams += '<line x1="' + stemXs[0] + '" y1="' + (staffY - stemH) + '" x2="' + stemXs[stemXs.length - 1] + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="4"/>';
+        }
+        if (opts.tuplet && stemXs.length > 1) {
+          var brY = staffY - stemH - 10;
+          beams += '<path d="M ' + stemXs[0] + ' ' + (brY + 5) + ' L ' + stemXs[0] + ' ' + brY + ' L ' + stemXs[stemXs.length - 1] + ' ' + brY + ' L ' + stemXs[stemXs.length - 1] + ' ' + (brY + 5) + '" stroke="var(--ink)" stroke-width="1.2" fill="none"/>';
+          beams += '<text x="' + ((stemXs[0] + stemXs[stemXs.length - 1]) / 2) + '" y="' + (brY - 3) + '" font-size="11" text-anchor="middle" fill="var(--ink)" font-style="italic">' + count + '</text>';
+        }
+        if (opts.labelGroups) {
+          labels += '<text x="' + ((groupStartX + (x - noteSpacing)) / 2) + '" y="' + (staffY + 22) + '" font-size="11" text-anchor="middle" fill="var(--muted)" font-family="\'IBM Plex Mono\',ui-monospace,monospace">' + count + '</text>';
+        }
+        x += groupGap;
+      });
+      var width = x + 10;
+      var line = '<line x1="10" y1="' + staffY + '" x2="' + (width - 10) + '" y2="' + staffY + '" stroke="var(--ink)" stroke-width="1"/>';
+      return '<svg viewBox="0 0 ' + width + ' 110" role="img" aria-label="Rhythm grouping diagram" style="width:100%;max-width:' + Math.min(width, 260) + 'px;height:auto;">' + line + beams + stems + noteheads + labels + '</svg>';
+    }
+
+    function polyrhythmSVG(a, b) {
+      var leftX = 25, rightX = 205, rowATop = 40, rowBTop = 92, stemH = 26, headRx = 6, headRy = 4.2;
+      function buildRow(n, staffY) {
+        var xs = [];
+        for (var i = 0; i < n; i++) xs.push(leftX + (rightX - leftX) * (n === 1 ? 0 : i / (n - 1)));
+        var noteheads = '', stems = '';
+        var stemXs = [];
+        xs.forEach(function (cx) {
+          noteheads += '<ellipse cx="' + cx + '" cy="' + staffY + '" rx="' + headRx + '" ry="' + headRy + '" fill="var(--ink)" transform="rotate(-18 ' + cx + ' ' + staffY + ')"/>';
+          var stemX = cx + headRx - 1;
+          stemXs.push(stemX);
+          stems += '<line x1="' + stemX + '" y1="' + staffY + '" x2="' + stemX + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="1.6"/>';
+        });
+        var beam = stemXs.length > 1 ? '<line x1="' + stemXs[0] + '" y1="' + (staffY - stemH) + '" x2="' + stemXs[stemXs.length - 1] + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="4"/>' : '';
+        var line = '<line x1="' + (leftX - 10) + '" y1="' + staffY + '" x2="' + (rightX + 10) + '" y2="' + staffY + '" stroke="var(--ink)" stroke-width="1"/>';
+        return line + beam + stems + noteheads;
+      }
+      var guideTop = '<line x1="' + leftX + '" y1="4" x2="' + leftX + '" y2="105" stroke="var(--surface-line)" stroke-width="1" stroke-dasharray="2,2"/>';
+      var guideBottom = '<line x1="' + rightX + '" y1="4" x2="' + rightX + '" y2="105" stroke="var(--surface-line)" stroke-width="1" stroke-dasharray="2,2"/>';
+      var labelA = '<text x="6" y="' + (rowATop + 4) + '" font-size="12" fill="var(--muted)" font-family="\'IBM Plex Mono\',ui-monospace,monospace">' + a + '</text>';
+      var labelB = '<text x="6" y="' + (rowBTop + 4) + '" font-size="12" fill="var(--muted)" font-family="\'IBM Plex Mono\',ui-monospace,monospace">' + b + '</text>';
+      return '<svg viewBox="0 0 220 115" role="img" aria-label="Rhythms of ' + a + ' against ' + b + '" style="width:100%;max-width:220px;height:auto;">' + guideTop + guideBottom + buildRow(a, rowATop) + buildRow(b, rowBTop) + labelA + labelB + '</svg>';
+    }
+
+    function noteValueSVG(type) {
+      var staffY = 55, cx = 45, headRx = 8, headRy = 5.5, stemH = 36;
+      var open = (type === 'whole' || type === 'half');
+      var headAttrs = open ? 'fill="none" stroke="var(--ink)" stroke-width="2.2"' : 'fill="var(--ink)"';
+      var head = '<ellipse cx="' + cx + '" cy="' + staffY + '" rx="' + headRx + '" ry="' + headRy + '" ' + headAttrs + ' transform="rotate(-18 ' + cx + ' ' + staffY + ')"/>';
+      var stem = '', flags = '';
+      var stemX = cx + headRx - 1;
+      if (type !== 'whole') {
+        stem = '<line x1="' + stemX + '" y1="' + staffY + '" x2="' + stemX + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="2"/>';
+      }
+      var flagCount = type === 'eighth' ? 1 : type === 'sixteenth' ? 2 : 0;
+      for (var i = 0; i < flagCount; i++) {
+        var fy = staffY - stemH + i * 9;
+        flags += '<path d="M ' + stemX + ' ' + fy + ' q 13 3 15 15" stroke="var(--ink)" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      }
+      var line = '<line x1="10" y1="' + staffY + '" x2="80" y2="' + staffY + '" stroke="var(--ink)" stroke-width="1"/>';
+      return '<svg viewBox="0 0 90 100" role="img" aria-label="' + type + ' note" style="width:100%;max-width:80px;height:auto;">' + line + head + stem + flags + '</svg>';
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll('.rhythm-diagram-slot')).forEach(function (slot) {
+      var groups = slot.getAttribute('data-groups').split(',').map(Number);
+      var labelGroups = slot.getAttribute('data-label') === '1';
+      var tuplet = slot.getAttribute('data-tuplet') === '1';
+      slot.innerHTML = rhythmGroupsSVG(groups, { labelGroups: labelGroups, tuplet: tuplet });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.polyrhythm-slot')).forEach(function (slot) {
+      var ab = slot.getAttribute('data-ab').split(',').map(Number);
+      slot.innerHTML = polyrhythmSVG(ab[0], ab[1]);
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.note-value-slot')).forEach(function (slot) {
+      slot.innerHTML = noteValueSVG(slot.getAttribute('data-type'));
+    });
+
+    var actx2 = null;
+    function midiToFreq2(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+    function ensureCtx2() {
+      if (!actx2) actx2 = new (window.AudioContext || window.webkitAudioContext)();
+      if (actx2.state === 'suspended') actx2.resume();
+      return actx2;
+    }
+    function playChordNotes(noteNames, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var midis = noteNames.map(function (n) { return parseNote(n).midi; });
+      var now = ctx.currentTime;
+      if (opts.arpeggiate) {
+        var step = opts.step || 0.3;
+        midis.forEach(function (m, i) {
+          var t0 = now + i * step;
+          var osc = ctx.createOscillator(), gain = ctx.createGain();
+          osc.type = 'triangle'; osc.frequency.value = midiToFreq2(m);
+          gain.gain.setValueAtTime(0.0001, t0);
+          gain.gain.linearRampToValueAtTime(0.22, t0 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + step * 1.7);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(t0); osc.stop(t0 + step * 1.7 + 0.05);
+        });
+      } else {
+        var dur = opts.duration || 1.2;
+        var peak = opts.gain || 0.2;
+        midis.forEach(function (m) {
+          var osc = ctx.createOscillator(), gain = ctx.createGain();
+          osc.type = 'triangle'; osc.frequency.value = midiToFreq2(m);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(peak, now + (opts.fastAttack ? 0.005 : 0.03));
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+          var lastNode = osc;
+          if (opts.lowpass) {
+            var filt = ctx.createBiquadFilter();
+            filt.type = 'lowpass'; filt.frequency.value = opts.lowpass;
+            osc.connect(filt); lastNode = filt;
+          }
+          if (opts.vibrato) {
+            var lfo = ctx.createOscillator(), lfoGain = ctx.createGain();
+            lfo.frequency.value = 5.5; lfoGain.gain.value = opts.vibrato;
+            lfo.connect(lfoGain).connect(osc.frequency);
+            lfo.start(now); lfo.stop(now + dur + 0.1);
+          }
+          lastNode.connect(gain).connect(ctx.destination);
+          osc.start(now); osc.stop(now + dur + 0.05);
+        });
+      }
+    }
+    function playSlide(fromNote, toNote, dur) {
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var f0 = midiToFreq2(parseNote(fromNote).midi), f1 = midiToFreq2(parseNote(toNote).midi);
+      var osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.type = 'triangle'; osc.frequency.setValueAtTime(f0, now);
+      osc.frequency.linearRampToValueAtTime(f1, now + dur);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(0.2, now + 0.03);
+      gain.gain.setValueAtTime(0.2, now + dur - 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + dur + 0.1);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(now); osc.stop(now + dur + 0.15);
+    }
+    function playWithDelay(noteNames, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var delayTime = opts.delayTime != null ? opts.delayTime : 0.28;
+      var feedback = opts.feedback != null ? opts.feedback : 0.45;
+      var repeats = opts.repeats != null ? opts.repeats : 4;
+      var noteDur = opts.noteDur || 0.35;
+      var midis = noteNames.map(function (n) { return parseNote(n).midi; });
+      midis.forEach(function (m, i) {
+        var t0 = now + i * noteDur;
+        var osc = ctx.createOscillator(), dryGain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = midiToFreq2(m);
+        dryGain.gain.setValueAtTime(0.0001, t0);
+        dryGain.gain.linearRampToValueAtTime(0.22, t0 + 0.02);
+        dryGain.gain.exponentialRampToValueAtTime(0.0001, t0 + noteDur * 0.9);
+        osc.connect(dryGain).connect(ctx.destination);
+        if (delayTime > 0 && repeats > 0) {
+          var wetGain = ctx.createGain();
+          wetGain.gain.value = 0.9;
+          var delay = ctx.createDelay(2.0);
+          delay.delayTime.value = delayTime;
+          var fb = ctx.createGain();
+          fb.gain.value = feedback;
+          osc.connect(wetGain).connect(delay);
+          delay.connect(fb).connect(delay);
+          delay.connect(ctx.destination);
+        }
+        osc.start(t0); osc.stop(t0 + noteDur * 0.9 + delayTime * (repeats + 1) + 0.2);
+      });
+    }
+    function playReverb(noteNames, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var wet = opts.wet != null ? opts.wet : 1;
+      var midis = noteNames.map(function (n) { return parseNote(n).midi; });
+      var noteDur = opts.noteDur || 0.4;
+      midis.forEach(function (m, i) {
+        var t0 = now + i * noteDur;
+        var osc = ctx.createOscillator(), dryGain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = midiToFreq2(m);
+        dryGain.gain.setValueAtTime(0.0001, t0);
+        dryGain.gain.linearRampToValueAtTime(0.22, t0 + 0.02);
+        dryGain.gain.exponentialRampToValueAtTime(0.0001, t0 + noteDur * 0.9);
+        osc.connect(dryGain).connect(ctx.destination);
+        if (wet > 0) {
+          [0.04, 0.09, 0.15, 0.22, 0.31, 0.42].forEach(function (dt, idx) {
+            var d = ctx.createDelay(1.0), g = ctx.createGain(), filt = ctx.createBiquadFilter();
+            d.delayTime.value = dt;
+            g.gain.value = wet * 0.5 * Math.pow(0.7, idx);
+            filt.type = 'lowpass'; filt.frequency.value = 2200 - idx * 250;
+            osc.connect(d); d.connect(filt); filt.connect(g); g.connect(ctx.destination);
+          });
+        }
+        osc.start(t0); osc.stop(t0 + noteDur * 0.9 + 1.2);
+      });
+    }
+    function playProgression(chordGroups, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var chordDur = opts.chordDur || 0.85;
+      chordGroups.forEach(function (chordNotes, ci) {
+        var t0 = now + ci * chordDur;
+        chordNotes.forEach(function (n) {
+          var m = parseNote(n).midi;
+          var osc = ctx.createOscillator(), gain = ctx.createGain();
+          osc.type = 'triangle'; osc.frequency.value = midiToFreq2(m);
+          gain.gain.setValueAtTime(0.0001, t0);
+          gain.gain.linearRampToValueAtTime(0.2, t0 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + chordDur * 0.95);
+          osc.connect(gain).connect(ctx.destination);
+          osc.start(t0); osc.stop(t0 + chordDur * 0.95 + 0.05);
+        });
+      });
+    }
+
+    function scheduleNote(ctx, t0, midi, dur, gainPeak) {
+      var osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.type = 'triangle'; osc.frequency.value = midiToFreq2(midi);
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.linearRampToValueAtTime(gainPeak || 0.18, t0 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur * 0.95);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(t0); osc.stop(t0 + dur * 0.95 + 0.05);
+    }
+    function playCanon(noteNames, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var noteDur = opts.noteDur || 0.3;
+      var voices = opts.voices || 2;
+      var offsetNotes = opts.offsetNotes != null ? opts.offsetNotes : 2;
+      var transposePerVoice = opts.transposePerVoice || 0;
+      var sustain = opts.sustain || false;
+      var midis = noteNames.map(function (n) { return parseNote(n).midi; });
+      for (var v = 0; v < voices; v++) {
+        var startDelay = v * offsetNotes * noteDur;
+        (function (v, startDelay) {
+          midis.forEach(function (m, i) {
+            var t0 = now + startDelay + i * noteDur;
+            var dur = sustain ? (noteDur * (midis.length - i) + 0.3) : noteDur;
+            scheduleNote(ctx, t0, m + v * transposePerVoice, dur, 0.15);
+          });
+        })(v, startDelay);
+      }
+    }
+    function playTwoLines(lineA, lineB, opts) {
+      opts = opts || {};
+      var ctx = ensureCtx2();
+      var now = ctx.currentTime;
+      var noteDur = opts.noteDur || 0.32;
+      var midisA = lineA.map(function (n) { return parseNote(n).midi; });
+      var midisB = lineB.map(function (n) { return parseNote(n).midi; });
+      midisA.forEach(function (m, i) { scheduleNote(ctx, now + i * noteDur, m, noteDur, 0.18); });
+      midisB.forEach(function (m, i) { scheduleNote(ctx, now + i * noteDur, m, noteDur, 0.14); });
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll('.chord-diagram-slot')).forEach(function (slot) {
+      var notes = slot.getAttribute('data-notes').split(',');
+      var clef = slot.getAttribute('data-clef') || 'treble';
+      slot.innerHTML = chordDiagramSVG(notes, clef);
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.chord-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var notes = btn.getAttribute('data-notes').split(',');
+        var arp = btn.getAttribute('data-arp') === '1';
+        var durAttr = btn.getAttribute('data-duration');
+        var stepAttr = btn.getAttribute('data-step');
+        var gainAttr = btn.getAttribute('data-gain');
+        var lowpassAttr = btn.getAttribute('data-lowpass');
+        var vibratoAttr = btn.getAttribute('data-vibrato');
+        playChordNotes(notes, {
+          arpeggiate: arp,
+          duration: durAttr ? parseFloat(durAttr) : undefined,
+          step: stepAttr ? parseFloat(stepAttr) : undefined,
+          gain: gainAttr ? parseFloat(gainAttr) : undefined,
+          fastAttack: btn.getAttribute('data-fast-attack') === '1',
+          lowpass: lowpassAttr ? parseFloat(lowpassAttr) : undefined,
+          vibrato: vibratoAttr ? parseFloat(vibratoAttr) : undefined
+        });
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.progression-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var groups = btn.getAttribute('data-chords').split(';').map(function (g) { return g.split(','); });
+        playProgression(groups);
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.canon-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var notes = btn.getAttribute('data-notes').split(',');
+        playCanon(notes, {
+          voices: parseInt(btn.getAttribute('data-voices') || '2', 10),
+          offsetNotes: parseFloat(btn.getAttribute('data-offset') != null ? btn.getAttribute('data-offset') : '2'),
+          transposePerVoice: parseFloat(btn.getAttribute('data-transpose') || '0'),
+          sustain: btn.getAttribute('data-sustain') === '1'
+        });
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.slide-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var from = btn.getAttribute('data-from');
+        var to = btn.getAttribute('data-to');
+        var dur = parseFloat(btn.getAttribute('data-duration') || '0.6');
+        playSlide(from, to, dur);
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.delay-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var notes = btn.getAttribute('data-notes').split(',');
+        playWithDelay(notes, {
+          delayTime: parseFloat(btn.getAttribute('data-delay-time') || '0.28'),
+          feedback: parseFloat(btn.getAttribute('data-feedback') || '0.45'),
+          repeats: parseFloat(btn.getAttribute('data-repeats') || '4')
+        });
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.reverb-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var notes = btn.getAttribute('data-notes').split(',');
+        playReverb(notes, { wet: parseFloat(btn.getAttribute('data-wet') != null ? btn.getAttribute('data-wet') : '1') });
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.twolines-play-btn')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var a = btn.getAttribute('data-line-a').split(',');
+        var b = btn.getAttribute('data-line-b').split(',');
+        playTwoLines(a, b);
+      });
     });
   })();
 </script>
