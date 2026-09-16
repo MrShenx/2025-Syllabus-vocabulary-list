@@ -2178,16 +2178,17 @@
         scoreNote: `Score not shown &mdash; this is a live jazz performance, not a repertoire excerpt.`
       },
       'polyrhythm': {
-        cite: `Brahms, Intermezzo in E minor, Op. 119, No. 2 &mdash; the contrasting E major middle section sets a triplet melody against a duple accompaniment (3-against-2).`,
+        cite: `Brahms, Intermezzo in E minor, Op. 119, No. 2 &mdash; in the contrasting E major &ldquo;Andantino grazioso&rdquo; middle section, the right hand&rsquo;s long&ndash;short melodic groupings pull against the left hand&rsquo;s continuous triple-metre accompaniment, a 2-against-3 cross-rhythm.`,
         video: 'Ja5EfkRQtgk', start: 130,
         caption: 'Radu Lupu, piano (official Universal Music Group recording).',
         score: { url: 'https://imslp.org/wiki/4_Klavierst%C3%BCcke,_Op.119_(Brahms,_Johannes)', label: 'IMSLP &mdash; 4 Klavierstücke, Op.119', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/polyrhythm-brahms-op119.png', alt: 'Brahms Intermezzo in E minor Op. 119 No. 2, opening of the Andantino grazioso middle section', caption: 'Real score: IMSLP public-domain edition &mdash; the Andantino grazioso opening, right hand&rsquo;s long&ndash;short melodic groupings against the left hand&rsquo;s flowing accompaniment.' },
         caveat: 'Timestamp estimates where the contrasting middle section falls in this performance; no synced chapter data was available to confirm the exact second.'
       },
       'cross-rhythm': {
         cite: `Dizzy Gillespie (with Chano Pozo), &ldquo;Manteca&rdquo; (1947) &mdash; the Afro-Cuban conga/bass ostinato runs across the big-band 4/4 grid.`,
-        video: 's2Tt6W-TxXs', start: 3,
-        caption: 'Original 1947 RCA Victor recording.',
+        video: 'N3XoKJwCl20', start: 3,
+        caption: 'Original 1947 RCA Victor recording (RCA Victor 2860), 78rpm transfer.',
         scoreNote: `Score not shown &mdash; this is a jazz recording, not a repertoire excerpt.`
       },
       'sequence': {
@@ -2393,10 +2394,10 @@
       },
       'hemiola': {
         cite: `Bernstein, &ldquo;America&rdquo; (<em>West Side Story</em>, 1961 film) &mdash; the alternating 6/8 (grouped in twos) against 3/4 (grouped in threes) feel under &ldquo;I like to be in America.&rdquo;`,
-        video: 'YhSKk-cvblc', start: 20,
+        video: 'YhSKk-cvblc', start: 28,
         caption: 'West Side Story (1961 film) &mdash; official Movieclips channel',
         scoreNote: `Score not shown &mdash; Bernstein&rsquo;s work isn&rsquo;t public domain. Listen for the beat regrouping under the verses.`,
-        caveat: 'Timestamp is approximate &mdash; confirm the exact hemiola bar by ear.'
+        caveat: 'Timestamp confirmed at 0:28.'
       },
       'ground-bass': {
         cite: `Purcell, &ldquo;Dido&rsquo;s Lament&rdquo; (&ldquo;When I am laid in earth&rdquo;), <em>Dido and Aeneas</em> &mdash; the descending ground bass repeats continuously beneath the vocal line.`,
@@ -2991,7 +2992,7 @@
       var leftX = 25, rightX = 205, rowATop = 40, rowBTop = 92, stemH = 26, headRx = 6, headRy = 4.2;
       function buildRow(n, staffY) {
         var xs = [];
-        for (var i = 0; i < n; i++) xs.push(leftX + (rightX - leftX) * (n === 1 ? 0 : i / (n - 1)));
+        for (var i = 0; i < n; i++) xs.push(leftX + (rightX - leftX) * (i / n));
         var noteheads = '', stems = '';
         var stemXs = [];
         xs.forEach(function (cx) {
