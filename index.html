@@ -401,13 +401,13 @@
   .word-chip { display: inline-block; padding: 0.28rem 0.7rem; border-radius: 999px; border: 1px solid var(--surface-line); background: var(--surface); font-size: 0.84rem; color: var(--ink-soft); white-space: nowrap; transition: border-color 0.15s var(--ease), color 0.15s var(--ease); }
   .word-chip:hover { border-color: var(--accent); color: var(--ink); }
 
-  .confuse-cluster { margin-bottom: 1.8rem; }
-  .confuse-cluster h4 { font-family: "Fraunces", Georgia, serif; font-size: 1.05rem; font-weight: 600; color: var(--wine); margin: 0 0 0.6rem; }
-  .confuse-row { display: grid; grid-template-columns: minmax(150px, 210px) 1fr; gap: 0.3rem 1.4rem; padding: 0.5rem 0; border-bottom: 1px dashed var(--surface-line); align-items: baseline; }
-  .confuse-row:last-child { border-bottom: none; }
-  .confuse-row .cf-term { font-weight: 600; color: var(--ink); font-family: "Fraunces", Georgia, serif; }
-  .confuse-row .cf-note { color: var(--ink-soft); font-size: 0.9rem; }
-  @media (max-width: 820px) { .confuse-row { grid-template-columns: 1fr; } }
+  .tempo-table-wrap { overflow-x: auto; margin-top: 0.7rem; }
+  .tempo-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.86rem; }
+  .tempo-table caption { text-align: left; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .tempo-table th, .tempo-table td { border: 1px solid var(--surface-line); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
+  .tempo-table thead th { background: var(--surface); font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+  .tempo-table tbody th { font-family: "Fraunces", Georgia, serif; font-weight: 600; color: var(--wine); white-space: nowrap; }
+  .tempo-table td em { color: var(--muted); font-style: italic; }
 
   .empty-state {
     display: none;
@@ -607,7 +607,10 @@
   .example-score-img { display: block; width: 100%; max-width: 640px; height: auto; border: 1px solid var(--surface-line); border-radius: 6px; background: #fff; margin-top: 0.2rem; }
 
   /* ---- Diagram + synth-audio widgets (chords, intervals, progressions) ---- */
-  .diagram-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem 1rem; margin-top: 0.6rem; }
+  .diagram-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.7rem 1rem; margin-top: 0.4rem; }
+  .diagram-with-btn { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 0.4rem; }
+  .diagram-with-btn .diagram-row { margin-top: 0; }
+  .diagram-with-btn .example-btn { margin-left: auto; }
   .diagram-cell { text-align: center; }
   .diagram-cell .diagram-label { display: block; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.2rem; font-family: "IBM Plex Mono", ui-monospace, monospace; }
   .diagram-cell .diagram-caption { display: block; font-size: 0.68rem; color: var(--muted); margin-top: 0.3rem; max-width: 110px; }
@@ -686,22 +689,66 @@
         <dl class="terms">
           <div class="term-row"><dt class="term">Regular metre</dt><dd class="def">A time signature with a consistent, unchanging beat grouping throughout a piece.</dd></div>
           <div class="term-row"><dt class="term">Simple metre</dt><dd class="def">Each beat divides naturally into two <em>(e.g. 2/4, 3/4, 4/4)</em>.
-            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="2"></div></div>
-            <button type="button" class="example-btn" data-example-id="simple-metre">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="simple-metre" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="2"></div></div>
+              <button type="button" class="example-btn" data-example-id="simple-metre">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="simple-metre" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Compound metre</dt><dd class="def">Each beat divides naturally into three <em>(e.g. 6/8, 9/8, 12/8)</em>.
-            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3"></div></div>
-            <button type="button" class="example-btn" data-example-id="compound-metre">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="compound-metre" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3"></div></div>
+              <button type="button" class="example-btn" data-example-id="compound-metre">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="compound-metre" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Irregular metre</dt><dd class="def">A metre with uneven beat groupings within the bar <em>(e.g. 5/8, 7/8)</em>.
-            <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3,2" data-label="1"></div></div>
-            <button type="button" class="example-btn" data-example-id="irregular-metre">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="irregular-metre" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row"><div class="diagram-cell rhythm-diagram-slot" data-groups="3,2" data-label="1"></div></div>
+              <button type="button" class="example-btn" data-example-id="irregular-metre">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="irregular-metre" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Mixed metre</dt><dd class="def">Frequent, deliberate changes of time signature within a piece.<br><button type="button" class="example-btn" data-example-id="mixed-metre">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="mixed-metre" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Poly-metre</dt><dd class="def">Two or more different metres sounding simultaneously in different parts.<br><button type="button" class="example-btn" data-example-id="poly-metre">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="poly-metre" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Tempo gradations</dt><dd class="def">Tempo changes indicated by Italian terms &mdash; almost all gradual, with one common exception noted below.<br><strong>Getting faster (gradual):</strong> Accelerando (accel.), Stringendo (pressing forward, with mounting intensity), Precipitando (rushing forward, headlong).<br><strong>Getting slower (gradual):</strong> Rallentando (rall.), Allargando (allarg. &mdash; broadening, often with a growing dynamic), Calando (slowing and softening together), Morendo (dying away), Smorzando (smorz. &mdash; fading away), Perdendosi (losing itself, fading into silence).<br><strong>Exception &mdash; immediate, not gradual:</strong> Ritardando and Ritenuto are both abbreviated "rit.", but only ritardando is a gradual slowing; ritenuto is an immediate, deliberate holding-back of the tempo.</dd></div>
           <div class="term-row"><dt class="term">Metronome markings</dt><dd class="def">A precise tempo instruction given in beats per minute <em>(e.g. &#9833; = 120)</em>.</dd></div>
-          <div class="term-row"><dt class="term">Expressive tempo indications</dt><dd class="def">Terms indicating tempo and character, usually Italian but sometimes French or German.<br><strong>Italian:</strong> Largo/Grave/Lento (very slow, broad / slow, solemn / slow), Larghetto (rather broadly &mdash; a little faster than Largo), Adagio (slow, at ease), Andante/Andantino (walking pace / slightly faster), Moderato (moderate), Allegretto (moderately fast), Allegro/Vivace (fast, lively / brisk), Presto/Prestissimo (very fast / as fast as possible).<br><strong>French:</strong> Lent (slow), Mod&eacute;r&eacute; (moderate), Vif/Anim&eacute; (lively / animated), Vite/Tr&egrave;s vite (fast / very fast).<br><strong>German:</strong> Langsam (slow), M&auml;&szlig;ig (moderate), Lebhaft/Bewegt (lively / moving, agitated), Rasch/Schnell (quick / fast).</dd></div>
+          <div class="term-row"><dt class="term">Expressive tempo indications</dt><dd class="def">Terms indicating tempo and character, usually Italian but sometimes French or German. Reading across a row shows roughly equivalent speeds in each language.
+            <div class="tempo-table-wrap">
+              <table class="tempo-table">
+                <caption>Approximate speed &rarr;</caption>
+                <thead>
+                  <tr><th scope="col">Language</th><th scope="col">Very slow</th><th scope="col">Slow</th><th scope="col">Moderate</th><th scope="col">Moderately fast</th><th scope="col">Fast</th><th scope="col">Very fast</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Italian</th>
+                    <td>Largo / Grave / Lento <em>(broad / solemn / slow)</em></td>
+                    <td>Larghetto <em>(a little faster than Largo)</em>; Adagio <em>(at ease)</em></td>
+                    <td>Andante / Andantino <em>(walking pace / slightly faster)</em>; Moderato</td>
+                    <td>Allegretto</td>
+                    <td>Allegro / Vivace <em>(lively / brisk)</em></td>
+                    <td>Presto / Prestissimo <em>(as fast as possible)</em></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">French</th>
+                    <td>Lent</td>
+                    <td>&mdash;</td>
+                    <td>Mod&eacute;r&eacute;</td>
+                    <td>Vif / Anim&eacute; <em>(lively / animated)</em></td>
+                    <td>Vite</td>
+                    <td>Tr&egrave;s vite</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">German</th>
+                    <td>Langsam</td>
+                    <td>&mdash;</td>
+                    <td>M&auml;&szlig;ig</td>
+                    <td>Lebhaft / Bewegt <em>(lively / agitated)</em></td>
+                    <td>Rasch / Schnell <em>(quick / fast)</em></td>
+                    <td>&mdash;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </dd></div>
           <div class="term-row"><dt class="term">Note values &amp; rhythm grouping</dt><dd class="def">The full range of note and rest durations, and the style-appropriate conventions for beaming and grouping them on the page.</dd></div>
           <div class="term-row"><dt class="term">A tempo</dt><dd class="def">Return to the previous, main tempo after a deviation.</dd></div>
           <div class="term-row"><dt class="term">Tempo primo (Tempo I)</dt><dd class="def">Return specifically to the very first tempo heard in the piece, not just the most recent one.</dd></div>
@@ -738,11 +785,13 @@
           <div class="term-row"><dt class="term">Experimental scale forms</dt><dd class="def">Scales devised or adapted by a composer outside traditional Western scale systems.</dd></div>
           <div class="term-row"><dt class="term">Microtonal scales</dt><dd class="def">Scales built from intervals smaller than a semitone. Common notation symbols:<br><strong>&uarr; / &darr;</strong> (arrow above a note or accidental) &mdash; the simplest, most widely used convention: raises or lowers the pitch by a small, specified amount, often a quarter-tone.<br><strong>Half-sharp (quarter-tone sharp)</strong> &mdash; a sharp sign with only one vertical stroke instead of two; raises the pitch by roughly a quarter-tone.<br><strong>Half-flat (quarter-tone flat)</strong> &mdash; a backwards or slashed flat sign; lowers the pitch by roughly a quarter-tone.<br><strong>Three-quarter-tone sharp / flat</strong> &mdash; a sharp or flat sign with an added stroke; raises or lowers the pitch by three quarter-tones.<br><button type="button" class="example-btn" data-example-id="microtonal-scales">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="microtonal-scales" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Interval sets / pitch sets</dt><dd class="def">A defined collection of intervals or pitches used as compositional material, common in 20th- and 21st-century concert music. <em>e.g. the pitch set {0, 1, 4} &mdash; a fixed three-note cell such as C&ndash;C&#9839;&ndash;E &mdash; reused and transposed throughout a work, as in the atonal music of Schoenberg or Webern.</em>
-            <div class="diagram-row">
-              <div class="diagram-cell"><span class="diagram-label">{0,1,4} on C</span><div class="chord-diagram-slot" data-notes="C4,C#4,E4" data-clef="treble"></div></div>
-              <div class="diagram-cell"><span class="diagram-label">Same set, transposed</span><div class="chord-diagram-slot" data-notes="D4,D#4,F4" data-clef="treble"></div></div>
-            </div>
-            <button type="button" class="example-btn" data-example-id="pitch-set">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="pitch-set" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row">
+                <div class="diagram-cell"><span class="diagram-label">{0,1,4} on C</span><div class="chord-diagram-slot" data-notes="C4,C#4,E4" data-clef="treble"></div></div>
+                <div class="diagram-cell"><span class="diagram-label">Same set, transposed</span><div class="chord-diagram-slot" data-notes="D4,D#4,F4" data-clef="treble"></div></div>
+              </div>
+              <button type="button" class="example-btn" data-example-id="pitch-set">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="pitch-set" hidden></div>
           </dd></div>
         </dl>
       </section>
@@ -809,8 +858,10 @@
           <div class="term-row"><dt class="term">Hemiola</dt><dd class="def">A rhythmic pattern implying two groups of three beats against three groups of two, or vice versa.<br><button type="button" class="example-btn" data-example-id="hemiola">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="hemiola" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Ostinato</dt><dd class="def">A short rhythmic or melodic pattern repeated persistently.<br><button type="button" class="example-btn" data-example-id="ostinato">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="ostinato" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Polyrhythm</dt><dd class="def">The broader term: two or more contrasting rhythmic groupings (e.g. 3 against 2) sounding together, whether or not either one conflicts with the prevailing metre. Cross-rhythm, below, is the specific case where it does.
-            <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="3,2"></div></div>
-            <button type="button" class="example-btn" data-example-id="polyrhythm">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="polyrhythm" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="3,2"></div></div>
+              <button type="button" class="example-btn" data-example-id="polyrhythm">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="polyrhythm" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Swing</dt><dd class="def">An uneven, long&ndash;short division of the beat characteristic of jazz.
             <svg viewBox="0 0 320 178" role="img" aria-label="Standard notation comparing two straight quavers to their swung, triplet-based realisation as a crotchet plus quaver" style="width:100%;max-width:300px;height:auto;display:block;margin-top:0.5rem;">
@@ -861,8 +912,10 @@
             <button type="button" class="example-btn" data-example-id="swing">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="swing" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Cross-rhythm</dt><dd class="def">The specific case of polyrhythm where a rhythm deliberately conflicts with the established, felt metre itself &mdash; it works against the prevailing pulse, rather than simply combining with it. <em>e.g. in a 4/4 bar, accenting every three quavers (3+3+3+3+3... regrouped as 3s across the bar) so the accents fall in a different place each beat, pulling against the underlying 4/4 feel.</em>
-            <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="4,3"></div></div>
-            <button type="button" class="example-btn" data-example-id="cross-rhythm">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="cross-rhythm" hidden></div>
+            <div class="diagram-with-btn">
+              <div class="diagram-row"><div class="diagram-cell polyrhythm-slot" data-ab="4,3"></div></div>
+              <button type="button" class="example-btn" data-example-id="cross-rhythm">&#9654; Hear a real example</button>
+            </div><div class="example-panel" data-example-panel="cross-rhythm" hidden></div>
           </dd></div>
           <div class="term-row"><dt class="term">Augmentation</dt><dd class="def">Restating a musical idea with its note values lengthened. <em>e.g. a melody's crotchets (&#9833;) restated as minims &mdash; the same notes and rhythmic shape, at double the original duration.</em><br><button type="button" class="example-btn" data-example-id="augmentation">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="augmentation" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Diminution</dt><dd class="def">Restating a musical idea with its note values shortened. <em>e.g. a melody's crotchets (&#9833;) restated as quavers (&#9834;) &mdash; the same notes and rhythmic shape, at half the original duration.</em><br><button type="button" class="example-btn" data-example-id="diminution">&#9654; Hear &amp; see a real example</button><div class="example-panel" data-example-panel="diminution" hidden></div></dd></div>
@@ -993,7 +1046,7 @@
         <p class="banner-blurb" style="margin:0.2rem 0 1rem;padding-bottom:0;border-bottom:none;">Choices about <em>who</em> plays and how forces are distributed on the page. Instrument-specific playing techniques &mdash; arco, pizzicato, mutes and the rest &mdash; are grouped by instrumental family under Expressive devices, below.</p>
         <dl class="terms">
           <div class="term-row"><dt class="term">Performing media</dt><dd class="def">Choices of instrumental and vocal sound sources, instrument-specific techniques, transposition, and the manipulation of timbre by acoustic, electronic or digital means.</dd></div>
-          <div class="term-row"><dt class="term">a2 (a due)</dt><dd class="def">Two players sharing a staff play the same line together, in unison.</dd></div>
+          <div class="term-row"><dt class="term">A2 (a due)</dt><dd class="def">Two players sharing a staff play the same line together, in unison.</dd></div>
           <div class="term-row"><dt class="term">Div. (divisi)</dt><dd class="def">A section splits into two or more separate parts.</dd></div>
           <div class="term-row"><dt class="term">Unis. (unison)</dt><dd class="def">Cancels a divisi &mdash; the section returns to playing the same line together.</dd></div>
           <div class="term-row"><dt class="term">Solo / Tutti</dt><dd class="def">A single player performs alone / the full section or ensemble plays together.</dd></div>
@@ -1118,9 +1171,9 @@
 
       <section class="group" id="timbre">
         <div class="group-head"><h3>Timbre</h3><span class="group-tag">word bank</span></div>
-        <p class="banner-blurb" style="margin-bottom:0.8rem;">Words for describing tone colour, gathered from real HSC Music 2 marking guidelines and sample answers spanning past papers. <em>e.g. &ldquo;a nasal, warm sustained high-pitched oboe&rdquo;; &ldquo;a dark and brooding low register&rdquo;; &ldquo;a bright, dry military drum.&rdquo;</em> No individual definitions &mdash; this is a working word bank, not a glossary.</p>
+        <p class="banner-blurb" style="margin-bottom:0.8rem;">Words for describing tone colour, gathered from real HSC Music 2 marking guidelines and sample answers spanning past papers, plus the SYO (Sydney Youth Orchestra) Summer School Musicology &ldquo;sound-evoking&rdquo; word list. <em>e.g. &ldquo;a nasal, warm sustained high-pitched oboe&rdquo;; &ldquo;a dark and brooding low register&rdquo;; &ldquo;a bright, dry military drum.&rdquo;</em> No individual definitions &mdash; this is a working word bank, not a glossary.</p>
         <dl class="terms">
-          <div class="term-row"><dt class="term">Tone colour words</dt><dd class="def"><div class="word-chips"><span class="word-chip">bright</span><span class="word-chip">brilliant</span><span class="word-chip">dark</span><span class="word-chip">warm</span><span class="word-chip">mellow</span><span class="word-chip">rich</span><span class="word-chip">richer</span><span class="word-chip">fuller</span><span class="word-chip">thin</span><span class="word-chip">sparse</span><span class="word-chip">dense</span><span class="word-chip">harsh</span><span class="word-chip">harshness</span><span class="word-chip">gentle</span><span class="word-chip">mysterious</span><span class="word-chip">muddy</span><span class="word-chip">nasal</span><span class="word-chip">metallic</span><span class="word-chip">wooden</span><span class="word-chip">reedy</span><span class="word-chip">rustic</span><span class="word-chip">strident</span><span class="word-chip">forceful</span><span class="word-chip">playful</span><span class="word-chip">floating</span><span class="word-chip">ethereal</span><span class="word-chip">echoey</span><span class="word-chip">resonant</span><span class="word-chip">crisp</span><span class="word-chip">crisper</span><span class="word-chip">brittle</span><span class="word-chip">subdued</span><span class="word-chip">ringing</span><span class="word-chip">eerie</span><span class="word-chip">brooding</span><span class="word-chip">shimmering</span><span class="word-chip">dry</span><span class="word-chip">light</span><span class="word-chip">lighter</span><span class="word-chip">unified</span><span class="word-chip">homogenous</span><span class="word-chip">distinct</span><span class="word-chip">combined</span><span class="word-chip">contrasting</span><span class="word-chip">unifying</span></div></dd></div>
+          <div class="term-row"><dt class="term">Tone colour words</dt><dd class="def"><div class="word-chips"><span class="word-chip">bright</span><span class="word-chip">brilliant</span><span class="word-chip">dark</span><span class="word-chip">warm</span><span class="word-chip">mellow</span><span class="word-chip">rich</span><span class="word-chip">richer</span><span class="word-chip">fuller</span><span class="word-chip">thin</span><span class="word-chip">sparse</span><span class="word-chip">dense</span><span class="word-chip">harsh</span><span class="word-chip">harshness</span><span class="word-chip">gentle</span><span class="word-chip">mysterious</span><span class="word-chip">muddy</span><span class="word-chip">nasal</span><span class="word-chip">metallic</span><span class="word-chip">wooden</span><span class="word-chip">reedy</span><span class="word-chip">rustic</span><span class="word-chip">strident</span><span class="word-chip">forceful</span><span class="word-chip">playful</span><span class="word-chip">floating</span><span class="word-chip">ethereal</span><span class="word-chip">echoey</span><span class="word-chip">resonant</span><span class="word-chip">crisp</span><span class="word-chip">crisper</span><span class="word-chip">brittle</span><span class="word-chip">subdued</span><span class="word-chip">ringing</span><span class="word-chip">eerie</span><span class="word-chip">brooding</span><span class="word-chip">shimmering</span><span class="word-chip">dry</span><span class="word-chip">light</span><span class="word-chip">lighter</span><span class="word-chip">unified</span><span class="word-chip">homogenous</span><span class="word-chip">distinct</span><span class="word-chip">combined</span><span class="word-chip">contrasting</span><span class="word-chip">unifying</span><span class="word-chip">airy</span><span class="word-chip">reverberant</span><span class="word-chip">booming</span><span class="word-chip">hollow</span><span class="word-chip">echoing</span><span class="word-chip">distorted</span><span class="word-chip">coarse</span><span class="word-chip">scratchy</span><span class="word-chip">woody</span><span class="word-chip">breathy</span><span class="word-chip">rattling</span><span class="word-chip">percussive</span><span class="word-chip">panting</span><span class="word-chip">fluttering</span><span class="word-chip">hoarse</span><span class="word-chip">jangly</span><span class="word-chip">muffled</span><span class="word-chip">piercing</span><span class="word-chip">gruff</span><span class="word-chip">rumbling</span><span class="word-chip">muted</span><span class="word-chip">wheezing</span><span class="word-chip">growling</span><span class="word-chip">electronic</span><span class="word-chip">penetrating</span><span class="word-chip">rasping</span><span class="word-chip">buzzing</span><span class="word-chip">brassy</span><span class="word-chip">sonorous</span><span class="word-chip">synthetic</span></div></dd></div>
         </dl>
       </section>
 
@@ -1163,52 +1216,6 @@
       </section>
     </section>
 
-    <section class="banner" id="confusable-banner">
-      <div class="banner-head"><h2>Commonly confused terms</h2></div>
-      <p class="banner-blurb">Groups of terms that are easy to mix up under exam pressure &mdash; each already has its own full entry above; this is just a quick side-by-side to sharpen the distinction. A supplementary study aid, not a fourth glossary section.</p>
-      <section class="group" id="confusable">
-        <div class="confuse-cluster">
-          <h4>Repeated accompaniment patterns</h4>
-          <div class="confuse-row"><span class="cf-term">Ostinato</span><span class="cf-note">The broad term &mdash; any short melodic <em>or</em> rhythmic pattern repeated persistently, in any part.</span></div>
-          <div class="confuse-row"><span class="cf-term">Pedal point</span><span class="cf-note">A single sustained/repeated <em>note</em> (usually bass) while the harmony above it changes.</span></div>
-          <div class="confuse-row"><span class="cf-term">Inverted pedal point</span><span class="cf-note">The same idea, but the held note is in an upper voice instead of the bass.</span></div>
-          <div class="confuse-row"><span class="cf-term">Drone</span><span class="cf-note">A sustained note or chord as an unchanging backdrop &mdash; no implication it will resolve, unlike a pedal point.</span></div>
-          <div class="confuse-row"><span class="cf-term">Ground bass</span><span class="cf-note">A short <em>bass-only</em> pattern repeating beneath continuously changing upper parts &mdash; associated with variation form.</span></div>
-          <div class="confuse-row"><span class="cf-term">Alberti bass</span><span class="cf-note">One specific broken-chord shape: low&ndash;high&ndash;middle&ndash;high. Classical-period keyboard music.</span></div>
-          <div class="confuse-row"><span class="cf-term">Walking bass</span><span class="cf-note">A steady stream of crotchets outlining the harmony, mostly stepwise &mdash; jazz/blues.</span></div>
-          <div class="confuse-row"><span class="cf-term">Stride bass</span><span class="cf-note">Jazz piano left hand: low bass note on strong beats, chord on weak beats.</span></div>
-          <div class="confuse-row"><span class="cf-term">Vamp</span><span class="cf-note">A short repeated <em>chordal</em> pattern used as an intro or backdrop for improvisation.</span></div>
-        </div>
-        <div class="confuse-cluster">
-          <h4>Texture types</h4>
-          <div class="confuse-row"><span class="cf-term">Monophony</span><span class="cf-note">One line only &mdash; no harmony, whether solo or many performers in unison.</span></div>
-          <div class="confuse-row"><span class="cf-term">Homophony</span><span class="cf-note">A melody plus supporting harmony (chords, or melody-and-accompaniment).</span></div>
-          <div class="confuse-row"><span class="cf-term">Polyphony</span><span class="cf-note">Two or more <em>independent</em> lines of roughly equal importance &mdash; counterpoint.</span></div>
-          <div class="confuse-row"><span class="cf-term">Heterophony</span><span class="cf-note">Simultaneous, slightly <em>varied</em> performances of the <em>same</em> melody &mdash; not truly independent lines.</span></div>
-        </div>
-        <div class="confuse-cluster">
-          <h4>Repetition &amp; imitation devices</h4>
-          <div class="confuse-row"><span class="cf-term">Repetition</span><span class="cf-note">Exact restatement, same pitch level.</span></div>
-          <div class="confuse-row"><span class="cf-term">Sequence</span><span class="cf-note">Restated at a <em>new, shifted</em> pitch level &mdash; same part.</span></div>
-          <div class="confuse-row"><span class="cf-term">Imitation</span><span class="cf-note">Restated in a <em>different voice/part</em> shortly after the first.</span></div>
-          <div class="confuse-row"><span class="cf-term">Canon</span><span class="cf-note">Strict, sustained imitation at a fixed time/pitch interval, <em>overlapping throughout</em> &mdash; not just one entry.</span></div>
-        </div>
-        <div class="confuse-cluster">
-          <h4>Ways a melody or motif can transform</h4>
-          <div class="confuse-row"><span class="cf-term">Melodic inversion</span><span class="cf-note">Upside down &mdash; ascending intervals become descending.</span></div>
-          <div class="confuse-row"><span class="cf-term">Retrograde</span><span class="cf-note">Backwards &mdash; the note order is reversed.</span></div>
-          <div class="confuse-row"><span class="cf-term">Augmentation</span><span class="cf-note">Note values lengthened (slower).</span></div>
-          <div class="confuse-row"><span class="cf-term">Diminution</span><span class="cf-note">Note values shortened (faster).</span></div>
-          <div class="confuse-row"><span class="cf-term">Fragmentation</span><span class="cf-note">Broken down to a small portion, developed independently.</span></div>
-          <div class="confuse-row"><span class="cf-term">Extension</span><span class="cf-note">Prolonged beyond its expected length.</span></div>
-        </div>
-        <div class="confuse-cluster">
-          <h4>Brief vs. lasting key change</h4>
-          <div class="confuse-row"><span class="cf-term">Modulation</span><span class="cf-note">A full, <em>lasting</em> change of key, usually confirmed by a cadence.</span></div>
-          <div class="confuse-row"><span class="cf-term">Tonicisation</span><span class="cf-note">A <em>brief</em>, temporary emphasis on a non-tonic chord via its own secondary dominant &mdash; the key doesn't actually change.</span></div>
-        </div>
-      </section>
-    </section>
 
     <section class="banner" id="notational">
       <div class="banner-head"><span class="banner-index">03</span><h2>Notational language</h2></div>
@@ -1221,33 +1228,33 @@
             <div class="diagram-row">
               <div class="diagram-cell">
                 <span class="diagram-label">Treble</span>
-                <img src="score-images/clefs/treble-clef.svg" alt="Treble (G) clef on a five-line staff" style="width:100%;max-width:110px;height:auto;display:block;margin:0 auto;">
+                <img src="score-images/clefs/treble-clef.svg" alt="Treble (G) clef on a five-line staff" style="height:80px;width:auto;max-width:100px;display:block;margin:0 auto;object-fit:contain;">
                 <span class="diagram-caption">Middle C: 1st ledger line below the staff</span>
               </div>
               <div class="diagram-cell">
                 <span class="diagram-label">Alto</span>
-                <img src="score-images/clefs/alto-clef.svg" alt="Alto (C) clef on a five-line staff" style="width:100%;max-width:110px;height:auto;display:block;margin:0 auto;">
+                <img src="score-images/clefs/alto-clef.svg" alt="Alto (C) clef on a five-line staff" style="height:80px;width:auto;max-width:100px;display:block;margin:0 auto;object-fit:contain;">
                 <span class="diagram-caption">Middle C: middle line</span>
               </div>
               <div class="diagram-cell">
                 <span class="diagram-label">Tenor</span>
-                <img src="score-images/clefs/tenor-clef.svg" alt="Tenor (C) clef on a five-line staff" style="width:100%;max-width:110px;height:auto;display:block;margin:0 auto;">
+                <img src="score-images/clefs/tenor-clef.svg" alt="Tenor (C) clef on a five-line staff" style="height:80px;width:auto;max-width:100px;display:block;margin:0 auto;object-fit:contain;">
                 <span class="diagram-caption">Middle C: 2nd line from the top</span>
               </div>
               <div class="diagram-cell">
                 <span class="diagram-label">Bass</span>
-                <img src="score-images/clefs/bass-clef.svg" alt="Bass (F) clef on a five-line staff" style="width:100%;max-width:110px;height:auto;display:block;margin:0 auto;">
+                <img src="score-images/clefs/bass-clef.svg" alt="Bass (F) clef on a five-line staff" style="height:80px;width:auto;max-width:100px;display:block;margin:0 auto;object-fit:contain;">
                 <span class="diagram-caption">Middle C: 1st ledger line above the staff</span>
               </div>
               <div class="diagram-cell">
                 <span class="diagram-label">Percussion</span>
-                <svg viewBox="0 0 180 220" style="width:100%;max-width:110px;height:auto;display:block;margin:0 auto;"><line x1="20" y1="90" x2="160" y2="90" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="100" x2="160" y2="100" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="110" x2="160" y2="110" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="120" x2="160" y2="120" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="130" x2="160" y2="130" stroke="var(--ink)" stroke-width="1"/><rect x="82" y="98" width="6" height="24" fill="var(--ink)"/><rect x="92" y="98" width="6" height="24" fill="var(--ink)"/></svg>
+                <svg viewBox="0 70 180 80" style="height:80px;width:auto;max-width:100px;display:block;margin:0 auto;"><line x1="20" y1="90" x2="160" y2="90" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="100" x2="160" y2="100" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="110" x2="160" y2="110" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="120" x2="160" y2="120" stroke="var(--ink)" stroke-width="1"/><line x1="20" y1="130" x2="160" y2="130" stroke="var(--ink)" stroke-width="1"/><rect x="82" y="98" width="6" height="24" fill="var(--ink)"/><rect x="92" y="98" width="6" height="24" fill="var(--ink)"/></svg>
                 <span class="diagram-caption">Unpitched &mdash; no note reference</span>
               </div>
             </div>
             <p class="fig-credit">Treble/alto/tenor/bass clef images: Tlust&#x165;, public domain, via Wikimedia Commons.</p>
           </dd></div>
-          <div class="term-row"><dt class="term">Graphic notation</dt><dd class="def">Non-traditional, pictorial or symbolic representation of sound and musical gesture.</dd></div>
+          <div class="term-row"><dt class="term">Graphic notation</dt><dd class="def">Non-traditional, pictorial or symbolic representation of sound and musical gesture.<br><button type="button" class="example-btn" data-example-id="graphic-notation">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="graphic-notation" hidden></div></dd></div>
           <div class="term-row"><dt class="term">Open score</dt><dd class="def">A score in which each performing part is notated on its own separate staff.</dd></div>
           <div class="term-row"><dt class="term">Nonlinear scoring</dt><dd class="def">Notation that does not proceed in a single fixed sequence, allowing performers choice in the order material is read or played.</dd></div>
           <div class="term-row"><dt class="term">Spatial scoring</dt><dd class="def">Notation in which the position of symbols on the page represents time, pitch or other musical parameters, rather than strict rhythmic notation.</dd></div>
@@ -2124,11 +2131,11 @@
         caveat: 'Movement II is not separately chaptered on this recording; the timestamp is placed within its central climax using standard approximate movement timings, not a caption-confirmed boundary.'
       },
       'tone-row': {
-        cite: `Berg, Violin Concerto &ldquo;To the Memory of an Angel&rdquo;, I. Andante &mdash; the twelve-tone row is stated in the opening bars.`,
+        cite: `Berg, Violin Concerto &ldquo;To the Memory of an Angel&rdquo;, I. Andante &mdash; the twelve-tone row is stated in the opening bars: <strong>G&ndash;B&#9837;&ndash;D&ndash;F&#9839;&ndash;A&ndash;C&ndash;E&ndash;G&#9839;&ndash;B&ndash;C&#9839;&ndash;D&#9839;&ndash;F</strong>.`,
         video: 'UL29eLsbz2k', start: 12,
         caption: 'Louis Krasner (violin) / Anton Webern (cond.), historic premiere-era recording, with score.',
         score: { url: 'https://imslp.org/wiki/Violin_Concerto_(Berg,_Alban)', label: 'IMSLP &mdash; Violin Concerto (Berg)', note: 'Public domain.' },
-        bar: 'mm. 1&ndash;6 &mdash; the orchestra outlines the violin&rsquo;s open strings before the soloist arpeggiates the full row.'
+        bar: 'mm. 1&ndash;6 &mdash; the orchestra outlines the violin&rsquo;s open strings (G&ndash;D&ndash;A&ndash;E) before the soloist arpeggiates the full row. Notes 1&ndash;9 form a chain of overlapping minor/major triads (G minor, D major, A minor, E major); notes 9&ndash;12 (B&ndash;C&#9839;&ndash;D&#9839;&ndash;F) form a whole-tone tetrachord that Berg later uses to pivot into his quotation of the Bach chorale &ldquo;Es ist genug&rdquo; in the second movement.'
       },
       'pentatonic-scale': {
         cite: `Traditional (New Britain), &ldquo;Amazing Grace&rdquo; &mdash; a melody built on the major pentatonic scale (no 4th or 7th degree).`,
@@ -2150,11 +2157,12 @@
         scoreNote: `Score not shown &mdash; Ligeti&rsquo;s works are still in copyright. The shimmering quarter-tone-apart tuning is audible from the opening string tremolo.`
       },
       'pitch-set': {
-        cite: `Webern, Six Bagatelles for String Quartet, Op. 9, No. 1 &mdash; an aphoristic, freely atonal work generated from a compact opening pitch-set.`,
+        cite: `Webern, Six Bagatelles for String Quartet, Op. 9, No. 1 &mdash; an aphoristic, freely atonal work generated from a compact opening pitch-set. Bar 1 sounds just three pitches: cello C4 and viola E&#9837;4 (a minor third apart, pp), against violin I&rsquo;s A&#9839;5/B&#9837;5 tied in from the same bar &mdash; a tight interval placed almost two octaves above the other two, typical of Webern&rsquo;s widely-spaced, pointillistic texture.`,
         video: 'WRHo-Prmc2Y', start: 2,
         caption: 'Score video, real string-quartet recording (Score Videos channel).',
-        score: { url: 'https://imslp.org/wiki/6_Bagatelles,_Op.9_(Webern,_Anton)', label: 'IMSLP &mdash; 6 Bagatelles, Op.9', note: 'Public domain.' },
-        bar: 'No. 1, mm. 1&ndash;3 &mdash; the opening cell is immediately restated and varied.'
+        score: { url: 'https://imslp.org/wiki/6_Bagatellen,_Op.9_(Webern,_Anton)', label: 'IMSLP &mdash; 6 Bagatellen, Op.9', note: 'Public domain.' },
+        bar: 'No. 1, mm. 1&ndash;3 &mdash; the opening cell is immediately restated and varied.',
+        caveat: 'Pitches read directly off the IMSLP score (Universal Edition, 1924); the IMSLP work page is filed under the German title &ldquo;6 Bagatellen&rdquo; &mdash; the old &ldquo;6 Bagatelles&rdquo; link was dead.'
       },
       'chord-progression': {
         cite: `Pachelbel, Canon in D major &mdash; an eight-chord ground-bass progression (I&ndash;V&ndash;vi&ndash;iii&ndash;IV&ndash;I&ndash;IV&ndash;V) repeated throughout.`,
@@ -2357,16 +2365,18 @@
         cite: `Beethoven, Symphony No. 9 in D minor, Op. 125, I &mdash; the symphony opens with a pp string tremolo on open fifths, building to the fortissimo main theme.`,
         video: 'FwDo7MdaxhA', start: 5,
         caption: 'Le Concert des Nations, cond. Jordi Savall, live at Beethovenfest Bonn 2021 (period instruments).',
+        score: { url: 'https://imslp.org/wiki/Symphony_No.9,_Op.125_(Beethoven,_Ludwig_van)', label: 'IMSLP &mdash; Symphony No.9, Op.125', note: 'Public domain.' },
+        scoreImg: { src: 'score-images/tremolo-beethoven9.png', alt: 'Beethoven Symphony No. 9 opening bars, string parts, showing the pp open-fifth tremolo', caption: 'Real score: Litolff/Dover miniature score edition &mdash; Violin II and Cello tremolo the open A&ndash;E fifth pp from bar 1, joined by fragmentary Violin I/Viola/Bass entries.' },
         bar: 'mm. 1&ndash;16 &mdash; the introductory pp string tremolo before the fortissimo tutti at m. 17.',
         caveat: 'The movement&rsquo;s start is chapter-confirmed at 0:00; the individual-bar placement is not separately confirmed.'
       },
       'glissando-general': {
         cite: `Gershwin, <em>Rhapsody in Blue</em> &mdash; the famous opening clarinet glissando, from a low trill sweeping up to a high note.`,
-        video: 'WDTVK50yPjk', start: 1,
-        caption: 'Daniel Clarke Bouchard, principal clarinet, Saskatoon Symphony Orchestra (official orchestra channel).',
-        scoreNote: `Score not shown &mdash; this 1924 work isn&rsquo;t public domain.`,
+        video: 'Ya4y4xJ6OxA', start: 0,
+        caption: 'Olivier Patey, clarinet, with the Royal Concertgebouw Orchestra, cond. Daniel Harding (live, Concertgebouw Amsterdam, 2015).',
+        scoreNote: `Score not shown &mdash; the full-orchestra (Grof&eacute; 1942) arrangement heard in most performances remains under US copyright until 2038.`,
         bar: 'Opening measures (clarinet cadenza-like glissando).',
-        caveat: 'This short clip has no captions/chapters; the exact frame is an estimate.'
+        caveat: 'The clip is trimmed to just this solo, starting right at the glissando.'
       },
       'harmonics-general': {
         cite: `A violin teacher demonstrates natural and artificial harmonics &mdash; pure, bell-like overtones produced by lightly touching the string at specific points.`,
@@ -2743,11 +2753,11 @@
         caveat: 'Timestamp confirmed via a viewer-contributed breakdown matching this video&rsquo;s captions.'
       },
       'perc-dynamics': {
-        cite: `A real timpanist demonstrates how mallet hardness and core material change loudness, attack and tone colour.`,
-        video: 'fwScd4MGgYE', start: 236,
-        caption: 'Bryce Leafman, timpani (Billings Symphony Orchestra &amp; Chorale)',
+        cite: `A vibraphone mallet-selection demonstration &mdash; the same instrument played with different mallets to show how hardness and striking point change loudness, attack and tone colour.`,
+        video: 'yv_HwPdadBM', start: 0,
+        caption: 'MusicProfessor, vibraphone mallet selection (educational channel).',
         scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
-        caveat: 'Timestamp matches this video&rsquo;s own chapters, &ldquo;Timpani Mallets&rdquo; through &ldquo;Cores&rdquo; (3:56&ndash;4:45), though an audit found this stretch is verbal description of how mallet hardness affects tone rather than a clear audible A/B comparison &mdash; worth a manual listen to confirm it delivers what the citation promises.'
+        caveat: 'Chosen as a clearer, more directly relevant mallet-choice demonstration than an earlier timpani example (pitched mallet percussion makes tone-colour differences easier to hear and relate to marimba/vibraphone/glockenspiel writing, which HSC students encounter far more often than timpani mallet changes).'
       },
       'perc-roll': {
         cite: `A real drummer demonstrates a buzz (multiple-bounce) roll on snare drum &mdash; rapid repetition simulating a continuous sustained sound.`,
@@ -2758,10 +2768,10 @@
       },
       'perc-choke': {
         cite: `A real drummer demonstrates choking a cymbal &mdash; stopping its ring immediately by grabbing it with the hand.`,
-        video: 'TEcJ2VtIlnc', start: 20,
-        caption: 'Drumeo (drum education channel)',
+        video: 'EVPnOm42wAQ', start: 0,
+        caption: 'Drumdex, &ldquo;How to Choke a Cymbal for Beginners&rdquo; (drum education channel).',
         scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
-        caveat: 'This video was blocked by YouTube&rsquo;s Restricted Mode during an automated audit and couldn&rsquo;t be independently re-verified. Please preview it directly before use &mdash; its title on YouTube references an on-camera injury, which may not be appropriate for a classroom resource regardless of the timestamp.'
+        caveat: 'Replaces an earlier Drumeo video that showed an on-camera injury; this short, clean beginner lesson demonstrates the same technique.'
       },
       'rim-shot': {
         cite: `A real drummer demonstrates cross-sticking on snare drum &mdash; resting the stick across the head and striking the rim for a sharp, cutting sound.`,
@@ -2797,6 +2807,13 @@
         caption: 'Giovanni Perin, vibraphone (from Aforismi for vibraphone solo)',
         scoreNote: `Score not shown &mdash; real repertoire written specifically to showcase this technique.`,
         caveat: 'The whole (1:05) etude is built around the dead-stroke technique.'
+      },
+      'graphic-notation': {
+        cite: `Penderecki, &ldquo;Threnody to the Victims of Hiroshima&rdquo; (1960) &mdash; the score abandons traditional note-heads for the extended string techniques, using thick black wedges, wavy lines and hatched blocks to notate cluster glissandi, pitch bands and bowing noise.`,
+        video: 'Dp3BlFZWJNA', start: 0,
+        caption: 'National Polish Radio Symphony Orchestra, Antoni Wit (cond.) &mdash; Naxos recording.',
+        scoreNote: `Score not shown &mdash; still in copyright (Penderecki d. 2020). Search &ldquo;Penderecki Threnody score graphic notation&rdquo; to see a page of the actual notation alongside a recording.`,
+        caveat: 'The whole piece is built from these graphic symbols rather than conventional pitched notation; there is no single "the graphic notation happens here" moment to time-stamp.'
       }
     };
 
@@ -2984,8 +3001,7 @@
         x += groupGap;
       });
       var width = x + 10;
-      var line = '<line x1="10" y1="' + staffY + '" x2="' + (width - 10) + '" y2="' + staffY + '" stroke="var(--ink)" stroke-width="1"/>';
-      return '<svg viewBox="0 0 ' + width + ' 110" role="img" aria-label="Rhythm grouping diagram" style="width:100%;max-width:' + Math.min(width, 260) + 'px;height:auto;">' + line + beams + stems + noteheads + labels + '</svg>';
+      return '<svg viewBox="0 0 ' + width + ' 110" role="img" aria-label="Rhythm grouping diagram" style="width:100%;max-width:' + Math.min(width, 260) + 'px;height:auto;">' + beams + stems + noteheads + labels + '</svg>';
     }
 
     function polyrhythmSVG(a, b) {
@@ -3002,8 +3018,7 @@
           stems += '<line x1="' + stemX + '" y1="' + staffY + '" x2="' + stemX + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="1.6"/>';
         });
         var beam = stemXs.length > 1 ? '<line x1="' + stemXs[0] + '" y1="' + (staffY - stemH) + '" x2="' + stemXs[stemXs.length - 1] + '" y2="' + (staffY - stemH) + '" stroke="var(--ink)" stroke-width="4"/>' : '';
-        var line = '<line x1="' + (leftX - 10) + '" y1="' + staffY + '" x2="' + (rightX + 10) + '" y2="' + staffY + '" stroke="var(--ink)" stroke-width="1"/>';
-        return line + beam + stems + noteheads;
+        return beam + stems + noteheads;
       }
       var guideTop = '<line x1="' + leftX + '" y1="4" x2="' + leftX + '" y2="105" stroke="var(--surface-line)" stroke-width="1" stroke-dasharray="2,2"/>';
       var guideBottom = '<line x1="' + rightX + '" y1="4" x2="' + rightX + '" y2="105" stroke="var(--surface-line)" stroke-width="1" stroke-dasharray="2,2"/>';
@@ -3017,10 +3032,12 @@
       var labelGroups = slot.getAttribute('data-label') === '1';
       var tuplet = slot.getAttribute('data-tuplet') === '1';
       slot.innerHTML = rhythmGroupsSVG(groups, { labelGroups: labelGroups, tuplet: tuplet });
+      cropSVGToContent(slot.querySelector('svg'), 6);
     });
     Array.prototype.slice.call(document.querySelectorAll('.polyrhythm-slot')).forEach(function (slot) {
       var ab = slot.getAttribute('data-ab').split(',').map(Number);
       slot.innerHTML = polyrhythmSVG(ab[0], ab[1]);
+      cropSVGToContent(slot.querySelector('svg'), 6);
     });
 
     var actx2 = null;
