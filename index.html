@@ -1095,8 +1095,51 @@
             <dl class="terms">
               <div class="term-row"><dt class="term">Arco</dt><dd class="def">Resume playing with the bow &mdash; cancels a pizzicato instruction.<br><button type="button" class="example-btn" data-example-id="arco">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="arco" hidden></div></dd></div>
               <div class="term-row"><dt class="term">Pizz. (pizzicato)</dt><dd class="def">Pluck the string with a finger instead of bowing.<br><button type="button" class="example-btn" data-example-id="pizzicato">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="pizzicato" hidden></div></dd></div>
-              <div class="term-row"><dt class="term">Con sord. / senza sord.</dt><dd class="def">With mute (sordino, a clamp fitted to the bridge) / without mute &mdash; softens and darkens the tone.<br><button type="button" class="example-btn" data-example-id="con-sord">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="con-sord" hidden></div></dd></div>
-              <div class="term-row"><dt class="term">Down-bow / up-bow</dt><dd class="def">Direction markings (&#x2293; / V) instructing the stroke direction of the bow, shaping accent and phrasing. <em>Mainly a notational/bowing convention rather than an audibly distinct effect on its own &mdash; no isolated real-audio contrast is included here.</em></dd></div>
+              <div class="term-row"><dt class="term">Con sord. / senza sord.</dt><dd class="def">With mute (sordino, a clamp fitted to the bridge) / without mute &mdash; softens and darkens the tone.
+                <svg viewBox="0 0 300 100" role="img" aria-label="String part notation showing con sordino written above one note and senza sordino above a later note" style="width:100%;max-width:300px;height:auto;display:block;margin-top:0.5rem;">
+                  <g stroke="var(--ink)" stroke-width="1">
+                    <line x1="20" y1="40" x2="280" y2="40"></line>
+                    <line x1="20" y1="48" x2="280" y2="48"></line>
+                    <line x1="20" y1="56" x2="280" y2="56"></line>
+                    <line x1="20" y1="64" x2="280" y2="64"></line>
+                    <line x1="20" y1="72" x2="280" y2="72"></line>
+                  </g>
+                  <g fill="var(--ink)">
+                    <ellipse cx="80" cy="56" rx="6" ry="4.5" transform="rotate(-18 80 56)"></ellipse>
+                    <ellipse cx="220" cy="56" rx="6" ry="4.5" transform="rotate(-18 220 56)"></ellipse>
+                  </g>
+                  <g stroke="var(--ink)" stroke-width="1.4">
+                    <line x1="85.5" y1="56" x2="85.5" y2="26"></line>
+                    <line x1="225.5" y1="56" x2="225.5" y2="26"></line>
+                  </g>
+                  <text x="80" y="20" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-style="italic">con sord.</text>
+                  <text x="220" y="20" font-size="10.5" text-anchor="middle" fill="var(--ink)" font-style="italic">senza sord.</text>
+                </svg>
+                <span class="diagram-caption" style="display:block;margin-top:0.3rem;">How the instruction is written directly above the staff in a real string part.</span>
+                <button type="button" class="example-btn" data-example-id="con-sord">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="con-sord" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Down-bow / up-bow</dt><dd class="def">Direction markings (&#x2293; / V) instructing the stroke direction of the bow, shaping accent and phrasing. <em>Mainly a notational/bowing convention rather than an audibly distinct effect on its own &mdash; no isolated real-audio contrast is included here.</em>
+                <svg viewBox="0 0 260 110" role="img" aria-label="String notation showing the down-bow staple symbol above one note and the up-bow V symbol above a later note" style="width:100%;max-width:260px;height:auto;display:block;margin-top:0.5rem;">
+                  <g stroke="var(--ink)" stroke-width="1">
+                    <line x1="20" y1="30" x2="220" y2="30"></line>
+                    <line x1="20" y1="40" x2="220" y2="40"></line>
+                    <line x1="20" y1="50" x2="220" y2="50"></line>
+                    <line x1="20" y1="60" x2="220" y2="60"></line>
+                    <line x1="20" y1="70" x2="220" y2="70"></line>
+                  </g>
+                  <g fill="var(--ink)">
+                    <ellipse cx="90" cy="50" rx="6" ry="4.5" transform="rotate(-18 90 50)"></ellipse>
+                    <ellipse cx="170" cy="50" rx="6" ry="4.5" transform="rotate(-18 170 50)"></ellipse>
+                  </g>
+                  <g stroke="var(--ink)" stroke-width="1.4">
+                    <line x1="95.5" y1="50" x2="95.5" y2="20"></line>
+                    <line x1="175.5" y1="50" x2="175.5" y2="20"></line>
+                  </g>
+                  <path d="M 82 8 L 82 16 L 98 16 L 98 8" fill="none" stroke="var(--ink)" stroke-width="1.6"></path>
+                  <path d="M 163 8 L 170 16 L 177 8" fill="none" stroke="var(--ink)" stroke-width="1.6"></path>
+                  <text x="90" y="92" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',ui-monospace,monospace">down-bow</text>
+                  <text x="170" y="92" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',ui-monospace,monospace">up-bow</text>
+                </svg>
+              </dd></div>
             </dl>
             <p class="family-sub-head">Strings &middot; extended techniques</p>
             <dl class="terms">
@@ -1134,8 +1177,36 @@
           <div class="family-panel" data-family="brass">
             <p class="family-sub-head" style="margin-top:0;">Brass &middot; expressive techniques</p>
             <dl class="terms">
-              <div class="term-row"><dt class="term">Mutes (straight, cup, harmon, plunger)</dt><dd class="def">Inserted or hand-held devices placed in or over the bell that alter and soften tone colour, each giving a distinct character.<br><button type="button" class="example-btn" data-example-id="brass-mutes">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-mutes" hidden></div></dd></div>
-              <div class="term-row"><dt class="term">Stopped horn (+ / o)</dt><dd class="def">The hand fully inserted into the bell (horn), producing a brassy, muffled effect; "o" (open) cancels it.<br><button type="button" class="example-btn" data-example-id="stopped-horn">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="stopped-horn" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Mutes (straight, cup, harmon, plunger)</dt><dd class="def">Inserted or hand-held devices placed in or over the bell that alter and soften tone colour, each giving a distinct character.
+                <div class="diagram-row">
+                  <div class="diagram-cell"><img src="score-images/mutes-diagram.svg" alt="Cross-sectional diagrams of straight, cup and harmon trumpet mutes inserted into the bell" style="width:100%;max-width:420px;height:auto;display:block;margin:0 auto;"></div>
+                  <div class="diagram-cell"><img src="score-images/mute-plunger-photo.png" alt="A cornet player holding a rubber plunger mute over the bell" style="height:120px;width:auto;max-width:150px;display:block;margin:0 auto;border-radius:4px;"><span class="diagram-caption">Plunger &mdash; hand-held, not inserted</span></div>
+                </div>
+                <p class="fig-credit">Mute diagram: Ovinus Real, CC BY-SA 4.0, via Wikimedia Commons. Plunger photo: Infrogmation of New Orleans, CC BY-SA 3.0, via Wikimedia Commons.</p>
+                <button type="button" class="example-btn" data-example-id="brass-mutes">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-mutes" hidden></div></dd></div>
+              <div class="term-row"><dt class="term">Stopped horn (+ / o)</dt><dd class="def">The hand fully inserted into the bell (horn), producing a brassy, muffled effect; "o" (open) cancels it.
+                <svg viewBox="0 0 260 110" role="img" aria-label="Horn notation showing a stopped note marked with a plus sign, followed by an open note marked with a small circle" style="width:100%;max-width:260px;height:auto;display:block;margin-top:0.5rem;">
+                  <g stroke="var(--ink)" stroke-width="1">
+                    <line x1="20" y1="30" x2="220" y2="30"></line>
+                    <line x1="20" y1="40" x2="220" y2="40"></line>
+                    <line x1="20" y1="50" x2="220" y2="50"></line>
+                    <line x1="20" y1="60" x2="220" y2="60"></line>
+                    <line x1="20" y1="70" x2="220" y2="70"></line>
+                  </g>
+                  <g fill="var(--ink)">
+                    <ellipse cx="90" cy="50" rx="6" ry="4.5" transform="rotate(-18 90 50)"></ellipse>
+                    <ellipse cx="170" cy="50" rx="6" ry="4.5" transform="rotate(-18 170 50)"></ellipse>
+                  </g>
+                  <g stroke="var(--ink)" stroke-width="1.4">
+                    <line x1="95.5" y1="50" x2="95.5" y2="20"></line>
+                    <line x1="175.5" y1="50" x2="175.5" y2="20"></line>
+                  </g>
+                  <text x="90" y="14" font-size="16" text-anchor="middle" fill="var(--ink)" font-weight="700">+</text>
+                  <circle cx="170" cy="16" r="4.5" fill="none" stroke="var(--ink)" stroke-width="1.3"></circle>
+                  <text x="90" y="92" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',ui-monospace,monospace">stopped</text>
+                  <text x="170" y="92" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="'IBM Plex Mono',ui-monospace,monospace">open</text>
+                </svg>
+                <button type="button" class="example-btn" data-example-id="stopped-horn">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="stopped-horn" hidden></div></dd></div>
               <div class="term-row"><dt class="term">Dynamic shading (air-speed &amp; embouchure)</dt><dd class="def">Breath pressure and lip tension control loudness and the brightness of tone.<br><button type="button" class="example-btn" data-example-id="dynamic-shading-brass">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="dynamic-shading-brass" hidden></div></dd></div>
               <div class="term-row"><dt class="term">Vibrato (jaw / lip / hand)</dt><dd class="def">Produced by slight, controlled movement of the jaw or lips, or, on horn, an oscillating hand in the bell.<br><button type="button" class="example-btn" data-example-id="brass-vibrato">&#9654; Hear a real example</button><div class="example-panel" data-example-panel="brass-vibrato" hidden></div></dd></div>
             </dl>
@@ -2563,10 +2634,10 @@
       },
       'arco': {
         cite: `Sacconi Quartet, &ldquo;Arco vs Pizzicato&rdquo; &mdash; String Masterclass Series &mdash; arco is normal bowed tone, demonstrated directly against pizzicato for contrast.`,
-        video: 'm17aewv73no', start: 80,
+        video: 'm17aewv73no', start: 47,
         caption: 'Sacconi Quartet &amp; John Frederick Hudson',
         scoreNote: `Score not shown &mdash; this is an instructional demonstration, not a repertoire excerpt.`,
-        caveat: 'Timestamp is a caption-supported estimate for the arco half of the demonstration.'
+        caveat: 'Timestamp confirmed at 0:47.'
       },
       'pizzicato': {
         cite: `Sacconi Quartet, &ldquo;Arco vs Pizzicato&rdquo; &mdash; String Masterclass Series &mdash; the string plucked with a finger, demonstrated directly against arco for contrast.`,
